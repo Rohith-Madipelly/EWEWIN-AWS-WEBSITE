@@ -1,0 +1,122 @@
+.footer{
+  font-family: outfit;
+  font-weight: 500;
+}
+
+.footer{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+
+.footer {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background: linear-gradient(135deg, gold, darkgoldenrod, orange) */
+    background-color: black;
+    /* padding: 70px 0; */
+    box-sizing: border-box;
+}
+
+.footer .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 1rem;
+}
+.centerr {
+    margin: 0 auto; /* Center the div horizontally */
+    text-align: center; /* Center the text inside the div */
+}
+
+
+.footer .box-container .box a {
+    color: black;
+    font-size: 1.5rem;
+    font-size: 15px !important;
+    margin-top: 7px;
+    display: block;
+}
+
+
+.emailInput{
+   width:30vw;
+   height:50px;
+   padding-left: 25px;
+   border-radius: 28px;
+
+}
+.emailInput:focus{
+  outline: none;
+
+}
+
+.SubscribeBtn{
+   margin-left: 20px;
+
+  border-radius: 28px;
+  border: none;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #000000;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.box strong{
+    color: white;
+}
+.footerLinks{
+    color: white;
+}
+
+
+@media (max-width: 768px) {
+.emailInput{
+    width:90vw;
+    height:50px;
+    padding-left: 25px;
+    margin-top: 10px;
+    border-radius: 28px;
+ 
+ }}
+
+  /* Change color on hover for all the links */
+ 
+.hovering:hover{
+  text-shadow: #ffffff;
+
+}
+
+  .box Link{
+    /* background-color: white; */
+    color: pink;
+  }
+  .box  strong{
+    font-weight: 900;
+    font-size: 1.2rem;
+  }
+  .box  strong:hover {
+    animation: 3s;
+    color:  rgb(238, 123, 8);
+   
+  }
+
+
+
+  .Boxlinks a:hover {
+      transform: translateX(+15px);
+      
+  }
+ 
+  
+
+ .social:hover {
+    transform: translateY(-6px);
+  }

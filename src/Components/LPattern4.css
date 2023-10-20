@@ -1,0 +1,48 @@
+
+.heading {
+    margin-bottom: 25px;
+    font-weight: 700;
+    line-height: 140%;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    color: #FFF;
+    margin-top: 60px;
+}
+
+.heading {
+
+    color: #000000;
+
+}
+
+.cards {
+    background: rgba(255,255,255,.05);
+    mix-blend-mode: normal;
+    border-radius: 24px;
+    width: 100%;
+    padding: 30px;
+}
+
+.ques {
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-med {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 140%;
+    color: #FFF;
+    font-family: 'Montserrat';
+    font-style: normal;
+}
+
+
+a:link, a:visited, a:hover {
+    text-decoration: none;
+}

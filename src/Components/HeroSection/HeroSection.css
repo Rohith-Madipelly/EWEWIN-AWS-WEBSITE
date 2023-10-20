@@ -1,0 +1,16 @@
+.HeroSection{
+  position: relative;
+  top: 64px;
+  width: 100%;
+
+}
+
+*{
+  box-sizing: border-box;
+}
+
+
+.background-video{
+  width: 100vw;
+} 
+

@@ -1,0 +1,83 @@
+.bn45 {
+    margin-left: 10px;
+    width: 140px;
+    height: 40px;
+  }
+  .bn46 {
+    width: 140px;
+    height: 42px;
+    margin-left: 10px;
+  }
+
+
+.Gridparent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+
+    .grid2{
+        margin-left: 0px;
+        width: 20vw;
+    }
+
+
+    @media screen and (max-width: 525px) {
+        .Gridparent {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: 1fr;
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+            margin-left:10vw;
+            }
+
+            .grid2{
+                margin-left: 0px;
+                width: 70vw;
+            }
+            .iconsstore{
+                width: 30vw;
+            }
+            
+        
+    }
+
+
+.fontA1{
+    font-size: 35px;
+    color: black;
+}
+
+.fontA2{
+    font-size: 33px;
+    color: black;
+
+}
+
+.fontA3{
+    font-size: 28px;
+    color: black;
+
+}
+
+.fontA4{
+    font-size: 26px;
+    color: black;
+
+}
+
+.fontA5{
+    font-size: 23px;
+    color: black;
+
+}
+
+.fontA6{
+    font-size: 20px;
+    color: black;
+
+}
+

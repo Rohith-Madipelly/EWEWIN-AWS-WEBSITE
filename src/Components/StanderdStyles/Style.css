@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+
+.btn12 {
+
+    font-family: Roboto, sans-serif;
+    font-weight:0;
+    font-size: 14px;
+    color: #000000;
+    /* background-color: #ffffff; */
+    padding: 10px 30px;
+    background-color: #27108300;
+
+    border: solid #000000 2px;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+
+    /* cursor: pointer; */
+    text-transform: uppercase;
+    width: 300px;
+}
+
+div .btn12:hover { 
+    font-weight: 900;
+    transition: 209ms;
+    padding: 10px 62px;
+    transform: translateY(-0px);
+    background-color: #dfb43c00;
+
+    /* color: #FFD700; */
+    /* border: solid 2px #FFD700; */
+} 
+
+/*
+.btn {
+
+    margin-left:3px;
+    margin-right:3px;
+    flex-direction: row-reverse;
+
+} */

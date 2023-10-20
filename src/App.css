@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:ital,wght@0,300;0,500;0,900;1,300;1,500;1,700&display=swap');
+.App{
+  display: flex;
+  flex-direction:column;
+  width:100%;
+}
+
+
+.App{
+  background: linear-gradient(135deg, gold, darkgoldenrod, orange);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.marginTopper-80{
+  margin-top: 80px;
+
+}
+

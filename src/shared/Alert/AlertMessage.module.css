@@ -1,0 +1,9 @@
+.container {
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+}
+.alert {
+  position: absolute;
+  /* top: 20px; */
+}

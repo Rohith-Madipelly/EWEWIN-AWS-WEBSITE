@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,700");
+@import url("https://fonts.googleapis.com/css?family=Graduate");
+
+
+
+body #container {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  max-width: 50rem;
+  width: 100%;
+  /* margin: 0 auto; */
+  /* text-align: center; */
+  letter-spacing: 0.15em;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 525px) {
+  body #container {
+    top: calc(50% - -25px);
+  }
+}
+
+body #container #countdown #cdDays,
+body #container #countdown #cdHours,
+body #container #countdown #cdMins,
+body #container #countdown #cdSecs {
+  display: inline-block;
+  width: 24%;
+  font-family: 'Graduate', cursive;
+}
+
+
+
+@media screen and (max-width: 767px) {
+
+  body #container #countdown #cdDays,
+  body #container #countdown #cdHours,
+  body #container #countdown #cdMins,
+  body #container #countdown #cdSecs {
+    width: 20%;
+  }
+  .headingH1{
+    font-size: 7vw;
+  }
+}
+
+@media screen and (max-width: 525px) {
+
+  body #container #countdown #cdDays,
+  body #container #countdown #cdHours,
+  body #container #countdown #cdMins,
+  body #container #countdown #cdSecs {
+    width: 15%;
+  }
+  .headingH1{
+    font-size: 6vw;
+  }
+}
+
+@media screen and (max-width: 525px) {
+
+  body #container #countdown #cdDays,
+  body #container #countdown #cdHours {
+    /* margin-bottom: 1%; */
+  }
+  .headingH1{
+    font-size: 5vw;
+  }
+}
+
+
+
+
+
+
+
+
+body #container #countdown #daysNum,
+body #container #countdown #hoursNum,
+body #container #countdown #minsNum,
+body #container #countdown #secsNum {
+
+  color: black;
+  /*      opacity: 0.6;*/
+ 
+  font-size: 2.5em;
+  box-shadow: 0 15px 10px -10px rgba(181, 131, 141, 0);
+}
+
+@media screen and (max-width: 525px) {
+
+  body #container #countdown #daysNum,
+  body #container #countdown #hoursNum,
+  body #container #countdown #minsNum,
+  body #container #countdown #secsNum {
+    /* padding: 1rem 0; */
+  }
+}
+
+@media screen and (max-width: 450px) {
+
+  body #container #countdown #daysNum,
+  body #container #countdown #hoursNum,
+  body #container #countdown #minsNum,
+  body #container #countdown #secsNum {
+    font-size: 5vw;
+  }
+}
+
+body #container #countdown .label {
+  padding: 0.5rem 0;
+  opacity: 0.6;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3vw;
+
+  margin-left: -1vw;
+}
+
+@media screen and (max-width: 525px) {
+  body #container #countdown .label {
+    padding: 0.6rem 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  body #container #countdown .label {
+    font-size: 1.5vw;
+    opacity: 0.9;
+  }
+}
+
+body #container #countdown #text {
+  color: #545642;
+  padding-top: 2rem;
+  font-family: 'Quicksand', sans-serif;
+}
+
+@media screen and (max-width: 525px) {
+  body #container #countdown #text {
+    padding-top: 1.5rem;
+  }
+}
+

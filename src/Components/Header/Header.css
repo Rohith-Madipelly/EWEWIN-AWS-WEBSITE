@@ -1,0 +1,153 @@
+.Header
+{
+    width: 100vw;
+    height: 80px;   
+}
+
+Link{
+	color: white;
+  text-decoration: none; 
+}
+/* *{
+	font-family: outfit;
+	font-weight: 700;
+  } */
+  
+.nav-item  {
+	
+    font-weight: 700; }
+
+	@media only screen and (min-width:750px)
+{
+	.nav-item{
+		padding-left: 2vw;
+	}
+}
+	
+
+.links
+{
+	max-height: 150px;
+    margin-top: 10px;
+}
+
+.links a
+{
+	text-decoration: none;
+	color: white;
+	font-size: 15px;
+	margin: 7px;
+}
+.rightside button
+{
+	display: none;
+	margin-left: 20px;
+}
+
+.rightside #hidden
+{
+	display: flex;
+}
+
+.header2{
+	background-color: black;
+	/* background: linear-gradient(135deg, gold, darkgoldenrod, orange) */
+}
+
+
+button:hover
+{
+	cursor: pointer;
+}
+
+.rightside #hidden
+{
+
+	position: absolute;
+
+	top:10px;
+
+	width: 100%;
+	border-radius: 30px 10px;
+	max-height: inherit;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	right: 0px;
+}
+.rightside #hidden a
+{
+	margin: 15px;
+	font-size: 5px;
+	display: flex;
+}
+
+@media only screen and (max-width:850px)
+{
+	 .links a{
+		font-size:10px;
+		margin: 3px;
+	}
+}
+
+@media only screen and (max-width:750px)
+{
+	 .links a{
+		font-size: 15px;
+		margin: 3px;
+
+	}
+	
+}
+
+@media only screen and (max-width:650px)
+{
+	.links a{
+		font-size:15px;
+		margin: 3px;
+
+	}
+}
+
+
+
+@media only screen and (max-width:650px)
+{
+
+	
+.rightside button
+{
+	display: flex;
+	background-color: transparent;
+	border: none;
+	
+}
+
+.rightside .links a{
+		display: none;
+	} 
+.rightside #hidden
+{
+
+
+	
+	top:10px;
+	width: 45%;
+	background-color: #1f1b1bec;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	right: 12px;
+	padding: 10px;
+}
+.rightside #hidden a
+{
+	/* margin: 15px; */
+	font-size: 13px;
+	display: flex;
+	padding: 0;
+	margin: 9px;
+}
+
+}

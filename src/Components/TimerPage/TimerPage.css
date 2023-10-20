@@ -1,0 +1,92 @@
+
+.TimerPage{
+   
+}
+.TimerPage{
+    background-color: black;
+    /* background: linear-gradient(135deg, rgb(54, 53, 47), rgb(43, 40, 33), rgb(0, 0, 0)); */
+    height: 320px;
+    position: relative;
+    right: 0px;
+}
+
+.TimerL2{
+  /* height: auto; */
+  padding: 0 40px;
+}
+
+
+.TimerPage{
+  color: white;
+}
+
+
+
+/* Page Started Here ----- */
+
+
+.TimerPage{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 0px; */
+  }
+
+.gridSetting{
+  display: flex;
+  justify-content: center;
+  align-items: center;}
+
+  .TimerImg{
+    position: absolute;
+    right: 5vw;
+    width: 20vw;
+   
+  }
+
+
+  @media (min-width: 768px) and (max-width: 991px) {
+
+  }
+  
+
+  @media (max-width: 575px) {
+
+
+    /* CSS styles for mobile phones in portrait orientation */
+    .TimerPage{
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      /* grid-template-rows: 1fr; */
+      /* grid-column-gap: 20px; */
+      grid-row-gap: 50px; 
+      }
+    
+    .TimerGrid-2{
+      display: flex;
+      justify-content: center;
+      align-items: center;}
+    
+      .TimerImg{
+        position: absolute;
+        right: 17vw;
+        width: 60vw;
+        bottom: 2px;
+       
+      }
+
+      .TimerPage{
+        background-color: black;
+       
+        height: 500px;
+       
+       
+    }
+.custom-countdown{
+ width: 100vw;
+ width: 40
+}
+
+  }
+  
