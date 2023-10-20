@@ -59,6 +59,16 @@ function Register() {
             setErrorMessage("");
         }
 
+        if(/^[A-Z0-9._%+-]+$/i.test(userName)){
+        toast.error('Numerical Values are not allowed.', { position: toast.POSITION.TOP_CENTER })
+
+
+        return false;
+    }
+    else {
+        setErrorMessage("");
+    }
+
 
 
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
@@ -246,7 +256,7 @@ function Register() {
                                                 >
 
                                                     <div>
-                                                        <TextField id="outlined-Name-input" className='my-2 formobject text-white' label="User Full Name" placeholder="User Full Name" value={userName} onChange={(e) => setUserName(e.target.value)} required />  <br />
+                                                        <TextField id="outlined-Name-input" className='my-2 formobject text-white' label="Your Name as per Aadhaar card" placeholder="Your Name as per Aadhaar card" value={userName} onChange={(e) => setUserName(e.target.value)} required />  <br />
                                                         <TextField id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value)} required />  <br />
                                                         <TextField id="outlined-phone-input" className='my-2 formobject text-white' label="Phone Number" placeholder="Phone Number" value={PhoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />  <br />
 

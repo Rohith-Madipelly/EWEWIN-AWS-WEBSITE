@@ -80,7 +80,7 @@ const Price=49
       rzp1.open();
     }
   } catch (error) {
-    console.log(error);
+  
     if (error?.response?.status === 401) {
       // await dispatch(setToken(""));
       // history.push({
@@ -101,21 +101,21 @@ const verifySignature = async (paymentData) => {
   try {
 
     const res = await verifySignatureApi(paymentData);
-    // alert("HEre",res)
+   
     if (res?.data.message) {
-      // await payMoneyInWallet();
-     console.log("data error")
+    
+    
       setTimeout(() => {
         navigate('/PaymentDone');
         alert("Successfull")
       }, 2000);
     }
   } catch (error) {
-    console.log(error);
+    
     setFormError("Something went wrong.");
     setTimeout(() => {
       navigate('/PaymentDone');
-      console.log("rohith error see")
+     
     }, 2000);
   }
 };

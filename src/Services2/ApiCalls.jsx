@@ -4,9 +4,9 @@ import { BASE_URL } from "../Enviornment";
 
 // Done with Testing 
 export const verifySignatureApi = async (paymentData) => {
-    alert(paymentData.razorpay_payment_id)
-    alert(paymentData.razorpay_order_id)
-    alert(paymentData.razorpay_signature)
+    // alert(paymentData.razorpay_payment_id)
+    // alert(paymentData.razorpay_order_id)
+    // alert(paymentData.razorpay_signature)
     // const paym=paymentData
     // const formData = new FormData();
     // formData.append("razorpay_order_id", paymentData.razorpay_payment_id);
