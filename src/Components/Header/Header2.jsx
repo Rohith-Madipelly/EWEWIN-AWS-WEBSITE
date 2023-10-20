@@ -80,12 +80,19 @@ function Header() {
                 <Button as={Link} to="/PrivacyPolicy"
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
-                  Privacy Policy
+                  <MdPrivacyTip size={25}/> Privacy Policy
                 </Button>
-                <Button as={Link} to="/TermandConditions"
+                {loginSelector ? 
+                <Button as={Link} to="/Profile"
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
-                  {loginSelector ? <Link onClick={handleLogout} to="/">Log Out</Link> : <span >
+                  <CgProfile size={25}/> Profile
+                </Button>:""}
+
+                <Button className='p-0'
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}>
+                  {loginSelector ? <Link onClick={handleLogout} to="/"><RiLogoutBoxLine  size={25}/> Log Out </Link> : <span className='bn632-hover bn19 px-3 py-2'>
                     <Link to="/Login" >Login</Link> / <Link className='inline-flex' to="/Register">Register</Link>
                   </span>}
                 </Button>
@@ -122,7 +129,7 @@ function Header() {
                     <Typography textAlign="center"><Link to="/TermandConditions">Term & Conditions</Link></Typography>
                   </MenuItem>
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center"><Link to="/PrivacyPolicy"><MdPrivacyTip size={25}/>Privacy Policy</Link></Typography>
+                    <Typography textAlign="center"><Link to="/PrivacyPolicy"><MdPrivacyTip size={25}/> Privacy Policy</Link></Typography>
                   </MenuItem>
                   {loginSelector ? 
                   <MenuItem onClick={handleCloseNavMenu} >

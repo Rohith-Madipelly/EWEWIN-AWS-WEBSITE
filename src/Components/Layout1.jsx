@@ -25,7 +25,7 @@ function Layout1() {
                         {/* <TypingH2 text="Happy Birthday Syed Sir Ezewin" /> */}
                         {/* <h1>EZEWIN</h1> */}
                         <p class="text-white-75 mb-5 left-100">
-                        "-We Make dreams come true"
+                        "We Make dreams come true"
                         </p>
                         {/* <div><a class="bn29" href="#Offer">Get Started!</a></div> */}
                         <Link  to="/Register"><button class="bn632-hover bn20">Get Started!</button></Link>
