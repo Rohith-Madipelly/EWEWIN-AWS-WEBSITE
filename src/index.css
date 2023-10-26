@@ -21,6 +21,15 @@ body {
 
 }
 
+*{
+
+    font-family: outfit!important;
+    /* font-weight: 600; */
+
+
+  
+}
+
 a{
  cursor: pointer;
 }

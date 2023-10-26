@@ -61,7 +61,7 @@ function Header() {
               <div className="links" id={HiddenLink ? "hidden" : ""}>
                 <div>
                   <a className='nav-item '><Link to="/" onClick={onClickHandler}>Home</Link></a >
-                  <a className='nav-item '><Link to="/TermandConditions" onClick={onClickHandler}>Term & Conditions</Link></a >
+                  <a className='nav-item '><Link to="/TermandConditions" onClick={onClickHandler}>Terms & Conditions</Link></a >
                   <a className='nav-item '><Link to="/PrivacyPolicy" onClick={onClickHandler}>Privacy Policy</Link></a >
                  
 

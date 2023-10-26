@@ -231,16 +231,21 @@ function Register() {
     return (
         <div className='Register'>
             <section className="vh-50 gradient-custom mt-5">
+            
+
                 <div className="container py-5">
-                    <div className="row d-flex justify-content-center align-items-cente">
+                    <div className="row d-flex justify-content-center align-items-center">
+                    
+
                         <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                             <div className="card bg-coustm text-dark    hover12" style={{ borderRadius: "1rem" }}>
                                 <div className="card-body pt-5 text-center ">
 
                                     <div className="t-4 pb-4 r">
-
+              <img src="src/assets/img/Logo4.png" alt="no logo" loading={"lazy"} style={{ width: '100px' }} />
+                                    
                                         <h2 className="fw-bold mb-2 text-uppercase text-dark">Register</h2>
-                                        <p className="mb-3 text-dark-50">Please Register your self</p>
+                                        <p className="mb-3 text-dark-50">Please Register Yourself</p>
 
                                         <div className="form-outline form-white mb-4">
 
@@ -261,7 +266,7 @@ function Register() {
                                                         <TextField id="outlined-phone-input" className='my-2 formobject text-white' label="Phone Number" placeholder="Phone Number" value={PhoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />  <br />
 
                                                         <TextField id="outlined-password-input" className='my-2 formobject' type="password" label="User Password" placeholder="User Password" value={password} onChange={(e) => setpassword(e.target.value)} required />
-                                                        <TextField id="outlined-password-input" className='my-2 formobject' type="password" label="confirm Password" placeholder="confirm Password" value={confirmpassword} onChange={(e) => setConfirmpassword(e.target.value)} required />
+                                                        <TextField id="outlined-password-input" className='my-2 formobject' type="password" label="Confirm Password" placeholder="Confirm Password" value={confirmpassword} onChange={(e) => setConfirmpassword(e.target.value)} required />
                                                         <TextField
                                                             id="outlined-select-currency"
                                                             select

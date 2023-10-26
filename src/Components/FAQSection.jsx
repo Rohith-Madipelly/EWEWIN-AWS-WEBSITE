@@ -65,8 +65,8 @@ const config = {
 
 function FAQSection() {
     return (
-        <div className="container" id="FAQsTop">
-            <h2 class="heading">Frequently Asked Questions (FAQ’s)</h2>
+        <div className="container" id="FAQTop">
+            <h2 class="heading">Frequently Asked Questions (FAQ)</h2>
             <Faq
                 data={data}
                 styles={styles}
