@@ -56,8 +56,8 @@ function Footer() {
                             <a href='https://www.Twitter.com/' target='blank'>
                                 <img 
                                 className="social Twitter"
-                                src='src/assets/img/Social Icons/Twitter.png'
-                                width={35}
+                                src='src/assets/img/Social Icons/XTwitter.png'
+                                width={34}
                                 alt="Twitter"/>
                             </a>
                             <a href='https://www.instagram.com/' target='blank'>

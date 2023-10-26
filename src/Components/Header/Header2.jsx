@@ -121,20 +121,24 @@ function Header() {
                   sx={{
                     display: { xs: "block", md: "none" }
                   }}
-                >
+                ><NavLink to="/">
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <NavLink to="/">Home</NavLink>
-                  </MenuItem>
+                    Home
+                  </MenuItem></NavLink>
+                  <NavLink to="/TermandConditions">
                   <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center"><NavLink to="/TermandConditions">Term & Conditions</NavLink></Typography>
-                  </MenuItem>
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center"><NavLink to="/PrivacyPolicy"><MdPrivacyTip size={25}/> Privacy Policy</NavLink></Typography>
-                  </MenuItem>
+                    <Typography textAlign="center">Term & Conditions</Typography>
+                  </MenuItem></NavLink>
+                  <NavLink to="/PrivacyPolicy"><MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center"><MdPrivacyTip size={25}/> Privacy Policy</Typography>
+                  </MenuItem></NavLink>
+
                   {loginSelector ? 
+                  <NavLink to="/Profile">
                   <MenuItem onClick={handleCloseNavMenu} >
-                  <NavLink to="/Profile"><CgProfile size={25}/> Profile</NavLink>
-                  </MenuItem>:""}
+                  <CgProfile size={25}/> Profile
+                  </MenuItem></NavLink>:""}
+                  
                   <MenuItem onClick={handleCloseNavMenu} >
                    {loginSelector ? 
                    <NavLink onClick={handleLogout} to="/"><RiLogoutBoxLine  size={25}/> Log Out </NavLink> : 
