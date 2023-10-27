@@ -86,10 +86,10 @@ function Footer() {
                         <div className='box Boxlinks'>
                             <strong>Page Navigation</strong>
                             <a href='#HomeTop' className='text-white'><IoIosArrowForward className='me-1'/>Home</a>
-                            <a href='#OfferTop' className='text-white'><IoIosArrowForward className='me-1'/>Offer</a>
-                            <a href='#DownloadTop' className='text-white'><IoIosArrowForward className='me-1'/>Download</a>
-                            <a href='#GallaryTop'className='text-white'><IoIosArrowForward className='me-1'/>Gallery</a>
-                            <a href='#FAQTop'className='text-white'><IoIosArrowForward className='me-1'/>FAQ</a>
+                            <a href='#nextContest' className='text-white'><IoIosArrowForward className='me-1'/>Next Contest</a>
+                            <a href='#PriceMoney' className='text-white'><IoIosArrowForward className='me-1'/>Price Money</a>
+                            <a href='#WinnersList'className='text-white'><IoIosArrowForward className='me-1'/>Winners List </a>
+                            <a href='#FAQ'className='text-white'><IoIosArrowForward className='me-1'/>FAQ</a>
 
                         </div>
                         <div className='box Boxlinks'>

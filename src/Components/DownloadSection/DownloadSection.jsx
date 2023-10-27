@@ -9,7 +9,7 @@ import "../StanderdStyles/Style.css"
 function DownloadSection() {
     return (
 
-        <section className='pt-2 section-100' id='DownloadTop'
+        <section className='pt-2 section-100' id='PriceMoney'
             style={{ background: "linear-gradient(135deg, gold, darkgoldenrod, orange)" }}
         >
               <Slide triggerOnce>

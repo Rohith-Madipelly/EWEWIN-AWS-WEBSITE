@@ -28,7 +28,7 @@ function LPattern2() {
         };
       }, [size]);
     return (
-        <div className='TimerPage' id='OfferTop'>
+        <div className='TimerPage' id='nextContest'>
 
             <div className='w-100 TimerL2 hellodd gridSetting'>
                 <div className=''>

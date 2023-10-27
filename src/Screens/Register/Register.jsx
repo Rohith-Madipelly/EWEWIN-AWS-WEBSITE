@@ -59,15 +59,16 @@ function Register() {
             setErrorMessage("");
         }
 
-        if(/^[A-Z0-9._%+-]+$/i.test(userName)){
-        toast.error('Numerical Values are not allowed.', { position: toast.POSITION.TOP_CENTER })
+        if (!/^[A-Za-z]+$/.test(userName)) {
+            toast.error('Numerical Values are not allowed.', { position: toast.POSITION.TOP_CENTER })
 
 
-        return false;
-    }
-    else {
-        setErrorMessage("");
-    }
+            return false;
+        }
+        else {
+            setErrorMessage("");
+
+        }
 
 
 
@@ -230,105 +231,103 @@ function Register() {
 
     return (
         <div className='Register'>
-            <section className="vh-50 gradient-custom mt-5">
-            
+            <section className="vh-50 gradient-custom">
 
-                <div className="container py-5">
+
+                <div className="container">
                     <div className="row d-flex justify-content-center align-items-center">
-                    
-
                         <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-                            <div className="card bg-coustm text-dark    hover12" style={{ borderRadius: "1rem" }}>
-                                <div className="card-body pt-5 text-center ">
-
-                                    <div className="t-4 pb-4 r">
-              <img src="src/assets/img/Logo4.png" alt="no logo" loading={"lazy"} style={{ width: '100px' }} />
-                                    
-                                        <h2 className="fw-bold mb-2 text-uppercase text-dark">Register</h2>
-                                        <p className="mb-3 text-dark-50">Please Register Yourself</p>
-
-                                        <div className="form-outline form-white mb-4">
-
-                                            {/* <TextField id="outlined-basic" label="Outlined" variant="outlined" /> */}
-                                            <div className="mb-2">
-                                                <Box
-                                                    component="form"
-                                                    sx={{
-                                                        "& .MuiTextField-root": { m: 1, width: "90%" },
-                                                    }}
-                                                    noValidate
-                                                    autoComplete="off"
-                                                >
-
-                                                    <div>
-                                                        <TextField id="outlined-Name-input" className='my-2 formobject text-white' label="Your Name as per Aadhaar card" placeholder="Your Name as per Aadhaar card" value={userName} onChange={(e) => setUserName(e.target.value)} required />  <br />
-                                                        <TextField id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value)} required />  <br />
-                                                        <TextField id="outlined-phone-input" className='my-2 formobject text-white' label="Phone Number" placeholder="Phone Number" value={PhoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />  <br />
-
-                                                        <TextField id="outlined-password-input" className='my-2 formobject' type="password" label="User Password" placeholder="User Password" value={password} onChange={(e) => setpassword(e.target.value)} required />
-                                                        <TextField id="outlined-password-input" className='my-2 formobject' type="password" label="Confirm Password" placeholder="Confirm Password" value={confirmpassword} onChange={(e) => setConfirmpassword(e.target.value)} required />
-                                                        <TextField
-                                                            id="outlined-select-currency"
-                                                            select
-                                                            label="Gender"
-                                                            defaultValue=""
-                                                            helperText="Please select your Gender"
-                                                            className='w-75'
-                                                            value={gender}
-                                                            onChange={(e) => setGender(e.target.value)}
-                                                            required
-                                                        >
-
-                                                            <MenuItem value="Male">
-                                                                Male
-                                                            </MenuItem>
-                                                            <MenuItem value="Female">
-                                                                Female
-                                                            </MenuItem>
-                                                            <MenuItem value="other">
-                                                                Other
-                                                            </MenuItem>
-
-                                                        </TextField>
+                            <div className="card bg-coustm text-dark" style={{ borderRadius: "1rem" }}>
+                                <div className="card-body text-center ">
 
 
 
-                                                        <div className="mb-2">
 
-                                                            <FormControlLabel
-                                                                control={
-                                                                    <Checkbox value={terms} onChange={() => setTerms(!terms)} />
-                                                                }
-                                                                label="*I Accept Terms & Conditions of Ezewin"
-                                                            />
+                                    <h2 className="fw-bold mb-2 text-uppercase text-dark text-center">Register</h2>
+                                    <p className="mb-3 text-dark-50 text-center">Please Register Yourself</p>
 
-                                                        </div>
+                                    <div className="form-outline form-white mb-4 px-2">
+
+
+                                        <div className="mb-2">
+                                            <Box
+                                                component="form"
+                                                sx={{
+                                                    "& .MuiTextField-root": { m: 1, width: "90%" },
+                                                }}
+                                                noValidate
+                                                autoComplete="off"
+                                            >
+
+                                                <div>
+                                                    <TextField id="outlined-Name-input" className='my-2 formobject text-white' label="Your Name as per Aadhaar card" placeholder="Your Name as per Aadhaar card" value={userName} onChange={(e) => setUserName(e.target.value)} required size="small" />  <br />
+                                                    <TextField id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value)} required size="small" />  <br />
+                                                    <TextField id="outlined-phone-input" className='my-2 formobject text-white' label="Phone Number" placeholder="Phone Number" value={PhoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required size="small" />  <br />
+
+                                                    <TextField id="outlined-password-input" className='my-2 formobject' type="password" label="User Password" placeholder="User Password" value={password} onChange={(e) => setpassword(e.target.value)} required size="small" />
+                                                    <TextField id="outlined-password-input" className='my-2 formobject' type="password" label="Confirm Password" placeholder="Confirm Password" value={confirmpassword} onChange={(e) => setConfirmpassword(e.target.value)} required size="small" />
+                                                    <TextField size="small"
+                                                        id="outlined-select-currency"
+                                                        select
+                                                        label="Gender"
+                                                        defaultValue=""
+                                                        helperText="Please select your Gender"
+                                                        className='w-75'
+                                                        value={gender}
+                                                        onChange={(e) => setGender(e.target.value)}
+                                                        required
+                                                    >
+
+                                                        <MenuItem value="Male">
+                                                            Male
+                                                        </MenuItem>
+                                                        <MenuItem value="Female">
+                                                            Female
+                                                        </MenuItem>
+                                                        <MenuItem value="other">
+                                                            Other
+                                                        </MenuItem>
+
+                                                    </TextField>
+
+
+
+                                                    <div className="mb-2">
+
+                                                        <FormControlLabel size="small"
+                                                            control={
+                                                                <Checkbox value={terms} onChange={() => setTerms(!terms)} />
+                                                            }
+                                                            label="*I hereby confirm that the information provided above is accurate and true."
+                                                        />
+
                                                     </div>
+                                                </div>
 
-                                                </Box>
-                                            </div>
-
-
-
+                                            </Box>
                                         </div>
 
 
 
-
-
-                                        <button className="btn btn-primary btn-lg px-5 text-dark" type="submit" disabled={btnDisabled} onClick={handleRegister}>Register</button>
-                                        <ToastContainer></ToastContainer>
-
-                                        {successMessage &&
-                                            <div className='text-center bg-success'>
-                                                {successMessage}
-                                            </div>}
-                                        {errorMessage &&
-                                            <div className='text-center bg-danger'>
-                                                {errorMessage}
-                                            </div>}
-
                                     </div>
+
+
+
+
+
+                                    <button className="btn btn-primary btn-lg px-5 text-dark" type="submit" disabled={btnDisabled} onClick={handleRegister}>Register</button>
+                                    <ToastContainer></ToastContainer>
+
+                                    {successMessage &&
+                                        <div className='text-center bg-success'>
+                                            {successMessage}
+                                        </div>}
+                                    {errorMessage &&
+                                        <div className='text-center bg-danger'>
+                                            {errorMessage}
+                                        </div>}
+
+
 
                                     <div>
                                         <p className="mb-0">Have an account? <Link to="/Login" className='text-dark'>Login</Link>

@@ -23,6 +23,8 @@ const ProfilePage = () => {
   const [Phone_Number,setPhone_Number]=useState("**********");
   const [Gender,setGender]=useState("******");
 
+  const [ProfileData,setProfileData]=useState("");
+
   useEffect(() => {
     const fetchUserProfile = async (token) => {
       try {
@@ -37,6 +39,7 @@ const ProfilePage = () => {
           setEmail(res.data.Email)
           setPhone_Number(res.data.Phone_Number)
           setGender(res.data.Gender)
+          setProfileData(res.data)
               })
 
       } catch (error) {
@@ -106,6 +109,7 @@ const ProfilePage = () => {
                   {Phone_Number}
               </div>
             </div>
+       
             <hr/>
             
             {/* <div className="row ms-1">
@@ -155,7 +159,7 @@ const ProfilePage = () => {
                     
                   </div> */}
                   <section>
-                    <PaymentScreen/>
+                    <PaymentScreen profile={ProfileData}/>
                   </section>
 
     </section>
@@ -166,7 +170,7 @@ const ProfilePage = () => {
 export default ProfilePage
 
 
-function PaymentScreen() {
+function PaymentScreen(profile) {
   const navigate = useNavigate();
   const [formError,setFormError]=useState("");
 
@@ -210,10 +214,15 @@ const Price=49
           verifySignature(response);
           
         },
+        // prefill: {
+        //   name: profile.Name,
+        //   email: profile.Email,
+        //   contact: profile.Phone,
+        // },
         prefill: {
-          name: "dd",//profileData.name,
-          email: "dd",//profileData.email,
-          contact: "",//profileData.phone,
+          name: "dd",//profile.Name,
+          email: "dd",//profile.Email,
+          contact: "dd",//profile.Phone,
         },
         notes: {
           address: "dd", //profileData.address,
@@ -266,10 +275,11 @@ const verifySignature = async (paymentData) => {
    
     if (res?.data.message) {
     
-    
+    // alert("scdf",profile.Name)
       setTimeout(() => {
+      
         navigate('/PaymentDone');
-        alert("Successfull")
+        // alert("Successfull")
       }, 2000);
     }
   } catch (error) {

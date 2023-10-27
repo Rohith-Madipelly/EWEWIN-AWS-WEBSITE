@@ -1,7 +1,7 @@
 .Header
 {
     width: 100vw;
-    height: 80px;   
+    height: 85px;   
 }
 /* .active{
 	
@@ -154,4 +154,16 @@ button:hover
 	margin: 9px;
 }
 
+}
+
+
+
+NavLink{
+	color: black!important;
+}
+
+
+.navlogsty{
+	color: white!important;
+	
 }

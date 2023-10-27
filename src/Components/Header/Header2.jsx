@@ -67,21 +67,55 @@ function Header() {
             {/* Right Side */}
             <Toolbar disableGutters>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                <Button as={NavLink} to="/"
+                
+                <Button href="#HomeTop" to="/" 
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
-                  Home
+                 <b> Home</b>
                 </Button>
-                <Button as={NavLink} to="/TermandConditions"
+
+
+                <Button href="#nextContest"
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}>
+                  <b>Next Contest</b>
+                </Button>
+
+                <Button href="#PriceMoney"
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}>
+                  <b>Price Money</b>
+                </Button>
+
+
+                <Button href="#WinnersList"
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}>
+                  <b>Winners List </b>
+                </Button>
+
+                <Button href="#FAQ"
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}>
+                  <b>FAQ </b>
+                </Button>
+
+
+                {/* <Button as={NavLink} to="/TermandConditions"
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   Term & Conditions
-                </Button>
-                <Button as={NavLink} to="/PrivacyPolicy"
+                </Button> */}
+
+
+                {/* <Button as={NavLink} to="/PrivacyPolicy"
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <MdPrivacyTip size={25}/> Privacy Policy
-                </Button>
+                </Button> */}
+
+
+
                 {loginSelector ? 
                 <Button as={NavLink} to="/Profile"
                   onClick={handleCloseNavMenu}
@@ -92,7 +126,7 @@ function Header() {
                 <Button className='p-0'
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
-                  {loginSelector ? <NavLink onClick={handleLogout} to="/"><RiLogoutBoxLine  size={25}/> Log Out </NavLink> : <span className='bn632-hover bn19 px-3 py-2'>
+                  {loginSelector ? <NavLink className="navlogsty" onClick={handleLogout} to="/"><RiLogoutBoxLine  size={25}/> Log Out </NavLink> : <span className='bn632-hover bn19 px-3 py-2'>
                     <NavLink to="/Login" >Login</NavLink> / <NavLink className='inline-flex' to="/Register">Register</NavLink>
                   </span>}
                 </Button>

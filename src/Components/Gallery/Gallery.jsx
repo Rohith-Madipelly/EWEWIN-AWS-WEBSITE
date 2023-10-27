@@ -45,7 +45,7 @@ function Gallary() {
     <>
 
 
-      <div className="card1Section" id='GallaryTop'>
+      <div className="card1Section" id='WinnersList'>
        
     <div className="row1 mt-5 animate__fadeInBottomRight">
           {row1col.map((column, i) => {
