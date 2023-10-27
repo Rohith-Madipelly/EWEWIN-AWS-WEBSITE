@@ -17,22 +17,23 @@ function Layout1() {
        
 
 
-            <div className='container container2 LayoutCom2 mt-3'>
-                <div className='inner-box w-100 d-flex align-items-center m-5 mb-4'>
+            {/* <div className='container container2 LayoutCom2 mt-3'> */}
+            <div className='container2 LayoutCom2 mt-3'>
+                <div className='inner-box w-100 d-flex align-items-center  mb-5 ms-4'>
                     <div>
              
                         <TypingH2 text="EZEWIN" />
 
-                        <p class="text-white-75 mb-5 left-100">
+                        <p class="text-white-75 mb-2 left-100">
                         "We Make dreams come true"
                         </p>
 
-                        <Link  to="/Register"><button class="bn632-hover bn20">Get Started!</button></Link>
+                        <Link  to="/Register"><button class="bn632-hover bn20 ms-auto">Get Started!</button></Link>
                     </div>
                 </div>
 
                 <div>
-                    <div className='inner-box d-flex align-items-center '>
+                    <div className='inner-box d-flex align-items-center'>
                        
                      <img src="src/assets/img/indianQuizApp.png" loading={"lazy"} alt="no logo" className='imgesize-100'/>
                       

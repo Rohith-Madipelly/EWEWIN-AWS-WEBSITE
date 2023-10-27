@@ -60,7 +60,7 @@ function Register() {
         }
 
         if (!/^[A-Za-z]+$/.test(userName)) {
-            toast.error('Numerical Values are not allowed.', { position: toast.POSITION.TOP_CENTER })
+            toast.error('Numerical Values are not allowed in user name', { position: toast.POSITION.TOP_CENTER })
 
 
             return false;
