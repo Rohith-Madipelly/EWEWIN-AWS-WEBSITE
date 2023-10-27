@@ -18,8 +18,8 @@ function Layout1() {
 
 
             {/* <div className='container container2 LayoutCom2 mt-3'> */}
-            <div className='container2 LayoutCom2 mt-3'>
-                <div className='inner-box w-100 d-flex align-items-center  mb-5 ms-4'>
+            <div className='container2 LayoutCom2'>
+                <div className='inner-box w-100 d-flex align-items-center  mb-5 ms-4 mt-5'>
                     <div>
              
                         <TypingH2 text="EZEWIN" />

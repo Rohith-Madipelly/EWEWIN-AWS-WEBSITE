@@ -18,6 +18,10 @@
   margin-bottom: 50px;
 }
 
+.LayoutCom2{
+  padding-left: 90px!important;
+}
+
 
 .background-video {
   position: absolute;
@@ -82,7 +86,11 @@
 @media (max-width: 768px) {
   .container2 {
     flex-direction: column;
+
     
+  }
+  .LayoutCom2{
+    padding-left: 27px!important;
   }
 
   .inner-box {
@@ -138,6 +146,7 @@
   display: flex;
   justify-content: space-between;
    padding: 20px;
+   margin-left: 0px!important;
   
  /* max-width: 100%;
   margin: 0 auto; */
