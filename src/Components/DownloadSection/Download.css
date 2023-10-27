@@ -24,7 +24,7 @@
     }
 
 
-    @media screen and (max-width: 525px) {
+    @media screen and (max-width: 525px) and (min-width: 350px) {
         .Gridparent {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
@@ -37,10 +37,29 @@
             .grid2{
                 margin-left: 0px;
                 width: 70vw;
+                /* background-color: black; */
             }
-            .iconsstore{
+            /* .iconsstore{
                 width: 30vw;
+            } */
+            
+        
+    }
+
+
+    @media screen and (max-width: 350px) {
+        .Gridparent {
+
+            margin-left:0vw;
             }
+
+            .grid2{
+                margin-left: 0px;
+                width: 70vw;
+            }
+            /* .iconsstore{
+                width: 15vw;
+            } */
             
         
     }
@@ -80,4 +99,3 @@
     color: black;
 
 }
-

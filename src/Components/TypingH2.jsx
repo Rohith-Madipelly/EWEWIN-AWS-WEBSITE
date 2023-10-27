@@ -17,7 +17,7 @@ const TypingH2 = ({ text }) => {
 
   return (
     <div>
-    <h1 className='font-1 font-style text-white'>{typedText}</h1>
+    <h1 className='font-12  text-white'>{typedText}</h1>
     </div> );
 };
 

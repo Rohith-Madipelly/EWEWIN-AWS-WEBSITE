@@ -11,12 +11,19 @@ function LPattern2() {
     useEffect(() => {
         const handleResize = () => {
           const windowWidth = window.innerWidth;
-          if (windowWidth < 569) {
-           setSize({ width: 27, height: 55, fontSize: 26 })
+          if (windowWidth < 569 && windowWidth > 370) {
+           setSize({ width: 24, height: 40, fontSize: 25 })
+          //  console.error(">320")
+           
+          }
+          else if (windowWidth < 370){
+            setSize({ width: 15, height: 22, fontSize: 25 })
+          //  console.error(">320 22")
 
-          } else {
+          }
+         
+           else {
             setSize({ width: 40, height: 60, fontSize: 30 });
-
           }
         };
     

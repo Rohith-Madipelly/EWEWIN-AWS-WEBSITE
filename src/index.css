@@ -44,6 +44,21 @@ code {
     monospace;
 }
 
+@media (min-width: 370px) {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 @-webkit-keyframes blinker {
   from {opacity: 1.0;}
