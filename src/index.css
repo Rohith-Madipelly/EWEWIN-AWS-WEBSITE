@@ -13,8 +13,8 @@ body {
   font-family: 'League Gothic', sans-serif;
   font-family: 'Poppins', sans-serif;
   
-  /* box-sizing: border-box;
-  overflow-x: hidden; */
+  box-sizing: border-box;
+  /* overflow-x: hidden;  */
 
 
   /* background: linear-gradient(135deg, gold, darkgoldenrod, orange); */
@@ -23,7 +23,7 @@ body {
 
 *{
 
-  box-sizing: border-box;
+
     font-family: outfit!important;
     /* font-weight: 600; */
 
