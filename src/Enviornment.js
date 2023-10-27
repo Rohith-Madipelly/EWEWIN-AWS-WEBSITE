@@ -1,7 +1,7 @@
 
 
 // AWS Sever 
-export const BASE_URL = "http://13.233.31.67/api/"
+export const BASE_URL = "http://13.233.31.67:8001/api/"
 
 // Local Server
 // export const BASE_URL = "http://127.0.0.1:8001/api/"
