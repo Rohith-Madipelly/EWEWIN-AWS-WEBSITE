@@ -143,8 +143,8 @@ function Login() {
               <div className="card bg-coustm text-dark" style={{ borderRadius: "1rem" }}>
                 <div className="card-body pt-5 text-center">
                   <div className="t-4 pb-4">
-                    <h2 className="fw-bold mb-2 text-uppercase text-dark">Login</h2>
-                    <p className="text-dark-50 mb-3">Please enter your login and password!</p>
+                    <h2 className="fw-bold mb-2 text-uppercase text-dark">EZEWIN</h2>
+                    <p className="text-dark-50 mb-3">Login to your account</p>
                     <div className="form-outline form-white mb-4">
                       <div className="mb-2">
                         <Box

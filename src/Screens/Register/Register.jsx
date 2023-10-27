@@ -243,7 +243,7 @@ function Register() {
 
 
 
-                                    <h2 className="fw-bold mb-2 text-uppercase text-dark text-center">Register</h2>
+                                    <h2 className="fw-bold mb-2 text-uppercase text-dark text-center">EZEWIN</h2>
                                     <p className="mb-3 text-dark-50 text-center">Please Register Yourself</p>
 
                                     <div className="form-outline form-white mb-4 px-2">

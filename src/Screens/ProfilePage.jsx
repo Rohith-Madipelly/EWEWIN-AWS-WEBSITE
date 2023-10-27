@@ -58,6 +58,7 @@ const ProfilePage = () => {
         <div className='col-sm-12 col-md-3'>
           <div className='card'>
             <div className='profileCard text-center'>
+              
               <img
                 src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp'
                 alt='profilePic'

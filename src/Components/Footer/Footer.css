@@ -120,3 +120,16 @@
  .social:hover {
     transform: translateY(-6px);
   }
+
+
+
+  .box a{
+
+      width: fit-content;
+  }
+
+  .box a:hover{
+
+
+ 
+}
