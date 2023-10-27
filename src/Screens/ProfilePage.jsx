@@ -58,13 +58,28 @@ const ProfilePage = () => {
         <div className='col-sm-12 col-md-3'>
           <div className='card'>
             <div className='profileCard text-center'>
-              
-              <img
+              {Gender === "Female"?<img
+                src='https://img.freepik.com/premium-vector/business-woman-cartoon-icon_24908-9389.jpg'
+                alt='profilePic'
+                className='rounded-circle img-fluid'
+                style={{ maxWidth: '150px' }}
+              />:Gender === 'male' ?<img
+              src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp'
+              alt='profilePic'
+              className='rounded-circle img-fluid'
+              style={{ maxWidth: '150px' }}
+            />:<div><img
+            src='https://img.freepik.com/free-vector/gender-identity-concept-illustrated_23-2148542542.jpg?w=740&t=st=1698393592~exp=1698394192~hmac=d846e4d1befd4f01cd12869ee021d324df2b7390b402f88cbd869161cd7447d4'
+            alt='profilePic'
+            className='rounded-circle img-fluid'
+            style={{ maxWidth: '150px' }}
+          /></div> }
+              {/* <img
                 src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp'
                 alt='profilePic'
                 className='rounded-circle img-fluid'
                 style={{ maxWidth: '150px' }}
-              />
+              /> */}
               <div className='data'>
                 <p className='my-1'>{Name}</p>
                 <p className='mb-4'>{id}</p>

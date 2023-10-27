@@ -24,7 +24,7 @@ function Layout1() {
              
                         <TypingH2 text="EZEWIN" />
 
-                        <p class="text-white-75 mb-2 left-100">
+                        <p class="text-white-75 left-100">
                         "We Make dreams come true"
                         </p>
 

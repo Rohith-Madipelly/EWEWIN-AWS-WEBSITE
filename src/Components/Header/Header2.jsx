@@ -13,7 +13,7 @@ import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { MdPrivacyTip } from "react-icons/md";
 // Funtionality 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux"
 import { setToken } from '../../redux/actions/loginAction';
@@ -22,8 +22,8 @@ function Header() {
 
   const dispatch = useDispatch();
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -44,14 +44,15 @@ function Header() {
 
   const loginSelector = useSelector((state) => state.isLogin);
 
-
+  const location = useLocation(); // Get the current location
+  const isHomePage = location.pathname === '/' || location.pathname === '/Home'; // Define what's considered the home page
 
 
   const handleLogout = () => {
     // Clear the token from localStorage
     dispatch(setToken(""));
     localStorage.removeItem('token');
- };
+  };
 
 
 
@@ -66,12 +67,12 @@ function Header() {
             </div>
             {/* Right Side */}
             <Toolbar disableGutters>
-              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                
-                <Button href="#HomeTop" to="/" 
+              {console.error(isHomePage)}
+              {isHomePage == true ? <div><Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} id="main-header">
+                <Button href="#HomeTop" to="/"
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
-                 <b> Home</b>
+                  <b> Home</b>
                 </Button>
 
 
@@ -99,34 +100,40 @@ function Header() {
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b>FAQ </b>
                 </Button>
+              </Box></div> 
+              : <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} id="main-header">
+                <Button as={NavLink} to="/TermandConditions"
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}>
+                Term & Conditions
+              </Button>
 
 
-                {/* <Button as={NavLink} to="/TermandConditions"
+                <Button as={NavLink} to="/PrivacyPolicy"
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
-                  Term & Conditions
-                </Button> */}
-
-
-                {/* <Button as={NavLink} to="/PrivacyPolicy"
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}>
-                  <MdPrivacyTip size={25}/> Privacy Policy
-                </Button> */}
+                  <MdPrivacyTip size={25} /> Privacy Policy
+                </Button>
+              </Box>
+              }
 
 
 
-                {loginSelector ? 
-                <Button as={NavLink} to="/Profile"
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}>
-                  <CgProfile size={25}/> Profile
-                </Button>:""}
+
+
+
+              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                {loginSelector ?
+                  <Button as={NavLink} to="/Profile"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}>
+                    <CgProfile size={25} /> Profile
+                  </Button> : ""}
 
                 <Button className='p-0'
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
-                  {loginSelector ? <NavLink className="navlogsty" onClick={handleLogout} to="/"><RiLogoutBoxLine  size={25}/> Log Out </NavLink> : <span className='bn632-hover bn19 px-3 py-2'>
+                  {loginSelector ? <NavLink className="navlogsty" onClick={handleLogout} to="/"><RiLogoutBoxLine size={25} /> Log Out </NavLink> : <span className='bn632-hover bn19 px-3 py-2'>
                     <NavLink to="/Login" >Login</NavLink> / <NavLink className='inline-flex' to="/Register">Register</NavLink>
                   </span>}
                 </Button>
@@ -156,29 +163,29 @@ function Header() {
                     display: { xs: "block", md: "none" }
                   }}
                 ><NavLink to="/">
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    Home
-                  </MenuItem></NavLink>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      Home
+                    </MenuItem></NavLink>
                   <NavLink to="/TermandConditions">
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">Term & Conditions</Typography>
-                  </MenuItem></NavLink>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">Term & Conditions</Typography>
+                    </MenuItem></NavLink>
                   <NavLink to="/PrivacyPolicy"><MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center"><MdPrivacyTip size={25}/> Privacy Policy</Typography>
+                    <Typography textAlign="center"><MdPrivacyTip size={25} /> Privacy Policy</Typography>
                   </MenuItem></NavLink>
 
-                  {loginSelector ? 
-                  <NavLink to="/Profile">
+                  {loginSelector ?
+                    <NavLink to="/Profile">
+                      <MenuItem onClick={handleCloseNavMenu} >
+                        <CgProfile size={25} /> Profile
+                      </MenuItem></NavLink> : ""}
+
                   <MenuItem onClick={handleCloseNavMenu} >
-                  <CgProfile size={25}/> Profile
-                  </MenuItem></NavLink>:""}
-                  
-                  <MenuItem onClick={handleCloseNavMenu} >
-                   {loginSelector ? 
-                   <NavLink onClick={handleLogout} to="/"><RiLogoutBoxLine  size={25}/> Log Out </NavLink> : 
-                   <span><NavLink to="/Login" >Login</NavLink> / <NavLink to="/Register">Register</NavLink></span>}
+                    {loginSelector ?
+                      <NavLink onClick={handleLogout} to="/"><RiLogoutBoxLine size={25} /> Log Out </NavLink> :
+                      <span><NavLink to="/Login" >Login</NavLink> / <NavLink to="/Register">Register</NavLink></span>}
                   </MenuItem>
-                  
+
                 </Menu>
               </Box>
 

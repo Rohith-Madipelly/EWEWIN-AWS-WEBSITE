@@ -84,6 +84,7 @@
 
 /* Responsive styles */
 @media (max-width: 768px) {
+ 
   .container2 {
     flex-direction: column;
 

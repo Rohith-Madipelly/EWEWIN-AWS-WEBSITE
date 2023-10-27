@@ -135,7 +135,7 @@ function Login() {
   };
 
   return (
-    <div className='Login marginTopper-80'>
+    <div className='Login py-5'>
       <section className="vh-50 gradient-custom mt-5 hover12">
         <div className="container py-5 ">
           <div className="row d-flex justify-content-center align-items-center">
