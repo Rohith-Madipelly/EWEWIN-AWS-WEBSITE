@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 function Layout1() {
 
     return (
-        <div>
+        <div className="HeroSection">
         <section className='Layout Box b1 marginTopper-50 marginBottom-50' id='HomeTop'>
             <video playsInline autoPlay muted loop className='background-video'>
                 <source src="/src/assets/video/BackgroundVideo.mp4" type="video/mp4" />
@@ -19,7 +19,7 @@ function Layout1() {
 
             {/* <div className='container container2 LayoutCom2 mt-3'> */}
             <div className='container2 LayoutCom2'>
-                <div className='inner-box w-100 d-flex align-items-center  mb-5 ms-4 mt-5'>
+                <div className='inner-box  d-flex align-items-center  mb-5 ms-4 mt-5'>
                     <div>
              
                         <TypingH2 text="EZEWIN" />
