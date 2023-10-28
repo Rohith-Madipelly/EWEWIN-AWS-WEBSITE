@@ -11,7 +11,9 @@
 
 .Register{
     background-color: #efedee;
-    height: 88vh;
+    min-height: inherit;
+
+    height: 100vh
 }
 
 
