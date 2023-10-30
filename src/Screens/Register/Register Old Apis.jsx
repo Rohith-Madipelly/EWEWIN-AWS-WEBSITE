@@ -17,7 +17,7 @@ import axios from 'axios';
 import { BASE_URL } from '../../Enviornment'
 import { RegisterAPI } from "../../Services2/userApiCallings";
 
-import {UserRegisterApi} from '../../Services2/ApiCalls'
+
 
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -73,10 +73,7 @@ function Register() {
       }
       
 
-      const handleRegister = async (event) => {
-
-        event.preventDefault();
-        setErrorMessage(null);
+    const handleRegister = () => {
 
         if (!userName) {
             // setErrorMessage("Please enter your full name.");
@@ -91,7 +88,17 @@ function Register() {
         if (/^[a-zA-Z]+$/.test(userName)) {
             event.preventDefault();
         }
-        
+        // if (!/^[A-Za-z]+$/.test(userName)) {
+        //      toast.error('Numerical Values are not allowed in user name', { position: toast.POSITION.TOP_CENTER })
+
+
+        //     return false;
+        // }
+        // else {
+        //     setErrorMessage("");
+
+        // }
+
 
 
 
@@ -148,16 +155,41 @@ function Register() {
             setErrorMessage("");
         }
 
-        // setBtnDisabled(true);
+        setBtnDisabled(true);
 
 
-        try {
-            const res = await UserRegisterApi(userName,email,phone,password,gender);
-            if (res) {
-              
-                // if (res?.status === 200) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        const RegisterData = {
+            Name: userName,
+            Email: email,
+            Phone_Number: PhoneNumber,
+            Gender: gender,
+            Password: password
+            // ConfirmPassword: confirmpassword,
+        };
+
+        axios.post(RegisterURL12, RegisterData)
+
+            //    const response= RegisterAPI(userName,email,PhoneNumber,gender,password)
+            .then((response) => {
+
+                if (response?.status === 200) {
                     // setsuccessMessage(response.message)
-                    console.error(res)
+                    console.error(response)
                     // setsuccessMessage("User registered successfully. Please login.");
                     toast.success("User registered successfully. Please login.", { position: toast.POSITION.TOP_CENTER })
 
@@ -165,114 +197,63 @@ function Register() {
                         // setsuccessMessage("");
                         navigate('/Login');
                     }, 2000);
-                // }
-            }
-            else{
-            toast.error("fdsf", { position: toast.POSITION.TOP_CENTER })
-      
-            }
-      
-      
-          } catch (error) {
-            console.error(error)
-            toast.error("error.response.data.msg", { position: toast.POSITION.TOP_CENTER })
-            // console.error(">>",error.response.data.msg)
-            // console.error(">>",error.response.status)
-            // console.error(">>",error.response.status)
-          }
-      
+                }
 
-      }
-    // const handleRegister123 = () => {
+            })
+            .catch((error) => {
 
+                setErrorMessage('Error during Register:', error)
+                console.error(error.data)
+                if (error.response) {
 
+                    if (error.response.status === 409) {
+                        toast.error('User is already registered. Please Login ...', { position: toast.POSITION.TOP_CENTER })
 
+                        // setErrorMessage('User is already registered. Please Login ...');
+                    } else if (error.response.status === 401) {
+                        toast.error('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.', { position: toast.POSITION.TOP_CENTER })
 
+                        // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
+                    } else if (error.response.status === 404) {
+                        toast.error('Invalid user data.', { position: toast.POSITION.TOP_CENTER })
 
+                        // setErrorMessage('Invalid user data.');
+                    } else if (error.response.status === 500) {
+                        toast.error('Internal server error', { position: toast.POSITION.TOP_CENTER })
 
+                        // setErrorMessage('Internal server error');
+                    } else {
+                        toast.error('An error occurred during registration.', { position: toast.POSITION.TOP_CENTER })
 
+                        // setErrorMessage('An error occurred during registration.');
+                    }
+                } else if (error.request) {
+                    toast.error('No response received from the server.', { position: toast.POSITION.TOP_CENTER })
 
+                    // setErrorMessage('No response received from the server.');
+                } else {
+                    toast.error('Error setting up the request.', { position: toast.POSITION.TOP_CENTER })
 
-
-
-
-
-
-
-
-
- 
-
-    //         //    const response= RegisterAPI(userName,email,PhoneNumber,gender,password)
-    //         .then((response) => {
-
-    //             if (response?.status === 200) {
-    //                 // setsuccessMessage(response.message)
-    //                 console.error(response)
-    //                 // setsuccessMessage("User registered successfully. Please login.");
-    //                 toast.success("User registered successfully. Please login.", { position: toast.POSITION.TOP_CENTER })
-
-    //                 setTimeout(() => {
-    //                     // setsuccessMessage("");
-    //                     navigate('/Login');
-    //                 }, 2000);
-    //             }
-
-    //         })
-    //         .catch((error) => {
-
-    //             setErrorMessage('Error during Register:', error)
-    //             console.error(error.data)
-    //             if (error.response) {
-
-    //                 if (error.response.status === 409) {
-    //                     toast.error('User is already registered. Please Login ...', { position: toast.POSITION.TOP_CENTER })
-
-    //                     // setErrorMessage('User is already registered. Please Login ...');
-    //                 } else if (error.response.status === 401) {
-    //                     toast.error('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.', { position: toast.POSITION.TOP_CENTER })
-
-    //                     // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
-    //                 } else if (error.response.status === 404) {
-    //                     toast.error('Invalid user data.', { position: toast.POSITION.TOP_CENTER })
-
-    //                     // setErrorMessage('Invalid user data.');
-    //                 } else if (error.response.status === 500) {
-    //                     toast.error('Internal server error', { position: toast.POSITION.TOP_CENTER })
-
-    //                     // setErrorMessage('Internal server error');
-    //                 } else {
-    //                     toast.error('An error occurred during registration.', { position: toast.POSITION.TOP_CENTER })
-
-    //                     // setErrorMessage('An error occurred during registration.');
-    //                 }
-    //             } else if (error.request) {
-    //                 toast.error('No response received from the server.', { position: toast.POSITION.TOP_CENTER })
-
-    //                 // setErrorMessage('No response received from the server.');
-    //             } else {
-    //                 toast.error('Error setting up the request.', { position: toast.POSITION.TOP_CENTER })
-
-    //                 // setErrorMessage('Error setting up the request.');
-    //             }
+                    // setErrorMessage('Error setting up the request.');
+                }
 
 
-    //             setTimeout(() => {
-    //                 setErrorMessage("")
-    //                 setUserName("")
-    //                 {
-    //                     setEmail("")
-    //                     setPhoneNumber("")
-    //                     setpassword("")
-    //                     setConfirmpassword("")
-    //                     setGender("")
-    //                     setTerms("")
-    //                 }
-    //                 setBtnDisabled(false);
-    //                 navigate('/Register');
-    //             }, 1000);
-    //         });
-    // };
+                setTimeout(() => {
+                    setErrorMessage("")
+                    setUserName("")
+                    {
+                        setEmail("")
+                        setPhoneNumber("")
+                        setpassword("")
+                        setConfirmpassword("")
+                        setGender("")
+                        setTerms("")
+                    }
+                    setBtnDisabled(false);
+                    navigate('/Register');
+                }, 1000);
+            });
+    };
 
 
 

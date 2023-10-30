@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './Screens/Login/Login';
 import Register from './Screens/Register/Register';
+import ForgetPassword from './Screens/ForgetPassword/ForgetPassword';
 import Home from './Screens/Home';
 import { BrowserRouter as Router,Routes,Route,Link } from 'react-router-dom';
 
@@ -31,6 +32,8 @@ function App() {
         <Route exact path='/' element={<Home/>} />
         <Route path='/Login' element={<Login />} />
         <Route path='/Register' element={<Register />} />
+        <Route path='/Forget_Password' element={<ForgetPassword />} />
+      
         <Route path='/VerifyOtp' element={<VerifyOtp />} />
 
 

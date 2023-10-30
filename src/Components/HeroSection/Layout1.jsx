@@ -23,13 +23,13 @@ function Layout1() {
                     <div>
              
                         <TypingH2 text="EZEWIN" />
-
-                        <p class="text-white-75 left-100">
+<div className='hello'>
+                        <p class="text-white-75 captionss">
                         "We Make dreams come true"
                         </p>
-
-                        <Link  to="/Register"><button class="bn632-hover bn20 ms-auto">Get Started!</button></Link>
-                    </div>
+<div></div>
+                        <Link  to="/Register"><button class="bn632-hover bn20 ms-auto ">Get Started!</button></Link>
+                    </div></div>
                 </div>
 
                 <div>

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import {BASE_URL} from '../Enviornment'
 import {  useLocation } from "react-router-dom";
 import './newButton.css'
-
+import { getProfileDetails2 } from '../Services2/ApiCalls'
 
 
 
@@ -25,13 +25,15 @@ const ProfilePage = () => {
 
   const [ProfileData,setProfileData]=useState("");
 
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
-    const fetchUserProfile = async (token) => {
+
+    
+    const getProfileDetails212 = async (token) => {
       try {
-       await axios.get(`${BASE_URL}profile`,{
-          headers: {
-            Authorization: `${token}`
-          }
+       await axios.get("http://admin.ezewin.analogueitsolutions.com/api/profile",{
+          headers: { Authorization: "Bearer " + token },
         }).then((res) => {
 
           setId(res.data._id)
@@ -46,13 +48,14 @@ const ProfilePage = () => {
         console.error('Error fetching user profile:', error);
       }
     };
-    const token = localStorage.getItem('token');
-    fetchUserProfile(token);
+    // const token = localStorage.getItem('token');
+    getProfileDetails212(token);
   }, []);
 
   return (
     <section className='container py-2 marginTopper-80'>
       <h1 style={{marginLeft:"21vw",color:"black"}}>Profile Page</h1>
+     
       <div className='row'>
         {/* col first-left */}
         <div className='col-sm-12 col-md-3'>
@@ -82,7 +85,7 @@ const ProfilePage = () => {
               /> */}
               <div className='data'>
                 <p className='my-1'>{Name}</p>
-                <p className='mb-4'>{id}</p>
+                <p className='mb-4'>{id}</p> {token}
                 </div>
           </div>
         </div>

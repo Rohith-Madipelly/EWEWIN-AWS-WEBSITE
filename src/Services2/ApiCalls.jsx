@@ -1,5 +1,74 @@
 import axios from "axios";
-import { BASE_URL } from "../Enviornment";
+
+
+import { GUEST_URL,BASE_URL1,BASE_URL } from '../Enviornment'
+
+
+
+export const UserLoginApi = async (email,password) => {
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("password", password);
+
+
+    
+    return await axios.post(`${GUEST_URL}/login`, formData);
+    // return await axios.post("http://admin.ezewin.analogueitsolutions.com/guest-api/login", formData);
+  };
+
+  const config = {
+    headers: {
+      'Access-Control-Allow-Origin': '*', // This header may not be needed here
+      // You can add other headers if necessary
+    }
+  };
+
+  export const UserRegisterApi = async (name,email,phone,password,gender) => {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("gender", gender);
+    formData.append("password", password);
+    console.error(formData)
+    
+    // return await axios.post(`${GUEST_URL}/register`, formData);
+    return await axios.post("http://admin.ezewin.analogueitsolutions.com/guest-api/register",formData);
+  };
+
+  
+  export const getProfileDetails2 = async (token) => {
+    const formData = new FormData();
+    return await axios.post("http://admin.ezewin.analogueitsolutions.com/api", formData, {
+        headers: { Authorization: "Bearer" + token },
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+export const ForgetPasswordApi = async (email) => {
+    const formData = new FormData();
+
+    formData.append("email", email);
+    console.log("csmhvjdfh",email)
+
+    return await axios.post("http://localhost:8001/guest-api/forget-password", formData);
+  };
+
+
+
+
+
+
+
 
 
 // Done with Testing 

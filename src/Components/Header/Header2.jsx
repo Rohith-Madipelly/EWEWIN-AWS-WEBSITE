@@ -101,20 +101,21 @@ function Header() {
                   <b>FAQ </b>
                 </Button>
               </Box></div> 
-              : <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} id="main-header">
-                <Button as={NavLink} to="/TermandConditions"
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}>
-                Term & Conditions
-              </Button>
+              :"" 
+              // <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} id="main-header">
+              //   <Button as={NavLink} to="/TermandConditions"
+              //   onClick={handleCloseNavMenu}
+              //   sx={{ my: 2, color: "white", display: "block" }}>
+              //   Terms & Conditions
+              // </Button>
 
 
-                <Button as={NavLink} to="/PrivacyPolicy"
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}>
-                  <MdPrivacyTip size={25} /> Privacy Policy
-                </Button>
-              </Box>
+              //   <Button as={NavLink} to="/PrivacyPolicy"
+              //     onClick={handleCloseNavMenu}
+              //     sx={{ my: 2, color: "white", display: "block" }}>
+              //     <MdPrivacyTip size={25} /> Privacy Policy
+              //   </Button>
+              // </Box>
               }
 
 

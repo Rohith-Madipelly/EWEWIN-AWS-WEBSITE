@@ -10,10 +10,16 @@
 
 
 .Register{
-    background-color: #efedee;
+    /* background-color: #efedee; */
+
     min-height: inherit;
 
-    height: 100vh
+    height: 200%;
+  
+        font-weight: 600;
+        font-family: outfit;
+        
+
 }
 
 /* .HeroSection{

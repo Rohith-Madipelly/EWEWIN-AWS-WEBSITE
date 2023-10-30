@@ -8,9 +8,19 @@ background:linear-gradient(135deg, #645a5a, #6c5050) */
 .Login{
     font-weight: 600;
     font-family: outfit;
-    background-color: #efedee;
+    /* background-color: #efedee; */
 }
 
 .hover12{
     
+}
+
+
+.Login{
+    margin-top: 90px;
+    height: 100%;
+}
+
+body{
+    background-color: #efedee;
 }

@@ -33,6 +33,10 @@ function Login() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
   const [successMessage, setsuccessMessage] = useState();
+  const [loginBtn, setloginBtn] = useState(false);
+
+
+
   const location = useLocation();
   const apiUrl1 = `${BASE_URL}/login`;
   const dispatch = useDispatch();
@@ -97,7 +101,7 @@ function Login() {
 
           if (error.response.status === 401) {
             toast.error('You have Entered Invalid password', { position: toast.POSITION.TOP_CENTER })
-
+     
             // setErrorMessage('You have Entered Invalid password');
           } else if (error.response.status === 404) {
             toast.error('User Not Found.', { position: toast.POSITION.TOP_CENTER })
@@ -109,7 +113,7 @@ function Login() {
 
             // setErrorMessage('Internal server error');
           } else {
-            toast.error('An error occurred during registration.', { position: toast.POSITION.TOP_CENTER })
+            toast.error('An error occurred during .', { position: toast.POSITION.TOP_CENTER })
 
             // setErrorMessage('An error occurred during registration.');
           }
@@ -135,16 +139,16 @@ function Login() {
   };
 
   return (
-    <div className='Login marginTopper-80'>
+    <div className='Login'>
       <section className="vh-50 gradient-custom mt-5 hover12">
         <div className="container py-5 ">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div className="card bg-coustm text-dark" style={{ borderRadius: "1rem" }}>
+              <div className="card bg-coustm text-dark" style={{ borderRadius: "0rem" }}>
                 <div className="card-body pt-5 text-center">
-                  <div className="t-4 pb-4">
-                    <h2 className="fw-bold mb-2 text-uppercase text-dark">Login</h2>
-                    <p className="text-dark-50 mb-3">Please enter your login and password!</p>
+                  <div className="t-4 pb-2">
+                    <h2 className="fw-bold mb-2 text-uppercase text-dark">EZEWIN</h2>
+                    <p className="text-dark-50 mb-3">Login to your account</p>
                     <div className="form-outline form-white mb-4">
                       <div className="mb-2">
                         <Box
@@ -158,7 +162,7 @@ function Login() {
 
                           <div>
                             <TextField id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value)} required />  <br />
-                            <div className='mt-3'>
+                            <div className='mt-1'>
 
                             </div>
                             <TextField id="outlined-password-input" className='my-2 formobject' type="password" label="UserPassword" placeholder="UserPassword" value={password} onChange={(e) => setPassword(e.target.value)} required />
@@ -174,9 +178,14 @@ function Login() {
 
 
 
-                    <p className="small mb-3 pb-lg-2"><a className="text-dark" href="#!">Forgot password?</a></p>
+                    {/* disabled={loginBtn} */}
 
-                    <button className="btn btn-outline-dark btn-lg px-5" onClick={handleLogin} type="submit">Login</button>
+                    <button className="btn btn-primary w-75 mb-2 " disabled={loginBtn} onClick={handleLogin} type="submit"><b>LOGIN</b></button>
+                    <p className="small mb-3 pb-lg-2">
+
+
+                    <Link to="/Forget_Password" className='text-primary'>Forgot password?</Link>
+                    </p>
                     <ToastContainer></ToastContainer>
 
                     {successMessage &&
@@ -191,15 +200,10 @@ function Login() {
                       </div>}
 
 
-
-
-                  </div>
-
-                  <div>
-                    <p className="mb-0 ">Don't have an account? <Link to="/Register" className='text-dark'>Register</Link>
+                      <p className="mb-0 ">Don't have an account? <Link to="/Register" className='text-danger'>Register</Link>
                     </p>
-                  </div>
 
+                  </div>
                 </div>
               </div>
             </div>

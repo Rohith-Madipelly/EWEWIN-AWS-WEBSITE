@@ -8,7 +8,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 50px 0px 50px 0px;
+    padding: 0px 0px 50px 0px;
     margin: 30px 0px 30px 0px;
   }
   .row1{
@@ -66,13 +66,16 @@
     pointer-events: none;
     position: relative;
     bottom: 50%;
-    
-    height: 15%;
-   
-    text-align: center;
-    background-color: yellowgreen;
-    padding: 10px;
+    left: 10%;
+    padding: 7px 10px;
+    width: auto;
+    min-height: 40px;
+    height: max-content;
     border-radius: 20px;
+    /* text-align: center; */
+    background-color: rgb(43, 44, 41);
+ 
+  
   
   }
   @media only screen and (max-width: 480px){
@@ -118,5 +121,5 @@
   }
 
   .card1Section{
-    padding-top: 30px;
+    /* padding-top: 30px; */
 }

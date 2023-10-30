@@ -51,6 +51,8 @@ const data = {
 
 const styles = {
     // bgColor: 'white',
+    bgColor: '#efedee',
+    // background-color: #efedee,
     titleTextColor: "black",
     rowTitleColor: "black",
     // rowContentColor: 'grey',
