@@ -30,7 +30,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState(null);
 
-  const [successMessage, setsuccessMessage] = useState();
+
   const [errorMessage, setErrorMessage] = useState();
 
   const [loginBtn, setloginBtn] = useState(false);
@@ -88,7 +88,7 @@ function Login() {
     } catch (error) {
         if (error.response) {
           if (error.response.status === 401) {
-            setPasswordError("You have Entered Invalid password")
+            setPasswordError("You have Enter Invalid password")
             // toast.error('You have Entered Invalid password', { position: toast.POSITION.TOP_CENTER })
           } else if (error.response.status === 404) {
             toast.error('User Not Found', { position: toast.POSITION.TOP_CENTER })
@@ -179,16 +179,7 @@ function Login() {
                     </p>
                     <ToastContainer></ToastContainer>
 
-                    {successMessage &&
 
-                      <div className='text-center bg-success'>
-                        {successMessage}
-
-                      </div>}
-                    {errorMessage &&
-                      <div className='text-center bg-danger'>
-                        {errorMessage}
-                      </div>}
 
 
                     <p className="mb-0 ">Don't have an account? <Link to="/Register" className='text-danger'>Register</Link>
