@@ -2,10 +2,8 @@ import React, { useState } from 'react'
 import './Login.css'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { colors } from '@mui/material';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { BASE_URL } from '../../Enviornment'
+import {UserLoginApi} from '../../Services2/ApiCalls'
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -18,53 +16,47 @@ import { useSelector } from "react-redux";
 
 
 function Login() {
-  const loginSelector = useSelector((state) => state.isLogin);
-  if (loginSelector.isLogin) {
-    dispatch(setToken(""));
-    // history.push("/");
-  } else {
-    // history.push("Login");
-  }
+  // const loginSelector = useSelector((state) => state.isLogin);
+  // if (loginSelector.isLogin) {
+  //   dispatch(setToken(""));
+  //   // history.push("/");
+  // } else {
+  //   // history.push("Login");
+  // }
 
-
-
-  const [loginInfo, setLoginInfo] = useState('');
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+
   const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [errorMessage, setErrorMessage] = useState();
   const [successMessage, setsuccessMessage] = useState();
   const [loginBtn, setloginBtn] = useState(false);
-
-
-
+  const [error,setError]=useState()
   const location = useLocation();
-  const apiUrl1 = `${BASE_URL}/login`;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // e.preventDefault();
-    const loginData = {
-      Email: email,
-      Password: password
-    };
 
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setErrorMessage(null);
 
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-
-      toast.error('Please enter valid email address.', { position: toast.POSITION.TOP_CENTER })
-
+      // toast.error('Please enter valid email address.', { position: toast.POSITION.TOP_CENTER })
+      setEmailError("Please enter valid email address.*")
       // setErrorMessage("Please enter valid email address.");
       return false;
     }
     else {
-      setErrorMessage("");
+      setEmailError("");
     }
 
 
     if (!password) {
-      toast.error('Please enter your Password.', { position: toast.POSITION.TOP_CENTER })
-
+      // toast.error('Please enter your Password.', { position: toast.POSITION.TOP_CENTER })
+      setPasswordError('Please enter your Password.')
       // setErrorMessage("Please enter your Password.");
       return false;
     }
@@ -72,63 +64,34 @@ function Login() {
       setErrorMessage("");
     }
 
+    try {
+      const res = await UserLoginApi(email,password);
+      if (res) {
+               console.error(res)
+        localStorage.setItem('token', res.data.Token);
 
-
-
-
-    axios.post(apiUrl1, loginData)
-      .then((responsed) => {
-        // alert(responsed.data.Token)
-        // Set the token in localStorage
-        localStorage.setItem('token', responsed.data.Token);
-
-
-        toast.success(responsed.data.message,{position:toast.POSITION.TOP_CENTER})
-
-        // setsuccessMessage(responsed.data.message);
-        dispatch(setToken(responsed.data.Token));
+        toast.success("success",{position:toast.POSITION.TOP_CENTER})
+     
+        dispatch(setToken(res.data.Token));
 
         setTimeout(() => {
           navigate('/Profile');
         }, 1000);
+      }
+      else{
+      // toast.error(res.msg, { position: toast.POSITION.TOP_CENTER })
+      setPasswordError(res)
+      setEmailError(res)
+      }
 
-      })
-      .catch(error => {
-        // Handle errors
-        // setErrorMessage(error.message)
-        // console.error('Error during login:', error.message);
-        if (error.response) {
+    } catch (error) {
+      // toast.error(error.response.data.msg, { position: toast.POSITION.TOP_CENTER })
+      setError(error)
+    }
 
-          if (error.response.status === 401) {
-            toast.error('You have Entered Invalid password', { position: toast.POSITION.TOP_CENTER })
-     
-            // setErrorMessage('You have Entered Invalid password');
-          } else if (error.response.status === 404) {
-            toast.error('User Not Found.', { position: toast.POSITION.TOP_CENTER })
-
-            // setErrorMessage('User Not Found');
-
-          } else if (error.response.status === 500) {
-            toast.error('Internal server error', { position: toast.POSITION.TOP_CENTER })
-
-            // setErrorMessage('Internal server error');
-          } else {
-            toast.error('An error occurred during .', { position: toast.POSITION.TOP_CENTER })
-
-            // setErrorMessage('An error occurred during registration.');
-          }
-        } else if (error.request) {
-          toast.error('No response received from the server.', { position: toast.POSITION.TOP_CENTER })
-          // setErrorMessage('No response received from the server');
-        } else {
-          toast.error('Error setting up the request.', { position: toast.POSITION.TOP_CENTER })
-
-          // setErrorMessage('Error setting up the request.');
-        }
-
-      });
 
   };
+
 
   return (
     <div className='Login'>
@@ -153,12 +116,13 @@ function Login() {
                         >
 
                           <div>
-                            <TextField id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value)} required />  <br />
+                            <TextField error helperText="Incorrect entry." id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value)} required />  <br />
+                            {emailError&&<span className='text-danger'>{emailError}</span>}
                             <div className='mt-1'>
 
                             </div>
                             <TextField id="outlined-password-input" className='my-2 formobject' type="password" label="UserPassword" placeholder="UserPassword" value={password} onChange={(e) => setPassword(e.target.value)} required />
-
+                            {passwordError&&<span className='text-danger'>{passwordError}</span>}
                           </div>
 
                         </Box>

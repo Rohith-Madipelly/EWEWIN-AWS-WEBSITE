@@ -99,10 +99,10 @@ function Footer() {
                         </div>
                         <div className='box Boxlinks'>
                             <strong>Help</strong>
-                            <a  href=''className='text-white'><IoIosArrowForward className='me-1'/>Support</a>
+                            <a  href='/Support'className='text-white'><IoIosArrowForward className='me-1'/>Support</a>
                             {/* <a href='#HomeTop' className='text-white'><IoIosArrowForward className='me-1'/>Login</a> */}
-                            <a href='tel:'  className='text-white'><IoIosArrowForward className='me-1'/>Call</a>
-                            <a  href='tel: '  className='text-white'><IoIosArrowForward className='me-1'/>Chat Support</a>                       
+                            <a href='tel:918919088163'  className='text-white'><IoIosArrowForward className='me-1'/>Call</a>
+                            <a  href='https://api.whatsapp.com/send/?phone=%2B918919088163&text&type=phone_number&app_absent=0'  className='text-white'><IoIosArrowForward className='me-1'/>Chat Support</a>                       
                         </div>
                     </div>
                 </div>   

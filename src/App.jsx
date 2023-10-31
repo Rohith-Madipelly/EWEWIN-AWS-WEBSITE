@@ -18,6 +18,7 @@ import PaymentFailed from './Screens/PaymentFailed';
 import VerifyOtp from './Screens/VerifyOtp';
 
 import { useSelector } from "react-redux";
+import SupportPage from './Screens/SupportPage';
 
 function App() {
   
@@ -44,6 +45,7 @@ function App() {
         <Route path='/TermandConditions' element={<TermandConditions/>}/>
         <Route path='/PrivacyPolicy' element={<PrivacyPolicy/>}/>
         <Route path='/PaymentScreen' element={<PaymentScreen/>}/>
+        <Route path='/Support' element={<SupportPage/>}/>
         
         {/* <Route path='/Error' element={<Login />}/> */}
 
