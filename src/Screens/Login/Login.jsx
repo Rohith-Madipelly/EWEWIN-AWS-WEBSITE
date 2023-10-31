@@ -25,10 +25,10 @@ function Login() {
   // }
 
   const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [emailError, setEmailError] = useState(null);
 
   const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [passwordError, setPasswordError] = useState(null);
 
   const [successMessage, setsuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
@@ -53,7 +53,7 @@ function Login() {
       return false;
     }
     else {
-      setEmailError("");
+      setEmailError(null)
     }
 
 
@@ -64,7 +64,7 @@ function Login() {
       return false;
     }
     else {
-      setPasswordError("")
+      setPasswordError(null)
     }
 
     try {
@@ -73,6 +73,10 @@ function Login() {
         localStorage.setItem('token', responsed.data.Token);
         toast.success(responsed.data.message, { position: toast.POSITION.TOP_CENTER })
         dispatch(setToken(responsed.data.Token));
+      
+        setEmailError(null)
+        setPasswordError(null)
+
         setTimeout(() => {
           navigate('/Profile');
         }, 1000);
@@ -130,6 +134,7 @@ function Login() {
                             className='my-2 formobject text-white' 
                             label="User Email" placeholder="User Email" 
                             value={email} onChange={(e) => setEmail(e.target.value)} 
+                            error={emailError !== null}
                             helperText={emailError} 
                             required  />  
                             <br />
@@ -145,6 +150,8 @@ function Login() {
                             placeholder="UserPassword" 
                             value={password} 
                             onChange={(e) => setPassword(e.target.value)} 
+                            error={passwordError !== null}
+
                             helperText={passwordError} 
                             required />
                             <br />
