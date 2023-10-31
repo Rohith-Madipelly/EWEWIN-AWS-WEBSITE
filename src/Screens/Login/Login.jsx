@@ -73,7 +73,7 @@ function Login() {
         localStorage.setItem('token', responsed.data.Token);
         toast.success(responsed.data.message, { position: toast.POSITION.TOP_CENTER })
         dispatch(setToken(responsed.data.Token));
-      
+      console.error("login Res",responsed)
         setEmailError(null)
         setPasswordError(null)
 

@@ -8,6 +8,16 @@ import {Fade} from 'react-awesome-reveal';
 
 function LPattern2() {
     const [size,setSize]=useState({ width: 40, height: 60, fontSize: 30 })
+
+
+
+
+
+
+
+
+
+    
     useEffect(() => {
         const handleResize = () => {
           const windowWidth = window.innerWidth;
@@ -44,7 +54,9 @@ function LPattern2() {
                  
                     digitBlockStyle={size}
                     
-                        to={new Date('DEC 20, 2023 00:00:00').getTime()}
+                        to={new Date('OCT 31, 2023 18:30:00').getTime()}
+                        // to={new Date('OCT 20, 2023 06:30:00').getTime()}
+                        
                         labels={['DAYS', 'HOURS', 'MINUTES', 'SECONDS']}
                        
                         duration={0.5} /></Fade>

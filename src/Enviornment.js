@@ -13,16 +13,17 @@
 
 // export const GUEST_URL= "http://localhost:8001/guest-api"
 
-export const BASE_URL = "http://localhost:8001/api"
+// export const BASE_URL = "http://localhost:8001/api"
 
 // export const GUEST_URL= "http://localhost:8001/guest-api"
 
-// export const BASE_URL1 = "http://localhost:8001/api"
+export const BASE_URL = "http://localhost:8001/api"
 
 // sever
 export const GUEST_URL= "http://admin.ezewin.analogueitsolutions.com/guest-api"
 
 export const BASE_URL1 = "http://admin.ezewin.analogueitsolutions.com/api"
+
 
 
 export const RAZORPAY_KEY = "rzp_test_k08nI1XM4ua61t";

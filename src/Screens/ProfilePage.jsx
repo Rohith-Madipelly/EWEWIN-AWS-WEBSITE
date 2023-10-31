@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import {BASE_URL} from '../Enviornment'
 import {  useLocation } from "react-router-dom";
 import './newButton.css'
-import { getProfileDetails2 } from '../Services2/ApiCalls'
+import { UserGetProfileDetails } from '../Services2/ApiCalls'
 
 
 import { RAZORPAY_KEY, RAZORPAY_URL } from "./../Enviornment";
@@ -28,60 +28,12 @@ const ProfilePage = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    const getProfileDetails212 = async (token) => {
-      // try {
-      //   const res = await UserLoginApi(email,password);
-      //   if (res) {
-          
-         
-      //     localStorage.setItem('token', res.data.token);
-  
-  
-      //     toast.success("success",{position:toast.POSITION.TOP_CENTER})
-  
-        
-      //     dispatch(setToken(res.data.token));
-  
-      //     setTimeout(() => {
-      //       navigate('/Profile');
-      //     }, 1000);
-      //   }
-      //   else{
-      //   toast.error(res.msg, { position: toast.POSITION.TOP_CENTER })
-  
-      //   }
-  
-  
-      // } catch (error) {
-      //   toast.error(error.response.data.msg, { position: toast.POSITION.TOP_CENTER })
-      //   console.error('Error fetching user profile:', error);
-      // }
-
-      
-
-
-      // try {
-      //  await axios.get("http://admin.ezewin.analogueitsolutions.com/api/profile",{
-      //     headers: { Authorization: "Bearer" + token },
-      //   }).then((res) => {
-      //       console.error(res)
-      //     // setId(res.data._id)
-      //     // setName(res.data.Name)
-      //     // setEmail(res.data.Email)
-      //     // setPhone_Number(res.data.Phone_Number)
-      //     // setGender(res.data.Gender)
-      //     // setProfileData(res.data)
-
-      //     })
-
-      // } catch (error) {
-      //   console.error('Error fetching user profile:', error);
-      // }
-    };
+    
     const token = localStorage.getItem('token');
-    // getProfileDetails212(token);
-
-    getProfileDetails2(token)
+    
+    console.error("fvdvfd",token)
+    const ress=UserGetProfileDetails(token)
+    console.error("Respones >>>>",ress)
   }, []);
 
   return (
@@ -109,12 +61,7 @@ const ProfilePage = () => {
             className='rounded-circle img-fluid'
             style={{ maxWidth: '150px' }}
           /></div> }
-              {/* <img
-                src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp'
-                alt='profilePic'
-                className='rounded-circle img-fluid'
-                style={{ maxWidth: '150px' }}
-              /> */}
+              
               <div className='data'>
                 <p className='my-1'>{Name}</p>
                 <p className='mb-4'>{id}</p> {token}
@@ -250,7 +197,9 @@ const payMoney = async () => {
       return;
     }
 const Price=49
-    const order = await createOrder(Price);
+  const token = localStorage.getItem('token');
+    const order = await createOrder(Price,token);
+    console.error("fdfvdf>>>>",response)
     if (order?.data) {
       const options = {
         key: RAZORPAY_KEY,
@@ -286,17 +235,10 @@ const Price=49
       const rzp1 = new window.Razorpay(options);
 
       rzp1.on("payment.failed", function (response) {
-        // alert(response.error.code);
-        // alert(response.error.description);
         setFormError(
           `${response.error.reason}\n${response.error.description}`
         );
-        // updateFormMsg();
-        // alert(response.error.source);
-        // alert(response.error.step);
-        // alert(response.error.reason);
-        // alert(response.error.metadata.order_id);
-        // alert(response.error.metadata.payment_id);
+
       });
 
       rzp1.open();
@@ -304,14 +246,9 @@ const Price=49
   } catch (error) {
   
     if (error?.response?.status === 401) {
-      // await dispatch(setToken(""));
-      // history.push({
-      //   pathname: "Login",
-      //   state: { redirectUrl: "Wallet" },
-      // });
+
     } else {
       setFormError("Something went wrong.");
-      // updateFormMsg();
     }
   }
 };

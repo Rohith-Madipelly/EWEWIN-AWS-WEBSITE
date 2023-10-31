@@ -7,7 +7,6 @@ import ForgetPassword from './Screens/ForgetPassword/ForgetPassword';
 import Home from './Screens/Home';
 import { BrowserRouter as Router,Routes,Route,Link } from 'react-router-dom';
 
-
 import NotFoundPage from './Screens/NotFoundPage/NotFoundPage';
 import TermandConditions from './Screens/Term Conditions/TermandConditions';
 import PrivacyPolicy from './Screens/PrivacyPolicy/PrivacyPolicy';
@@ -19,6 +18,7 @@ import VerifyOtp from './Screens/VerifyOtp';
 
 import { useSelector } from "react-redux";
 import SupportPage from './Screens/SupportPage';
+
 
 function App() {
   

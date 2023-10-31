@@ -214,6 +214,10 @@ function Register() {
                         toast.error('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.', { position: toast.POSITION.TOP_CENTER })
 
                         // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
+                    }else if (error.response.status === 409) {
+                        toast.error('User Exisited ', { position: toast.POSITION.TOP_CENTER })
+
+                        // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
                     } else if (error.response.status === 404) {
                         toast.error('Invalid user data.', { position: toast.POSITION.TOP_CENTER })
 

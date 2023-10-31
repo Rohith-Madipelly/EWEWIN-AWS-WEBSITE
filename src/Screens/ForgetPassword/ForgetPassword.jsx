@@ -17,11 +17,14 @@ import 'react-toastify/dist/ReactToastify.css'
 import { setToken } from '../../redux/actions/loginAction';
 import { useSelector } from "react-redux";
 import {ForgetPasswordApi} from '../../Services2/ApiCalls'
+import { ReportGmailerrorred } from '@mui/icons-material';
 
 function ForgetPassword() {
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState();
   const [successMessage, setsuccessMessage] = useState();
+
+  const navigate = useNavigate();
 
   const handleForgetPassword = async (event) => {
 
@@ -31,12 +34,14 @@ function ForgetPassword() {
     try {
       const res = await ForgetPasswordApi(email);
       if (res) {
-        toast.success(responsed.data.message, { position: toast.POSITION.TOP_CENTER })
+        toast.success(res.data.msg, { position: toast.POSITION.TOP_CENTER })
+        setTimeout(() => {
+          navigate('/Profile');
+        }, 1000);
       }
     } catch (error) {
       toast.error("Fail", { position: toast.POSITION.TOP_CENTER })
     }
-
 
   };
 
@@ -61,42 +66,17 @@ function ForgetPassword() {
                           noValidate
                           autoComplete="off"
                         >
-
                           <div>
                             <TextField id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value)} required />  <br />
-                            <div className='mt-3'>
-
-                            </div>
-                            {/* <TextField id="outlined-password-input" className='my-2 formobject' type="password" label="UserPassword" placeholder="UserPassword" value={password} onChange={(e) => setPassword(e.target.value)} required /> */}
-
                           </div>
-
                         </Box>
                       </div>
-
-
-
                     </div>
-
-
-
-                    {/* <p className="small mb-3 pb-lg-2"> */}
-                    {/* <Link to="/Forget_Password" className='text-dark'>Forgot password?</Link> */}
-                    {/* </p> */}
-
                     <button className="btn btn-outline-dark btn-lg px-5" onClick={handleForgetPassword} type="submit">Submit</button>
                     <ToastContainer></ToastContainer>
 
-                    {successMessage &&
-
-                      <div className='text-center bg-success'>
-                        {successMessage}
-
-                      </div>}
-                    {errorMessage &&
-                      <div className='text-center bg-danger'>
-                        {errorMessage}
-                      </div>}
+                    
+                
 
 
 
