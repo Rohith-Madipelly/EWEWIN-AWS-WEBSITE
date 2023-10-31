@@ -1,7 +1,7 @@
 import Faq from "react-faq-component";
 import "./LPattern4.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import React, { useRef } from 'react';
 const data = {
     title: "",
     rows: [
@@ -66,8 +66,9 @@ const config = {
 };
 
 function FAQSection() {
+    const div3Ref = useRef(null);
     return (
-        <div className="container" id="FAQ">
+        <div className="container" id="FAQ" ref={div3Ref}>
             <h2 class="heading">Frequently Asked Questions (FAQ)</h2>
             <Faq
                 data={data}

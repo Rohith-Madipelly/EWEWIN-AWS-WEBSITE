@@ -10,7 +10,6 @@ import './newButton.css'
 import { getProfileDetails2 } from '../Services2/ApiCalls'
 
 
-
 import { RAZORPAY_KEY, RAZORPAY_URL } from "./../Enviornment";
 
 import {verifySignatureApi, createOrder} from './../Services2/ApiCalls'
@@ -25,31 +24,64 @@ const ProfilePage = () => {
 
   const [ProfileData,setProfileData]=useState("");
 
+
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-
-    
     const getProfileDetails212 = async (token) => {
-      try {
-       await axios.get("http://admin.ezewin.analogueitsolutions.com/api/profile",{
-          headers: { Authorization: "Bearer " + token },
-        }).then((res) => {
+      // try {
+      //   const res = await UserLoginApi(email,password);
+      //   if (res) {
+          
+         
+      //     localStorage.setItem('token', res.data.token);
+  
+  
+      //     toast.success("success",{position:toast.POSITION.TOP_CENTER})
+  
+        
+      //     dispatch(setToken(res.data.token));
+  
+      //     setTimeout(() => {
+      //       navigate('/Profile');
+      //     }, 1000);
+      //   }
+      //   else{
+      //   toast.error(res.msg, { position: toast.POSITION.TOP_CENTER })
+  
+      //   }
+  
+  
+      // } catch (error) {
+      //   toast.error(error.response.data.msg, { position: toast.POSITION.TOP_CENTER })
+      //   console.error('Error fetching user profile:', error);
+      // }
 
-          setId(res.data._id)
-          setName(res.data.Name)
-          setEmail(res.data.Email)
-          setPhone_Number(res.data.Phone_Number)
-          setGender(res.data.Gender)
-          setProfileData(res.data)
-              })
+      
 
-      } catch (error) {
-        console.error('Error fetching user profile:', error);
-      }
+
+      // try {
+      //  await axios.get("http://admin.ezewin.analogueitsolutions.com/api/profile",{
+      //     headers: { Authorization: "Bearer" + token },
+      //   }).then((res) => {
+      //       console.error(res)
+      //     // setId(res.data._id)
+      //     // setName(res.data.Name)
+      //     // setEmail(res.data.Email)
+      //     // setPhone_Number(res.data.Phone_Number)
+      //     // setGender(res.data.Gender)
+      //     // setProfileData(res.data)
+
+      //     })
+
+      // } catch (error) {
+      //   console.error('Error fetching user profile:', error);
+      // }
     };
-    // const token = localStorage.getItem('token');
-    getProfileDetails212(token);
+    const token = localStorage.getItem('token');
+    // getProfileDetails212(token);
+
+    getProfileDetails2(token)
   }, []);
 
   return (

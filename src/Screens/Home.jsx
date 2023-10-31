@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React, { useRef } from 'react';
 import Layout1 from '../Components/HeroSection/Layout1';
 import TimerPage from '../Components/TimerPage/TimerPage';
 import DownloadSection from '../Components/DownloadSection/DownloadSection';
@@ -8,12 +7,19 @@ import FAQSection from '../Components/FAQSection';
 import Footer from '../Components/Footer/Footer';
 import ArrowBackToTopButton from '../shared/ArrowButtons/ArrowBackToTopButton';
 
+import Header1 from '../Components/Header/Header2';
+
 function Home() {
+
+  // const div2Ref = useRef(null);
+  // const div3Ref = useRef(null);
+
+
   return (
     <div>
         
+     
       
-
       <Layout1 />
    
       <TimerPage/>
@@ -25,6 +31,8 @@ function Home() {
 
        <Footer/>
        <ArrowBackToTopButton/>
+
+      
     </div>
   )
 }

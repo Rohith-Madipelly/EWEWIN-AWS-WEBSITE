@@ -67,12 +67,12 @@ function Login() {
     try {
       const res = await UserLoginApi(email,password);
       if (res) {
-               console.error(res)
-        localStorage.setItem('token', res.data.Token);
+               
+        localStorage.setItem('token', res.data.token);
 
         toast.success("success",{position:toast.POSITION.TOP_CENTER})
      
-        dispatch(setToken(res.data.Token));
+        dispatch(setToken(res.data.token));
 
         setTimeout(() => {
           navigate('/Profile');
@@ -80,13 +80,13 @@ function Login() {
       }
       else{
       // toast.error(res.msg, { position: toast.POSITION.TOP_CENTER })
-      setPasswordError(res)
-      setEmailError(res)
+      setPasswordError(res.msg)
+      setEmailError(res.msg)
       }
 
     } catch (error) {
       // toast.error(error.response.data.msg, { position: toast.POSITION.TOP_CENTER })
-      setError(error)
+      setError(error.response.data.msg)
     }
 
 

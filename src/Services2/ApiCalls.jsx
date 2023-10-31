@@ -4,26 +4,65 @@ import axios from "axios";
 import { GUEST_URL,BASE_URL1,BASE_URL } from '../Enviornment'
 
 
+const config = {
+  // headers: {
+  //   'Access-Control-Allow-Origin': '*', // This header may not be needed here
+  //   // You can add other headers if necessary
+  // }
+  headers: {
+    'Content-Type': 'multipart/form-data',
+    Accept: '*/*',
+},
+};
+
 
 export const UserLoginApi = async (email,password) => {
+  
+  const loginData = {
+    Email: email,
+    Password: password
+  };
+
+
+  return await axios.post(`${GUEST_URL}/login`, loginData,config);
+  // return await axios.post("http://admin.ezewin.analogueitsolutions.com/guest-api/login", formData);
+};
+
+export const UserLoginApi12 = async (email,password) => {
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
-
-
     
     return await axios.post(`${GUEST_URL}/login`, formData);
     // return await axios.post("http://admin.ezewin.analogueitsolutions.com/guest-api/login", formData);
   };
 
-  const config = {
-    headers: {
-      'Access-Control-Allow-Origin': '*', // This header may not be needed here
-      // You can add other headers if necessary
-    }
+
+  export const UserRegisterApi = async (userName,email,phone,password,gender) => {
+   console.error(userName,email,phone,password,gender)
+
+    const RegisterData = {
+      Name:userName,
+      Email:email,
+      Phone_Number:phone,
+      Gender:gender,
+      Password:password
+  }
+//   const RegisterData = {
+//     "Name":"ABCD11",
+//     "Email":"emails121223@email.com",
+//     "Phone_Number":8851072005,
+//     "Gender":"Male",
+//     "Password":"Updated@123"
+// }
+    
+    // return await axios.post(`${GUEST_URL}/register`, formData);
+    return await axios.post("http://admin.ezewin.analogueitsolutions.com/guest-api/register",RegisterData,config);
   };
 
-  export const UserRegisterApi = async (name,email,phone,password,gender) => {
+
+
+  export const UserRegisterApi123 = async (name,email,phone,password,gender) => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("email", email);
@@ -35,13 +74,17 @@ export const UserLoginApi = async (email,password) => {
     // return await axios.post(`${GUEST_URL}/register`, formData);
     return await axios.post("http://admin.ezewin.analogueitsolutions.com/guest-api/register",formData);
   };
-
   
   export const getProfileDetails2 = async (token) => {
     const formData = new FormData();
-    return await axios.post("http://admin.ezewin.analogueitsolutions.com/api", formData, {
-        headers: { Authorization: "Bearer" + token },
-    });
+    const hello=await axios.post("http://admin.ezewin.analogueitsolutions.com/api/profile", formData, {
+      headers: { Authorization: "Bearer" + token },
+      'Content-Type': 'multipart/form-data',
+      Accept: '*/*',
+  });
+
+  console.error(">>>>>>>>",hello)
+    return hello
 };
 
 

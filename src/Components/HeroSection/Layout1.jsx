@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useRef } from 'react';
 import './Layout.css';
 import TypingH2 from '../TypingH2';
 
 import '../StanderdStyles/Button29.css'
 import { Link } from 'react-router-dom';
 
-function Layout1() {
 
+function Layout1() {
+    const div1Ref = useRef(null);
     return (
-        <div className="HeroSection">
+        <div className="HeroSection" ref={div1Ref} >
         <section className='Layout Box b1 marginTopper-50 marginBottom-50' id='HomeTop'>
             <video playsInline autoPlay muted loop className='background-video'>
                 <source src="/src/assets/video/BackgroundVideo.mp4" type="video/mp4" />

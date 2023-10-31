@@ -152,7 +152,7 @@ function Register() {
 
 
         try {
-            const res = await UserRegisterApi(userName,email,phone,password,gender);
+            const res = await UserRegisterApi(userName,email,PhoneNumber,password,gender);
             if (res) {
               
                 // if (res?.status === 200) {

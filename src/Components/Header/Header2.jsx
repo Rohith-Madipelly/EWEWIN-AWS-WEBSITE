@@ -18,6 +18,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux"
 import { setToken } from '../../redux/actions/loginAction';
 
+
+
 function Header() {
 
   const dispatch = useDispatch();
@@ -67,14 +69,13 @@ function Header() {
             </div>
             {/* Right Side */}
             <Toolbar disableGutters>
-              {console.error(isHomePage)}
+              
               {isHomePage == true ? <div><Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} id="main-header">
                 <Button href="#HomeTop" to="/"
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b> Home</b>
                 </Button>
-
 
                 <Button href="#nextContest"
                   onClick={handleCloseNavMenu}
