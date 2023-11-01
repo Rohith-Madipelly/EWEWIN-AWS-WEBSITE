@@ -44,7 +44,7 @@ export const UserRegisterApi = async (userName, email, phone, password, gender) 
     Password: password
   }
 
-  return await axios.post(`${GUEST_URL}/login`, RegisterData, config);
+  return await axios.post(`${GUEST_URL}/register`, RegisterData, config);
 };
 
 
@@ -56,42 +56,24 @@ export const getProfileDetails2 = async (token) => {
     Accept: '*/*',
   });
 
-  console.error(">>>>>>>>", hello)
   return hello
 };
 
 
 
 export const UserGetProfileDetails = async (token) => {
-  const formdata={
+  const formData = new FormData();
 
-  }
-  
-  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/profile","" ,{
-    headers: { Authorization:`Bearer ${token}`,
-     'Content-Type': 'multipart/form-data',
-    // 'Access-Control-Allow-Origin': '*',
-    Accept: '*/*', },
+  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/profile",formData ,{
+    headers: { Authorization:"Bearer " + token}
   });
 };
-export const UserGetProfileDetails12 = async (token) => {
-  const formdata={
 
-  }
-  
-  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/profile","" ,{
-    headers: { 
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NDBkNjY2MTYwM2ZmMDk1ZmM5YmE1MyIsImlhdCI6MTY5ODc1ODk0MCwiZXhwIjoxNjk4ODQ1MzQwfQ.FvFmpR8h8oBMV7XXHqP5_rDgPAJiWyU7KTjn5iFyy5c', 
-      'Cookie': 'connect.sid=s%3Az0v69271xpUMw6XHeoY4ZhFMugP_qD-i.msgY99a73Wb5Kf9GOKq6neNVWlKHEWrDWCV9dUcpmHg', 
-      ...data.getHeaders()
-    },
-  });
-};
 
 export const UserGetProfileDetails23 = async (token) => {
 
-  return await axios.post(`${BASE_URL1}users/register`,"", {
-    headers: { Authorization: "Bearer" + token },
+  return await axios.post(`${BASE_URL1}/profile`,"", {
+    headers: { Authorization: "Bearer " + token },
   });
 };
 
@@ -119,8 +101,7 @@ export const ForgetPasswordApi = async (email) => {
 
 
 // Done with Testing 
-export const verifySignatureApi = async (paymentData) => {
-
+export const verifySignatureApi = async (paymentData,token) => {
 
   const formData = {
     razorpay_order_id: paymentData.razorpay_payment_id,
@@ -128,23 +109,23 @@ export const verifySignatureApi = async (paymentData) => {
     razorpay_signature: paymentData.razorpay_signature
   }
 
-  return await axios.post('http://127.0.0.1:8001/api/payment/verifySignature', formData)
-
-  // {
-  //   headers: { Authorization: "Bearer " + token },
-  // }
-  // );
+  return await axios.post(`${BASE_URL1}/payment/verifySignature`, formData,{
+    headers: {
+      Authorization: "Bearer " + token,
+      'Content-Type': 'application/json',
+      Accept: '*/*',
+    }
+  })
 };
 
 
 // Done with Testing 
 export const createOrder = async (amount,token) => {
-
-  const dataPay = {
+  const Paydata = {
     Price: amount
   };
 
-  return await axios.post("http://admin.ezewin.analogueitsolutions.com/api/payment/createOrder", dataPay,
+  return await axios.post(`${BASE_URL1}/payment/createOrder`, Paydata,
     {
       headers: {
         Authorization: "Bearer " + token,
