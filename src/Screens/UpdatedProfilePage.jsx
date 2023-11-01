@@ -185,7 +185,7 @@ const ProfilePage = () => {
                     
                   </div> */}
       <section>
-        <PaymentScreen profile={ProfileData} />
+
       </section>
 
     </section>
@@ -196,120 +196,4 @@ const ProfilePage = () => {
 export default ProfilePage
 
 
-function PaymentScreen(profile) {
 
-  const navigate = useNavigate();
-  const [formError, setFormError] = useState("");
-  const token = localStorage.getItem('token');
-  const loadScript = (src) => {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
-      document.body.appendChild(script);
-    });
-  };
-
-
-
-
-  const payMoney = async () => {
-    try {
-
-      const res = await loadScript(RAZORPAY_URL);
-      if (!res) {
-        alert("Razorpay SDK failed to load. Are you online?");
-        return;
-      }
-
-      const Price = 49
-      const token = localStorage.getItem('token');
-      const order = await createOrder(Price, token);
-      if (order?.data) {
-        const options = {
-          key: RAZORPAY_KEY,
-          amount: 4900,
-          currency: "INR",
-          name: "Ezewin",
-          description: `Wallet Transaction`,
-          image: "",
-          order_id: order.data.data.id,
-          handler: function (response) {
-            verifySignature(response);
-          },
-          // prefill: {
-          //   name: profile.Name,
-          //   email: profile.Email,
-          //   contact: profile.Phone,
-          // },
-          prefill: {
-            name: "Rohith",//profile.Name,
-            email: "madipellyrohith@gmail.com",//profile.Email,
-            contact: "9951072005",//profile.Phone,
-          },
-          notes: {
-            address: "dd", //profileData.address,
-          },
-          theme: {
-            color: "#3399cc",
-          },
-        };
-
-        const rzp1 = new window.Razorpay(options);
-
-        rzp1.on("payment.failed", function (response) {
-          setFormError(
-            `${response.error.reason}\n${response.error.description}`
-          );
-
-        });
-
-        rzp1.open();
-      }
-    } catch (error) {
-
-      if (error?.response?.status === 401) {
-
-      } else {
-        setFormError("Something went wrong.");
-      }
-    }
-  };
-
-
-
-  const verifySignature = async (paymentData) => {
-
-    try {
-      const res = await verifySignatureApi(paymentData, token);
-      if (res?.data.message) {
-        setTimeout(() => {
-          navigate('/PaymentDone');
-        }, 500);
-      }
-      else{
-        console.error(res)
-      }
-    } catch (error) {
-      console.error("Error in verifySignatureApi", error)
-
-      setFormError("Something went wrong.");
-      setTimeout(() => {
-        navigate('/PaymentFailed');
-      }, 2000);
-    }
-  };
-
-  return (
-    <div>
-
-      <button className='button-75' style={{ marginLeft: "30vw", marginTop: "20px" }} onClick={() => payMoney()}>Pay Now 49</button>
-
-    </div>
-  )
-}

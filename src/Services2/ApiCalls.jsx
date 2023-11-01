@@ -16,6 +16,28 @@ const config = {
   },
 };
 
+
+
+export const HomeTimerApi = async () => {
+  const formData = new FormData();
+  return await axios.post(`${GUEST_URL}/first-upcoming`,formData)
+};
+
+
+
+
+
+
+export const HomePriceMoneyListApi = async () => {
+  const formData = new FormData();
+  return await axios.post(`${GUEST_URL}/first-upcoming`,formData)
+};
+
+
+
+
+
+
 // User Login API Call 
 export const UserLoginApi = async (email, password) => {
   const loginData = {
@@ -47,6 +69,16 @@ export const UserRegisterApi = async (userName, email, phone, password, gender) 
   return await axios.post(`${GUEST_URL}/register`, RegisterData, config);
 };
 
+
+
+
+// User Subscribe /newslater 
+export const SubscribeAPI = async (email) => {
+  const Data = {
+    email: email,
+  };
+  return await axios.post(`https://admin.ezewin.analogueitsolutions.com/guest-api/newslater `, Data, config);
+};
 
 export const getProfileDetails2 = async (token) => {
   const formData = new FormData();
@@ -93,33 +125,19 @@ export const ForgetPasswordApi = async (email) => {
 };
 
 
+export const ResetPasswordAPI = async (email,otp,newPassword) => {
+  const formData = new FormData();
 
+  formData.append("email", email);
+  formData.append("otp", otp);
+  formData.append("password", newPassword);
 
-
-
-
-
-
-// Done with Testing 
-export const verifySignatureApi = async (paymentData,token) => {
-
-  const formData = {
-    razorpay_order_id: paymentData.razorpay_payment_id,
-    razorpay_payment_id: paymentData.razorpay_payment_id,
-    razorpay_signature: paymentData.razorpay_signature
-  }
-
-  return await axios.post(`${BASE_URL1}/payment/verifySignature`, formData,{
-    headers: {
-      Authorization: "Bearer " + token,
-      'Content-Type': 'application/json',
-      Accept: '*/*',
-    }
-  })
+  return await axios.post("http://admin.ezewin.analogueitsolutions.com/guest-api/reset-password", formData);
 };
 
 
-// Done with Testing 
+
+// Done with Testing  Create OrderAPI 
 export const createOrder = async (amount,token) => {
   const Paydata = {
     Price: amount
@@ -134,6 +152,27 @@ export const createOrder = async (amount,token) => {
       }
     }
   );
+};
+
+
+
+
+
+// Done with Testing  verifySignature
+export const verifySignatureApi = async (paymentData,token) => {
+  const formData={
+    "razorpay_order_id" : paymentData.razorpay_order_id,
+    "razorpay_payment_id" : paymentData.razorpay_payment_id,
+    "razorpay_signature" : paymentData.razorpay_signature
+  }
+
+  return await axios.post(`${BASE_URL1}/payment/verifySignature`, formData,{
+    headers: {
+      Authorization: "Bearer " + token,
+      'Content-Type': 'application/json',
+      Accept: '*/*',
+    }
+  })
 };
 
 

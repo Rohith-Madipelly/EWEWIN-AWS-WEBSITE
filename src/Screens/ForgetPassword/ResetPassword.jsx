@@ -16,11 +16,15 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import { setToken } from '../../redux/actions/loginAction';
 import { useSelector } from "react-redux";
-import {ForgetPasswordApi} from '../../Services2/ApiCalls'
+import { ResetPasswordAPI } from '../../Services2/ApiCalls'
 import { ReportGmailerrorred } from '@mui/icons-material';
+import OtpInput from 'react-otp-input';
 
-function ForgetPassword() {
+
+function ResetPassword() {
   const [email, setEmail] = useState('');
+  const [otp, setOtp] = useState('');
+  const [newpassword, setNewPassword] = useState('Rohith@78');
   const [errorMessage, setErrorMessage] = useState();
   const [successMessage, setsuccessMessage] = useState();
 
@@ -32,18 +36,31 @@ function ForgetPassword() {
     setErrorMessage(null);
 
     try {
-      const res = await ForgetPasswordApi(email);
+      const res = await ResetPasswordAPI(email, otp, newpassword);
       if (res) {
         toast.success(res.data.msg, { position: toast.POSITION.TOP_CENTER })
         setTimeout(() => {
-          navigate('/ResetPassword');
-        }, 1000);
+          navigate('/login');
+        }, 2000);
+      }
+      else{
+        console.error("not res found")
       }
     } catch (error) {
-      toast.error("Fail", { position: toast.POSITION.TOP_CENTER })
+      if (error.response) {
+        if (error.response.status === 400) {
+          toast.error(error.response.data.msg, { position: toast.POSITION.TOP_CENTER })
+        }
+      }
+      else{
+        console.error("not res found")
+      }
+
     }
 
   };
+
+
 
   return (
     <div className='Login py-5'>
@@ -55,7 +72,7 @@ function ForgetPassword() {
                 <div className="card-body pt-5 text-center">
                   <div className="t-4 pb-4">
                     <h2 className="fw-bold mb-2 text-uppercase text-dark">EZEWIN</h2>
-                    <p className="text-dark-50 mb-3">ForgetPassword ?</p>
+                    <p className="text-dark-50 mb-3">Reset Password</p>
                     <div className="form-outline form-white mb-4">
                       <div className="mb-2">
                         <Box
@@ -68,6 +85,44 @@ function ForgetPassword() {
                         >
                           <div>
                             <TextField id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value)} required />  <br />
+                            <TextField id="outlined-otp" className='my-2 formobject text-white' label="otp" placeholder="otp" value={otp} onChange={(e) => setOtp(e.target.value)} required />  <br />
+                            <TextField 
+                            id="outlined-password-input" 
+                            className='my-2 formobject' 
+                            type="password" 
+                            label="UserPassword" 
+                            placeholder="UserPassword" 
+                            value={newpassword} 
+                            onChange={(e) => setNewPassword(e.target.value)} 
+                            // error={passwordError !== null}
+
+                            // helperText={passwordError} 
+                            required />
+                            <br />
+                          
+                            {/* <OtpInput className='ms-2 formobject'
+                              value={otp}
+                              onChange={setOtp}
+                              numInputs={4}
+                              renderSeparator={<span>-</span>}
+                              renderInput={(props) => <input {...props} />}
+
+                              inputStyle={{
+                                // border: "1px solid transparent",
+                                // borderRadius: "8px",
+                                width: "25px",
+                                height: "25px",
+                                fontSize: "12px",
+                                color: "#000",
+                                fontWeight: "400",
+                                caretColor: "blue"
+                              }}
+                              // focusStyle={{
+                              //   border: "1px solid #CFD3DB",
+                              //   outline: "none"
+                              // }}
+                            /> */}
+
                           </div>
                         </Box>
                       </div>
@@ -75,18 +130,9 @@ function ForgetPassword() {
                     <button className="btn btn-outline-dark btn-lg px-5" onClick={handleForgetPassword} type="submit">Submit</button>
                     <ToastContainer></ToastContainer>
 
-                    
-                
-
-
-
 
                   </div>
 
-                  <div>
-                    <p className="mb-0 ">Don't have an account? <Link to="/Register" className='text-dark'>Register</Link>
-                    </p>
-                  </div>
 
                 </div>
               </div>
@@ -98,4 +144,4 @@ function ForgetPassword() {
   )
 }
 
-export default ForgetPassword
+export default ResetPassword

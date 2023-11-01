@@ -5,12 +5,13 @@ import { IoIosArrowForward } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { toast} from 'react-toastify';
-
+import { SubscribeAPI } from '../../Services2/ApiCalls'
 
 
 function Footer() {
     const [email, setEmail] = useState('')
-    const handleSubscribe = () => {
+    const handleSubscribe =  async (event) => {
+        event.preventDefault();
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
         // setErrorMessage("Please enter valid email address.");
         toast.error('Please enter valid email address.', { position: toast.POSITION.TOP_CENTER })
@@ -18,10 +19,38 @@ function Footer() {
         return false;
     }
     else {
-        setErrorMessage("");
+        // setErrorMessage("");
     }
 
-}
+    try {
+        const responsed = await SubscribeAPI(email);
+        if (responsed) {
+            toast.success(`Thank You for ${responsed.data.msg} `, { position: toast.POSITION.TOP_CENTER })
+            setEmail("")
+        }
+        else {
+            console.error("No Response Found")
+        }
+  
+      } catch (error) {
+          if (error.response) {
+            
+            if (error.response.status === 409) {
+                toast.error(error.response.data.message, { position: toast.POSITION.TOP_CENTER })
+            } else {
+              toast.error('An error occurred .', { position: toast.POSITION.TOP_CENTER })
+            }
+          } else if (error.request) {
+            toast.error('No response received from the server.', { position: toast.POSITION.TOP_CENTER })
+          } else {
+            toast.error('Error setting up the request.', { position: toast.POSITION.TOP_CENTER })
+          }
+      }
+    };
+
+
+
+
     return (
             <footer className="footer mt-3 pt-3">
                 <div className='container  border-bottom border-light pb-2'>
@@ -34,10 +63,8 @@ function Footer() {
                     </div>
                     <div className="subscribe centerr my-2">
                         <form className="form" onSubmit={handleSubscribe}>
-
                             <input className="emailInput border-0 " placeholder="Email" type="email" name="" id="" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-                            <input className="bn632-hover bn19 " type="submit" value="Subscribe" />
-                            
+                            <input className="bn632-hover bn19 " type="submit" value="Subscribe" />       
                         </form>
                     </div>
                     <div className='box-container  pb-4'>

@@ -18,6 +18,7 @@ import VerifyOtp from './Screens/VerifyOtp';
 
 import { useSelector } from "react-redux";
 import SupportPage from './Screens/SupportPage';
+import ResetPassword from './Screens/ForgetPassword/ResetPassword';
 
 
 function App() {
@@ -34,10 +35,11 @@ function App() {
         <Route path='/Login' element={<Login />} />
         <Route path='/Register' element={<Register />} />
         <Route path='/Forget_Password' element={<ForgetPassword />} />
+        <Route path='/ResetPassword' element={<ResetPassword/>} />
       
         <Route path='/VerifyOtp' element={<VerifyOtp />} />
 
-
+        
         <Route path='/Profile' element={<ProfilePage />} />
         <Route path='/PaymentDone' element={<PaymentDone/>}/>
         <Route path='/PaymentFailed' element={<PaymentFailed/>}/>

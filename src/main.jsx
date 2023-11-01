@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { store } from './redux/store';
 import Header1 from './Components/Header/Header2';
+import YourComponent from './YourComponent.jsx';
 
 // const div1Ref = useRef(null);
 // const div2Ref = useRef(null);
@@ -28,7 +29,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Header1/>
        
         <App/>
- 
+
+        {/* Winner Amount */}
+ {/* <YourComponent/>  */}
        
       </BrowserRouter>
     

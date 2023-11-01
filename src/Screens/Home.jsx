@@ -6,6 +6,7 @@ import Gallary from '../Components/Gallery/Gallery';
 import FAQSection from '../Components/FAQSection';
 import Footer from '../Components/Footer/Footer';
 import ArrowBackToTopButton from '../shared/ArrowButtons/ArrowBackToTopButton';
+import { toast, ToastContainer, Zoom } from 'react-toastify';
 
 import Header1 from '../Components/Header/Header2';
 
@@ -31,7 +32,7 @@ function Home() {
 
        <Footer/>
        <ArrowBackToTopButton/>
-
+       <ToastContainer></ToastContainer>
       
     </div>
   )

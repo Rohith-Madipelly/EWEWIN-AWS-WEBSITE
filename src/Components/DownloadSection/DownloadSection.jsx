@@ -1,12 +1,64 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Download.css'
 import { Slide} from 'react-awesome-reveal';
 import { Link } from 'react-router-dom'
 import "../StanderdStyles/Style.css"
 
-
+import { HomePriceMoneyListApi } from '../../Services2/ApiCalls'
 
 function DownloadSection() {
+    const [winningData,setWinningData]=useState([])
+
+    const HomePriceMoneyList = async () => {
+
+        try {
+          const res = await HomePriceMoneyListApi()
+          if (res) {
+            const resTime=res.data.first_upcoming[0].winnings;
+            if(resTime!=""){
+                console.error("HomePriceMoneyListApi",resTime)
+// setWinningData(resTime)
+                console.error("first Winner",resTime[0].amount)
+                console.error("2nd Winner",resTime[1].amount)
+                console.error("3nd Winner",resTime[2].amount)
+            }
+            else{
+
+            }
+            
+           
+          }
+          else {
+            console.error("res not found in HomePriceMoneyList Api")
+          }
+    
+        } catch (error) {
+          console.error("api error in HomePriceMoneyList")
+        }
+    
+      }
+
+
+      useEffect(()=>{
+        HomePriceMoneyList()
+      },[])
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
 
         <section className='pt-2' id='PriceMoney'
@@ -50,6 +102,8 @@ function DownloadSection() {
         <div className='fontA4'><b>2 lakhs</b></div>
         <div className='fontA5'><b>1 lakhs</b></div>
         <div className='fontA6'><b>10 X 10,000</b></div>
+
+        {winningData}
         
     </div>
 </div>
