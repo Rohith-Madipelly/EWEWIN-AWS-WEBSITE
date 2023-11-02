@@ -127,7 +127,7 @@ function Header() {
 
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {loginSelector ?
-                  <Button as={NavLink} to="/Profile"
+                  <Button as={NavLink} to="/Profileupdate"
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: "white", display: "block" }}>
                     <CgProfile size={25} /> Profile

@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import './nav.css';
+import './ProfileScreens.css'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import MenuItem from '@mui/material/MenuItem';
 import './newButton.css'
-import { UserGetProfileDetails, UpdatePasswordAPI } from '../Services2/ApiCalls'
+import { UserGetProfileDetails, UpdatePasswordAPI, UpdateProfileAPI } from '../Services2/ApiCalls'
 import TextField from '@mui/material/TextField';
+
 
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 
@@ -22,6 +24,7 @@ const ProfileUpdate = () => {
     const [Phone_Number, setPhone_Number] = useState("**********");
     const [Gender, setGender] = useState("******");
     const [wallet, setWallet] = useState("**");
+    const [Address, setAddress] = useState("");
 
 
     const navigate = useNavigate();
@@ -29,17 +32,42 @@ const ProfileUpdate = () => {
 
     //Updated Profile 
 
-    const [UpdatedName, setUpdatedName] = useState("**********");
-    const [UpdatedEmail, setUpdatedEmail] = useState("****************");
-    const [UpdatedPhone_Number, setUpdatedPhone_Number] = useState("**********");
-    const [UpdatedGender, setUpdatedGender] = useState("******");
-    const [UpdatedAddress, setUpdatedAddress] = useState("**");
+    const [UpdatedName, setUpdatedName] = useState();
+    const [UpdatedEmail, setUpdatedEmail] = useState();
+    const [UpdatedPhone_Number, setUpdatedPhone_Number] = useState()
+    const [UpdatedGender, setUpdatedGender] = useState();
+    const [UpdatedAddress, setUpdatedAddress] = useState();
     const [UpdatedProfilePic, setUpdatedProfilePic] = useState();
 
 
     const [editProfile, setEditProfile] = useState(false);
 
 
+    useEffect(() => {
+        setUpdatedName(Name)
+        setUpdatedEmail(Email)
+        setUpdatedPhone_Number(Phone_Number)
+        setUpdatedGender(Gender)
+        setUpdatedAddress(Address)
+        setUpdatedProfilePic(null)
+
+
+    }, [editProfile])
+
+    const UpdateProfile = async () => {
+        try {
+            const res = await UpdateProfileAPI(UpdatedName, UpdatedEmail, UpdatedPhone_Number, UpdatedGender, UpdatedAddress, UpdatedProfilePic, token)
+
+            toast.success(res.data.message, { position: toast.POSITION.TOP_CENTER })
+            setTimeout(() => {
+                navigate('/Profileupdate');
+                setEditProfile(false)
+            }, 2000);
+        } catch (error) {
+            toast.error(res.data.message, { position: toast.POSITION.TOP_CENTER })
+
+        }
+    }
 
 
     //updated password 
@@ -56,6 +84,32 @@ const ProfileUpdate = () => {
         dispatch(setToken(""));
         localStorage.removeItem('token');
     };
+
+    //Allow only Alphabets
+    function handleInputOnlyAlphabets(e) {
+        const input = e.target.value;
+        const regex = /^[a-zA-Z ]*$/;
+
+        if (!regex.test(input)) {
+            // toast.error('Only Alphabets are allowed' , { position: toast.POSITION.TOP_CENTER })   
+            return;
+        }
+        setUpdatedName(e.target.value)
+    }
+    //Allow only Numbers
+    function handleInputOnlyNumbers(e) {
+        const input = e.target.value;
+        const regex = /^[0-9]*$/;
+
+        if (!regex.test(input)) {
+            //   toast.error('Only numbers are allowed', { position: toast.POSITION.TOP_CENTER });
+            return;
+        }
+
+        setUpdatedPhone_Number(e.target.value);
+    }
+
+
 
     //Updated Profile Handle
     const updatedPasswords = async () => {
@@ -268,13 +322,29 @@ const ProfileUpdate = () => {
                 const userData = res.data.user;
                 console.error(userData)
 
+                if (res) {
+                    setId(userData._id)
+                    setName(userData.Name)
+                    setEmail(userData.Email)
+                    setPhone_Number(userData.Phone_Number)
+                    setGender(userData.Gender)
+                    setWallet(userData.wallet)
 
-                setId(userData._id)
-                setName(userData.Name)
-                setEmail(userData.Email)
-                setPhone_Number(userData.Phone_Number)
-                setGender(userData.Gender)
-                setWallet(userData.wallet)
+                    if (userData.address === undefined) {
+                        setAddress("Pending ...")
+
+                    }
+                    else {
+                        setAddress(userData.address)
+
+                    }
+
+                }
+                else {
+
+                }
+
+
 
             } catch (error) {
                 console.error("Error in api ", error)
@@ -311,26 +381,42 @@ const ProfileUpdate = () => {
                             /></div>}
 
                             <div className='data'>
-                                <p className='my-1'>{Name}</p>
-                                <p className='mb-4'>{id}</p>
+                                <h4 className='my-1'><b>{Name}</b></h4>
+                                <p className='mb-1'>{id}</p>
+                                <p className='mb-4'><b>Wallet Amount : </b>{wallet}</p>
+
+
                             </div>
                         </div>
                     </div>
 
                 </div>
-
                 <div className="col col-md-6 col-sm-12">
                     <div className='card'>
-                        <div className='float-left'>Edit Profile</div>
-                        <button type="button" class="btn btn-primary w-25" onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>close</b>}</button>
-                        {editProfile ? <div>edit now here </div> : <div>false</div>}
-                        <div className='m-4'>
-                            <div className="row ms-1">
+                        {/* <div className='float-left'>Edit Profile</div> */}
+                        {/* {editProfile ? <div>edit now here </div> : <div>false</div>} */}
+                        <div className='m-2'>
+
+                            {/* <button type="button" class="btn btn-primary d-flex justify-content-end" onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>close</b>}</button> */}
+
+                            <div className="row ms-1 mt-3">
                                 <div className="col-3">
                                     <strong>Full Name</strong>
                                 </div>
-                                <div className="col-9">
-                                    {Name}
+                                <div className="col-6">
+                                    {!editProfile ? <diV>{Name}</diV> : <TextField
+                                        id="outlined-Name-input"
+                                        className=''
+                                        // label="Name as per Aadhaar card"
+                                        // placeholder="Name as per Aadhaar card"
+                                        value={UpdatedName}
+                                        // error={erroruserName !== null}
+                                        // helperText={erroruserName}
+                                        onChange={(e) => handleInputOnlyAlphabets(e)}
+                                        required size="small" />}
+                                </div>
+                                <div className='col-3'>
+                                    <button type="button" className={`btn ${editProfile ? 'btn-danger' : 'btn-primary'} d-flex justify-content-end`} onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>X</b>}</button>
                                 </div>
                             </div>
                             <hr />
@@ -339,7 +425,15 @@ const ProfileUpdate = () => {
                                     <strong>Email</strong>
                                 </div>
                                 <div className="col-9">
-                                    {Email}
+                                    {!editProfile ? <diV>{Email}</diV> : <TextField
+                                        id="outlined-email-input"
+                                        className='my-1 formobject text-white'
+                                        label="Email" placeholder="Email"
+                                        value={Email}
+                                        // onChange={(e) => setEmail(e.target.value)}
+                                        // error={erroremail !== null}
+                                        // helperText={erroremail}
+                                        required size="small" />}
                                 </div>
                             </div>
                             <hr />
@@ -348,7 +442,31 @@ const ProfileUpdate = () => {
                                     <strong>Gender</strong>
                                 </div>
                                 <div className="col-9">
-                                    {Gender}
+                                    {!editProfile ? <diV>{Gender}</diV> : <TextField size="small"
+                                        id="outlined-select-currency"
+                                        select
+                                        label="Gender"
+                                        defaultValue=""
+                                        // helperText="Please select your Gender"
+                                        className='my-1'
+                                        value={Gender}
+                                        // onChange={(e) => setGender(e.target.value)}
+                                        // error={errorgender !== null}
+                                        // helperText={errorgender}
+                                        required
+                                    >
+
+                                        <MenuItem value="Male">
+                                            Male
+                                        </MenuItem>
+                                        <MenuItem value="Female">
+                                            Female
+                                        </MenuItem>
+                                        <MenuItem value="other">
+                                            Other
+                                        </MenuItem>
+
+                                    </TextField>}
                                 </div>
                             </div>
                             <hr />
@@ -357,11 +475,20 @@ const ProfileUpdate = () => {
                                     <strong>Phone</strong>
                                 </div>
                                 <div className="col-9">
-                                    {Phone_Number}
+                                    {!editProfile ? <diV>{Phone_Number}</diV> : <TextField
+                                        id="outlined-phone-input"
+                                        className='my-1 formobject text-white'
+                                        label="Mobile number"
+                                        placeholder="Mobile number"
+                                        value={UpdatedPhone_Number}
+                                        onChange={(e) => handleInputOnlyNumbers(e)}
+                                        // error={errorPhoneNumber !== null}
+                                        // helperText={errorPhoneNumber}
+                                        required size="small" />}
                                 </div>
                             </div>
 
-                            <hr />
+
 
                             {/* <div className="row ms-1">
               <div className="col-3">
@@ -371,21 +498,48 @@ const ProfileUpdate = () => {
                   11-24-140,2nd Bank Colony, Shanthi Nagar,Warangal,Telangana,India. 
               </div>
             </div>
-            <hr/> */}
+            <hr/> */} <hr />
                             <div className="row ms-1">
+
+                                <div className="col-3">
+                                    <strong>Address</strong>
+                                </div>
+                                <div className="col-9">
+                                    {!editProfile ? <diV>{Address}</diV> : <TextField
+                                        id="outlined-phone-input"
+                                        className='my-1 formobject text-white'
+                                        // label=" Address"
+                                        // placeholder="Address"
+                                        value={UpdatedAddress}
+                                        onChange={(e) => setUpdatedAddress(e.target.value)}
+                                        // error={errorPhoneNumber !== null}
+                                        // helperText={errorPhoneNumber}
+                                        required size="small" />}
+
+
+
+                                </div>
+                                {editProfile && <button type="button" style={{ display: 'flex', float: 'left', justifyContent: "center" }} onClick={() => UpdateProfile()} class="btn btn-primary w-25">{!editProfile ? "" : <b>Save</b>}</button>}
+
+                            </div>
+                            {/* <button type="button" class="btn btn-primary w-25" onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>close</b>}</button> */}
+                            <hr />
+                            {/* <div className="row ms-1">
                                 <div className="col-3">
                                     <strong>UserID</strong>
                                 </div>
                                 <div className="col-9">
-                                    {id}  { /*<Link to='/PaymentScreen'>Pay 49 rs</Link> */}
+                                    {id}  
 
                                 </div>
                             </div>
 
-                            <hr />
+                            <hr /> */}
 
 
-                            <div className="row ms-1">
+
+
+                            {/* <div className="row ms-1">
                                 <div className="col-3">
                                     <strong>Wallet</strong>
                                 </div>
@@ -394,7 +548,7 @@ const ProfileUpdate = () => {
                                 </div>
                             </div>
 
-                            <hr />
+                            <hr /> */}
 
 
                             <div className="row ms-1">
@@ -445,16 +599,20 @@ const ProfileUpdate = () => {
                                 </div>
                             </div>
                             <hr />
+                            <marquee width="50%" direction="right" height="30%">
+                                EZEWIN PLAY WIN  
+                            </marquee>
 
-
-
+                            <marquee width="50%" direction="right" height="30%">
+                                EZEWIN PLAY WIN  
+                            </marquee>
 
 
                         </div>
                     </div>
                 </div>
 
-                <div className="col col-md-3 col-sm-12">
+                {/* <div className="col col-md-3 col-sm-12">
                     <div className='card'>
 
                         <h5 className='ps-4 pt-4'><b>Your Contests</b></h5>
@@ -468,15 +626,9 @@ const ProfileUpdate = () => {
                         <div className='card bg-danger mx-3 my-1 p-2'>
                             contests IDs
                         </div>
-
-
-                        <ToastContainer></ToastContainer>
-
-
-
                     </div>
-                </div>
-            </div>
+                </div> */}
+            </div> <ToastContainer></ToastContainer>
 
             {/* <div className="">
                     <span className="editicon btn btn-primary btn-file">

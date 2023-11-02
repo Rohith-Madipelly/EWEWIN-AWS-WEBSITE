@@ -8,7 +8,7 @@ import { Fade } from 'react-awesome-reveal';
 
 function LPattern2() {
   const [size, setSize] = useState({ width: 40, height: 60, fontSize: 30 })
-  const [timeData, setTimeData] = useState('OCT 1, 2024 18:30:00')
+  const [timeData, setTimeData] = useState('FEB 1, 2024 18:30:00')
 
   const HomeTimer = async () => {
 
@@ -89,6 +89,8 @@ function LPattern2() {
       window.removeEventListener('resize', handleResize);
     };
   }, [size]);
+
+
   return (
     <div className='TimerPage' id='nextContest'>
 
@@ -105,7 +107,9 @@ function LPattern2() {
 
             labels={['DAYS', 'HOURS', 'MINUTES', 'SECONDS']}
 
-            duration={0.5} /></Fade>
+            duration={0.5} />
+            
+            </Fade>
         </div>
       </div>
 
