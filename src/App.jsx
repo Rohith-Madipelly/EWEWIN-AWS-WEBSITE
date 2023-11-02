@@ -19,7 +19,14 @@ import VerifyOtp from './Screens/VerifyOtp';
 import { useSelector } from "react-redux";
 import SupportPage from './Screens/SupportPage';
 import ResetPassword from './Screens/ForgetPassword/ResetPassword';
+import ProfileUpdate from './Screens/ProfileUpdate';
+import UpComing_Contest from './Screens/UpComing_Contest';
 
+
+
+
+import { toast, ToastContainer, Zoom } from 'react-toastify';
+// UpComing_Contest
 
 function App() {
   
@@ -28,6 +35,7 @@ function App() {
       <div>
 
       </div>
+      <ToastContainer></ToastContainer>
 
       <Routes>
 
@@ -41,6 +49,11 @@ function App() {
 
         
         <Route path='/Profile' element={<ProfilePage />} />
+        <Route path='/ProfileUpdate' element={<ProfileUpdate />} />
+
+        <Route path='/Contests' element={<UpComing_Contest/>} />
+
+
         <Route path='/PaymentDone' element={<PaymentDone/>}/>
         <Route path='/PaymentFailed' element={<PaymentFailed/>}/>
         {/* <Route path='/Wallet' element={<Wallet/>}/> */}

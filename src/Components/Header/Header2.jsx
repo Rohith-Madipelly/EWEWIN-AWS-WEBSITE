@@ -52,6 +52,7 @@ function Header() {
 
   const handleLogout = () => {
     // Clear the token from localStorage
+    console.error("Clear the token from localStorage")
     dispatch(setToken(""));
     localStorage.removeItem('token');
   };

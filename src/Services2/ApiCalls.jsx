@@ -24,8 +24,15 @@ export const HomeTimerApi = async () => {
 };
 
 
+//upcoming_contest
 
+export const upcoming_contest = async (token) => {
+  const formData = new FormData();
 
+  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/upcoming-contest",formData ,{
+    headers: { Authorization:"Bearer " + token}
+  });
+};
 
 
 export const HomePriceMoneyListApi = async () => {
@@ -92,7 +99,7 @@ export const getProfileDetails2 = async (token) => {
 };
 
 
-
+//Profile api 
 export const UserGetProfileDetails = async (token) => {
   const formData = new FormData();
 
@@ -100,6 +107,45 @@ export const UserGetProfileDetails = async (token) => {
     headers: { Authorization:"Bearer " + token}
   });
 };
+
+
+
+//update Profile api
+export const UpdateProfileAPI = async (UpdatedName,UpdatedEmail,UpdatedPhone_Number,UpdatedGender,UpdatedAddress,UpdatedProfilePic,token) => {
+  const formData = new FormData();
+  formData.append("name", UpdatedName);
+  formData.append("email", UpdatedEmail);
+  formData.append("phone", UpdatedPhone_Number);
+  formData.append("gender", UpdatedGender);
+  formData.append("address", UpdatedAddress);
+  formData.append("profile_pic", UpdatedProfilePic);
+
+
+  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/update-profile",formData ,{
+    headers: { Authorization:"Bearer " + token}
+  });
+};
+
+//update Password api
+export const UpdatePasswordAPI = async (password, confirmpassword,token) => {
+  const formData = new FormData();
+  formData.append("old_password", password);
+  formData.append("new_password", confirmpassword);
+
+  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/change-password",formData ,{
+    headers: { Authorization:"Bearer " + token}
+  });
+};
+
+
+
+
+
+
+
+
+
+
 
 
 export const UserGetProfileDetails23 = async (token) => {
