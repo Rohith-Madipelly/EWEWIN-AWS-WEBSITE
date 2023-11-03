@@ -31,7 +31,7 @@ import ContestPage from './Screens/ContestPage';
 // UpComing_Contest
 
 function App() {
-  
+  const loginSelector = useSelector((state) => state.isLogin);
   return (
     <div className="App">
       <div>

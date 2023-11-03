@@ -1,0 +1,57 @@
+.card123 {
+    
+    width: auto;
+    
+}
+.imgbox
+{
+    overflow: hidden;
+}
+.imgbox img
+{
+    transition: all 1.5s ease-out;
+}
+
+/* .imgbox img:hover{
+    transform: scale(+1.5);
+} */
+
+/* .card123-text {
+    height: 120px;
+    overflow: hidden;
+} */
+.card123-title
+{
+    
+}
+
+@media only screen and (max-width: 1410px) {
+    
+}
+
+@media only screen and (max-width: 1210px) {
+   
+}
+
+@media only screen and (width: 800px) {
+   .card123{
+    width: 80%;
+   }
+   /*  */
+}
+
+
+
+
+.card123 {
+    /* width: 200px;
+    height: 200px; */
+    /* border: 1px solid #ccc; */
+    /* transition: transform 0.2s, box-shadow 0.2s; */
+  }
+  
+  .card123:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
