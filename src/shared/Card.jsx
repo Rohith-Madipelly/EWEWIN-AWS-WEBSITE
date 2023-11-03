@@ -1,5 +1,5 @@
 import React from 'react'
-import './Shopcard.css'
+import './ShopCard.css'
 import { Link } from 'react-router-dom'
 import PaymentScreen from '../Screens/PaymentScreen/NewPaymentMethod'
 
