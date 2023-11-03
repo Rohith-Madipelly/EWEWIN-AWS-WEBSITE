@@ -32,6 +32,8 @@ import ContestPage from './Screens/ContestPage';
 
 function App() {
   const loginSelector = useSelector((state) => state.isLogin);
+
+  console.error("dscfds>>>>",loginSelector)
   return (
     <div className="App">
       <div>
@@ -50,19 +52,19 @@ function App() {
         <Route path='/VerifyOtp' element={<VerifyOtp />} />
 
         
-        <Route path='/Profile' element={<ProfilePage />} />
-        <Route path='/ProfileUpdate' element={<ProfileUpdate />} />
+        <Route path='/Profile' element={!loginSelector?<Login/>:<ProfilePage />} />
+        <Route path='/ProfileUpdate' element={!loginSelector?<Login/>:<ProfileUpdate />} />
 
-        <Route path='/Contests' element={<UpComing_Contest/>} />
-        <Route path='/Join/:id?' element={<ContestPage/>}/>
+        <Route path='/Contests' element={!loginSelector?<Login/>:<UpComing_Contest/>} />
+        <Route path='/Join/:id?' element={!loginSelector?<Login/>:<ContestPage/>}/>
 
 
-        <Route path='/PaymentDone' element={<PaymentDone/>}/>
-        <Route path='/PaymentFailed' element={<PaymentFailed/>}/>
+        <Route path='/PaymentDone' element={!loginSelector?<Login/>:<PaymentDone/>}/>
+        <Route path='/PaymentFailed' element={!loginSelector?<Login/>:<PaymentFailed/>}/>
         {/* <Route path='/Wallet' element={<Wallet/>}/> */}
         <Route path='/TermandConditions' element={<TermandConditions/>}/>
         <Route path='/PrivacyPolicy' element={<PrivacyPolicy/>}/>
-        <Route path='/PaymentScreen' element={<PaymentScreen/>}/>
+        <Route path='/PaymentScreen' element={!loginSelector?<Login/>:<PaymentScreen/>}/>
         <Route path='/Support' element={<SupportPage/>}/>
         
         {/* <Route path='/Error' element={<Login />}/> */}
