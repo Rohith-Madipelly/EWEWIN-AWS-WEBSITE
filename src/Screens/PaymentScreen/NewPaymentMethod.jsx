@@ -123,16 +123,7 @@ const verifySignature = async (paymentData) => {
 
   return (
     <div>
-       
-        <section className='NotFoundPage'>
-        <div className='centerDiv mt-5 flex-column'>
-            
-
-            <h1> Welcome to Payment Page </h1>
-          
             <button className='bg-danger'  onClick={() => payMoney()}>Pay Now 49</button>
-        </div>
-    </section>
     </div>
   )
 }

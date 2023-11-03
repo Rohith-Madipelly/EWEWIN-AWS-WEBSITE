@@ -25,6 +25,7 @@ const ProfileUpdate = () => {
     const [Gender, setGender] = useState("******");
     const [wallet, setWallet] = useState("**");
     const [Address, setAddress] = useState("");
+    const [Profile, setProfile] = useState(null);
 
 
     const navigate = useNavigate();
@@ -37,11 +38,14 @@ const ProfileUpdate = () => {
     const [UpdatedPhone_Number, setUpdatedPhone_Number] = useState()
     const [UpdatedGender, setUpdatedGender] = useState();
     const [UpdatedAddress, setUpdatedAddress] = useState();
-    const [UpdatedProfilePic, setUpdatedProfilePic] = useState();
-
+    const [UpdatedProfilePic, setUpdatedProfilePic] = useState(null);
+    // const [selectedFile, setSelectedFile] = useState(null);
 
     const [editProfile, setEditProfile] = useState(false);
 
+    const handleFileChange = (e) => {
+        setUpdatedProfilePic(e.target.files[0]);
+    };
 
     useEffect(() => {
         setUpdatedName(Name)
@@ -58,11 +62,16 @@ const ProfileUpdate = () => {
         try {
             const res = await UpdateProfileAPI(UpdatedName, UpdatedEmail, UpdatedPhone_Number, UpdatedGender, UpdatedAddress, UpdatedProfilePic, token)
 
-            toast.success(res.data.message, { position: toast.POSITION.TOP_CENTER })
+            // toast.success(res.data.message, { position: toast.POSITION.TOP_CENTER })
             setTimeout(() => {
                 navigate('/Profileupdate');
                 setEditProfile(false)
-            }, 2000);
+            }, 1000);
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 100);
+
         } catch (error) {
             toast.error(res.data.message, { position: toast.POSITION.TOP_CENTER })
 
@@ -317,7 +326,7 @@ const ProfileUpdate = () => {
         const userData = async () => {
             try {
                 // setIsLoading(true);   loading 
-
+                console.error("Sfdddf>>>>>>>")
                 const res = await UserGetProfileDetails(token)
                 const userData = res.data.user;
                 console.error(userData)
@@ -329,6 +338,7 @@ const ProfileUpdate = () => {
                     setPhone_Number(userData.Phone_Number)
                     setGender(userData.Gender)
                     setWallet(userData.wallet)
+                    setProfile(userData.photo)
 
                     if (userData.address === undefined) {
                         setAddress("Pending ...")
@@ -367,20 +377,32 @@ const ProfileUpdate = () => {
                                 src="src/assets/img/ProfileFemale.png"
                                 alt='profilePic'
                                 className='rounded-circle img-fluid'
-                                style={{ maxWidth: '150px' }}
+                                style={{ maxWidth: '100px',width:'100px',height:'150px' }}
                             /> : Gender === 'Male' ? <img
-                                src="src/assets/img/ProfileMale.jpg"
+                                src={Profile}   //MzFfMTY5ODQyODY2NzgxOF8zNjQ=.jpeg
                                 alt='profilePic'
-                                className='rounded-circle img-fluid'
-                                style={{ maxWidth: '150px' }}
+                                className='rounded-pill img-fluid'
+                                style={{ maxWidth: '150px',maxheight:'150px' }}
                             /> : <div><img
-                                src="src/assets/img/ProfileOthers.jpg"
+                                src={Name}
                                 alt='profilePic'
                                 className='rounded-circle img-fluid'
-                                style={{ maxWidth: '150px' }}
+                                style={{ maxWidth: '100px',width:'90px' }}
                             /></div>}
 
-                            <div className='data'>
+                            <div></div>
+                            {/* <img
+                                src={`photo_path${Profile}`}
+                                alt='profilePic'
+                                className='rounded-circle img-fluid'
+                                style={{ maxWidth: '150px' }}
+                            /> */}
+                            {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <div  className="d-flex flex-column mx-2"><input type="file" accept="image/*" className='mx-5' onChange={handleFileChange} />
+                                <div className='my-1'></div>
+                                <button onClick={UpdateProfile} className='w-75 mx-5'>Upload Profile Picture</button></div>}
+
+
+                            <div className='data mt-2'>
                                 <h4 className='my-1'><b>{Name}</b></h4>
                                 <p className='mb-1'>{id}</p>
                                 <p className='mb-4'><b>Wallet Amount : </b>{wallet}</p>
@@ -429,8 +451,8 @@ const ProfileUpdate = () => {
                                         id="outlined-email-input"
                                         className='my-1 formobject text-white'
                                         label="Email" placeholder="Email"
-                                        value={Email}
-                                        // onChange={(e) => setEmail(e.target.value)}
+                                        value={UpdatedEmail}
+                                        onChange={(e) => setUpdatedEmail(e.target.value)}
                                         // error={erroremail !== null}
                                         // helperText={erroremail}
                                         required size="small" />}
@@ -449,8 +471,8 @@ const ProfileUpdate = () => {
                                         defaultValue=""
                                         // helperText="Please select your Gender"
                                         className='my-1'
-                                        value={Gender}
-                                        // onChange={(e) => setGender(e.target.value)}
+                                        value={UpdatedGender}
+                                        onChange={(e) => setUpdatedGender(e.target.value)}
                                         // error={errorgender !== null}
                                         // helperText={errorgender}
                                         required
@@ -507,7 +529,7 @@ const ProfileUpdate = () => {
                                 <div className="col-9">
                                     {!editProfile ? <diV>{Address}</diV> : <TextField
                                         id="outlined-phone-input"
-                                        className='my-1 formobject text-white'
+                                        className='my-1 w-75 formobject text-white'
                                         // label=" Address"
                                         // placeholder="Address"
                                         value={UpdatedAddress}
@@ -519,7 +541,7 @@ const ProfileUpdate = () => {
 
 
                                 </div>
-                                {editProfile && <button type="button" style={{ display: 'flex', float: 'left', justifyContent: "center" }} onClick={() => UpdateProfile()} class="btn btn-primary w-25">{!editProfile ? "" : <b>Save</b>}</button>}
+                                {editProfile && <button type="button" style={{ marginLeft: "27vw", marginTop: "1vw", display: 'flex', float: 'left', justifyContent: "center" }} onClick={() => UpdateProfile()} class="btn btn-primary w-25">{!editProfile ? "" : <b>Save</b>}</button>}
 
                             </div>
                             {/* <button type="button" class="btn btn-primary w-25" onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>close</b>}</button> */}
@@ -600,11 +622,11 @@ const ProfileUpdate = () => {
                             </div>
                             <hr />
                             <marquee width="50%" direction="right" height="30%">
-                                EZEWIN PLAY WIN  
+                                EZEWIN PLAY WIN
                             </marquee>
 
                             <marquee width="50%" direction="right" height="30%">
-                                EZEWIN PLAY WIN  
+                                EZEWIN PLAY WIN
                             </marquee>
 
 

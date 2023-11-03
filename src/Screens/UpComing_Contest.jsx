@@ -7,22 +7,22 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from '../Enviornment'
 import { useLocation } from "react-router-dom";
 import './newButton.css'
-import { upcoming_contest } from '../Services2/ApiCalls'
+import { upcoming_contestAPI,Mycoming_contestAPI } from '../Services2/ApiCalls'
 
 
 import { RAZORPAY_KEY, RAZORPAY_URL } from "./../Enviornment";
 
 import { verifySignatureApi, createOrder } from './../Services2/ApiCalls'
+import ShopCard from '../shared/Card';
+import ShopCard2 from '../shared/Card2';
 
 
 
 const ProfileUpdate = () => {
     const [id, setId] = useState("**********");
     const [Name, setName] = useState([]);
-    const [Email, setEmail] = useState("****************");
-    const [Phone_Number, setPhone_Number] = useState("**********");
-    const [Gender, setGender] = useState("******");
-    const [wallet, setWallet] = useState("**");
+    const [mycontest, setMycontest] = useState([]);
+
 
     const [ProfileData, setProfileData] = useState("");
 
@@ -30,80 +30,60 @@ const ProfileUpdate = () => {
     const token = localStorage.getItem('token');
 
     useEffect(() => {
-        const userData = async () => {
+        const upcoming_contest = async () => {
             try {
                 // setIsLoading(true);   loading 
 
-                // const res = await UserGetProfileDetails(token)
-                const res = await upcoming_contest(token)
-                const userData = res.data;
-                console.error(userData)
-                // setName(userData)
-                setName([ {name:"rohith" , price:25},{name:"rohith sir" , price:79},{name:"sai sir", price:49}])
 
-                console.error(Name)
-                // setName(userData.Name)
-                // setEmail(userData.Email)
-                // setPhone_Number(userData.Phone_Number)
-                // setGender(userData.Gender)
-                // setWallet(userData.wallet)
+                const res = await upcoming_contestAPI(token)
+                const userData = res.data.data;
+                // console.error("Error in api ", res)
 
+                setName(userData)
             } catch (error) {
                 console.error("Error in api ", error)
             }
         }
-        userData()
+        upcoming_contest()
+
+        const mycoming_contest = async () => {
+            try {
+                // setIsLoading(true);   loading 
+
+
+                const res2 = await Mycoming_contestAPI(token)
+                const userData1 = res2.data.data;
+                setMycontest(userData1)
+            } catch (error) {
+                console.error("Error in api ", error)
+            }
+        }
+        mycoming_contest()
     }, []);
 
     return (
         <section className='container py-2 marginTopper-80'>
 
-{console.error("sds",Name)}
-
-            {Name.map((item, index) => (
-                <div key={index}>
-                     <span>Name: </span>
-                    <span>Price: </span> 
-                </div>
-            ))}
-
-            {/* <h1 style={{ marginLeft: "0vw", color: "black" }}>Your Contests</h1> */}
+            {console.error("sds", Name)}
 
             <div className='row'>
-                {/* col first-left */}
+                <div className="col col-md-8 col-sm-12">
+                    <div className='card ms-5 p-3 pb-4 '>
+                        <h5 className='ps-4 pt-4'><b>Up Coming Contests</b></h5>                
+                            {Name.map((item, index) => (
+                                <ShopCard key={index} iteam={item} />
+                            ))}
+                    </div>
+                </div>
+                <div className="col col-md-4 col-sm-12">
+                    <div className='card p-3 pb-4 '>
 
-                <div className="col col-md-10 col-sm-12">
-                    <div className='card mx-5 p-3 pb-4 '>
+                        <h5 className='ps-4 pt-4'><b>Your Contests</b></h5>                
+                            {mycontest.map((item, index) => (
+                                <ShopCard2 key={index} iteam={item} />
+                            ))}
 
-                        <h5 className='ps-4 pt-4'><b>Up Coming Contests</b></h5>
-
-                        <div className='card p-2'>
-                            contests IDs
-
-                        </div>
-
-                        {/* <div className='card bg-danger mx-3 mt-1 p-2'>
-                contests IDs
-            </div> */}
-
-                        <div className='row px-5 py-2'>
-                            <div className='col bg-dark'>
-                                sc
-                            </div>
-                            <div className='col bg-dark'>
-                                ssssssssd
-                            </div>
-                        </div>
-
-                        <div className='row px-5 py-2'>
-                            <div className='col card bg-dark'>
-                                sc
-                            </div>
-
-                            <div className='col card  bg-dark'>
-                                ssssssssd
-                            </div>
-                        </div>
+                        {/* </div> */}
 
                     </div>
                 </div>

@@ -16,7 +16,7 @@ function LPattern2() {
     try {
       const res = await HomeTimerApi()
       if (res) {
-        const resTime=res.data.first_upcoming[0].starts_at;
+        const resTime = res.data.first_upcoming[0].starts_at;
         console.error(resTime)
         dsd(resTime)
       }
@@ -46,7 +46,7 @@ function LPattern2() {
 
     var formattedDate = `${month} ${day}, ${year} ${hours}:${minutes}:${seconds}`;
 
-    console.error("helooo >>>>>>>",formattedDate);
+    console.error("helooo >>>>>>>", formattedDate);
 
     setTimeData(formattedDate)
 
@@ -93,13 +93,14 @@ function LPattern2() {
 
 
   return (
-    <div className='TimerPage' id='nextContest'>
+    <div className='w-75 bg-dark rounder rounded-3' id='nextContest'>
 
-      <div className='w-100 TimerL2 hellodd gridSetting'>
-        <div className=''>
+      <div className='d-flex justify-content-center'>
+        <div className='m-5'>
+          <div>
           <h2 className='mb-3'>Get Ready To Win in</h2>
-          <Fade> <FlipClockCountdown
-
+          <FlipClockCountdown
+             
             digitBlockStyle={size}
             to={new Date(timeData).getTime()}
             // to={new Date('OCT 31, 2023 18:30:00').getTime()}
@@ -108,13 +109,9 @@ function LPattern2() {
             labels={['DAYS', 'HOURS', 'MINUTES', 'SECONDS']}
 
             duration={0.5} />
-            
-            </Fade>
+</div>
+          
         </div>
-      </div>
-
-      <div className='TimerGrid-2 gridSetting'>
-        <img src="src/assets/img/Timer.png" alt="no logo" className='TimerImg' />
       </div>
 
 

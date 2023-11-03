@@ -78,7 +78,7 @@ function Login() {
         setPasswordError(null)
 
         setTimeout(() => {
-          navigate('/Profile');
+          navigate('/Profileupdate');
         }, 1000);
       }
       else {

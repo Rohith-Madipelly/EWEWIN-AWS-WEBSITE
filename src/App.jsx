@@ -26,6 +26,8 @@ import UpComing_Contest from './Screens/UpComing_Contest';
 
 
 import { toast, ToastContainer, Zoom } from 'react-toastify';
+
+import ContestPage from './Screens/ContestPage';
 // UpComing_Contest
 
 function App() {
@@ -52,6 +54,7 @@ function App() {
         <Route path='/ProfileUpdate' element={<ProfileUpdate />} />
 
         <Route path='/Contests' element={<UpComing_Contest/>} />
+        <Route path='/Join/:id?' element={<ContestPage/>}/>
 
 
         <Route path='/PaymentDone' element={<PaymentDone/>}/>

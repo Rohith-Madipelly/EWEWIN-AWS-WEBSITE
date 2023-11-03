@@ -26,10 +26,17 @@ export const HomeTimerApi = async () => {
 
 //upcoming_contest
 
-export const upcoming_contest = async (token) => {
+export const upcoming_contestAPI = async (token) => {
   const formData = new FormData();
-
   return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/upcoming-contest",formData ,{
+    headers: { Authorization:"Bearer " + token}
+  });
+};
+
+
+export const Mycoming_contestAPI = async (token) => {
+  const formData = new FormData();
+  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/my-contests",formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -103,7 +110,7 @@ export const getProfileDetails2 = async (token) => {
 export const UserGetProfileDetails = async (token) => {
   const formData = new FormData();
 
-  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/profile",formData ,{
+  return await axios.post(`${BASE_URL1}/profile`,formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -121,7 +128,7 @@ export const UpdateProfileAPI = async (UpdatedName,UpdatedEmail,UpdatedPhone_Num
   formData.append("profile_pic", UpdatedProfilePic);
 
 
-  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/update-profile",formData ,{
+  return await axios.post(`${BASE_URL1}/update-profile`,formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -132,13 +139,21 @@ export const UpdatePasswordAPI = async (password, confirmpassword,token) => {
   formData.append("old_password", password);
   formData.append("new_password", confirmpassword);
 
-  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/change-password",formData ,{
+  return await axios.post(`${BASE_URL1}/change-password`,formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };
 
 
+//update Join Contest Page
+export const Join_ContestAPI = async (contest_id,token) => {
+  const formData = new FormData();
+  formData.append("contest_id", contest_id);
 
+  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/join-contest",formData ,{
+    headers: { Authorization:"Bearer " + token}
+  });
+};
 
 
 
@@ -189,15 +204,14 @@ export const createOrder = async (amount,token) => {
     Price: amount
   };
 
-  return await axios.post(`${BASE_URL1}/payment/createOrder`, Paydata,
-    {
-      headers: {
-        Authorization: "Bearer " + token,
+  return await axios.post('https://admin.ezewin.analogueitsolutions.com/api/payment/createOrder', { Price: (amount)}, {
+    headers: {
         'Content-Type': 'application/json',
         Accept: '*/*',
-      }
-    }
-  );
+        Authorization: "Bearer " +token
+    },
+})
+
 };
 
 

@@ -11,6 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { SiTestrail } from "react-icons/si";
 import { MdPrivacyTip } from "react-icons/md";
 // Funtionality 
 import { NavLink, useLocation } from 'react-router-dom';
@@ -123,7 +124,7 @@ function Header() {
 
 
 
-
+{/* Contests */}
 
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {loginSelector ?
@@ -132,6 +133,15 @@ function Header() {
                     sx={{ my: 2, color: "white", display: "block" }}>
                     <CgProfile size={25} /> Profile
                   </Button> : ""}
+
+                  {loginSelector ?
+                  <Button as={NavLink} to="/Contests"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}>
+                    <SiTestrail size={25} /> Contests
+                  </Button> : ""}
+
+                  
 
                 <Button className='p-0'
                   onClick={handleCloseNavMenu}
