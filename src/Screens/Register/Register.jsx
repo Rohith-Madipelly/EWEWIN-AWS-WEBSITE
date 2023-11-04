@@ -65,6 +65,8 @@ function Register() {
         const regex = /^[a-zA-Z ]*$/;
 
         if (!regex.test(input)) {
+            setErrorUserName("Only Alphabets are allowed")
+
             // toast.error('Only Alphabets are allowed' , { position: toast.POSITION.TOP_CENTER })   
             return;
         }
@@ -76,7 +78,13 @@ function Register() {
         const regex = /^[0-9]*$/;
 
         if (!regex.test(input)) {
+            setErrorPhoneNumber("Only numbers are allowed");
             //   toast.error('Only numbers are allowed', { position: toast.POSITION.TOP_CENTER });
+            return;
+        }
+        if (input.length > 10) {
+            setErrorPhoneNumber("you can enter only 10 digits");
+            
             return;
         }
 
@@ -116,17 +124,24 @@ function Register() {
 
 
         if (PhoneNumber.length !== 10) {
-            setErrorPhoneNumber("Please enter 10 digit valid mobile number");
-            // toast.error('Please enter 10 digit valid mobile number', { position: toast.POSITION.TOP_CENTER })
+            setErrorPhoneNumber("Please enter 10 digits valid mobile number");
+            // toast.error('Please enter 10 digits valid mobile number', { position: toast.POSITION.TOP_CENTER })
 
             return false;
         }
         else {
             setErrorPhoneNumber(null);
         }
+
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,}$/;
         if (!password) {
             setErrorpassword("Please enter your password.*")
             // toast.error('Please enter your full name.', { position: toast.POSITION.TOP_CENTER })
+            return false;
+        }
+        else if (!password.match(passwordRegex)) {
+            setErrorpassword("Please enter a valid password. It must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.");
+            // Display an error message using a toast or other method here.
             return false;
         }
         else {
@@ -150,9 +165,9 @@ function Register() {
             setErrorpassword(null);
         }
 
-        if (!gender) {
+        if (gender !== "male" && gender !== "female") {
             setErrorGender("Please select gender");
-            toast.error('Please select gender.', { position: toast.POSITION.TOP_CENTER })
+            // toast.error('Please select gender.', { position: toast.POSITION.TOP_CENTER })
 
             return false;
         }
@@ -161,9 +176,9 @@ function Register() {
         }
 
 
-        if (!terms) {
+        if (terms==false) {
             setErrorTerms("Please accept the terms & conditions.")
-            toast.error('Please accept the terms & conditions.', { position: toast.POSITION.TOP_CENTER })
+            // toast.error('Please accept the terms & conditions.', { position: toast.POSITION.TOP_CENTER })
 
             return false;
         }
@@ -290,6 +305,7 @@ function Register() {
                                                         value={userName}
                                                         error={erroruserName !== null}
                                                         helperText={erroruserName}
+                                                        // onClick={}
                                                         onChange={(e) => handleInputOnlyAlphabets(e)}
                                                         required size="small" /> <br />
 
@@ -359,9 +375,7 @@ function Register() {
                                                         <MenuItem value="Female">
                                                             Female
                                                         </MenuItem>
-                                                        <MenuItem value="other">
-                                                            Other
-                                                        </MenuItem>
+                                                      
 
                                                     </TextField>
 

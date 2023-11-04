@@ -20,9 +20,9 @@
 export const BASE_URL = "http://localhost:8001/api"
 
 // sever
-export const GUEST_URL= "http://admin.ezewin.analogueitsolutions.com/guest-api"
+export const GUEST_URL= "https://admin.ezewin.analogueitsolutions.com/guest-api"
 
-export const BASE_URL1 = "http://admin.ezewin.analogueitsolutions.com/api"
+export const BASE_URL1 = "https://admin.ezewin.analogueitsolutions.com/api"
 
 // export const GUEST_URL= "http://localhost:8001/guest-api"
 // 

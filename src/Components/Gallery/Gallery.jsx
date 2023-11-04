@@ -57,10 +57,14 @@ function Gallary() {
                 <img className="img1" id="flag" onMouseOver={(e) => { onhoverHandle(e, i) }} onMouseOut={(e) => { onNoHover(e, i) }} src={oneimg} alt="card1img" />
                 <img src={crown} alt="card1img" className="img2" />
                 {column.flag ? <label className='dis'>you are the next winner</label> : ""}
+
               </div>
-           
+          
               <div className="card1body">
                 <h4>Big Win</h4>
+                {/* <h5>userName</h5>
+                <h4>Price Money</h4>
+                <h4>From the State</h4> */}
                 {/* <p className='right-10'>Rohith</p> */}
                 <p>Everyone is a Winner.</p>
               </div>

@@ -182,7 +182,7 @@ export const ForgetPasswordApi = async (email) => {
 
   formData.append("email", email);
 
-  return await axios.post("http://admin.ezewin.analogueitsolutions.com/guest-api/forget-password", formData);
+  return await axios.post("https://admin.ezewin.analogueitsolutions.com/guest-api/forget-password", formData);
 };
 
 
@@ -193,7 +193,7 @@ export const ResetPasswordAPI = async (email,otp,newPassword) => {
   formData.append("otp", otp);
   formData.append("password", newPassword);
 
-  return await axios.post("http://admin.ezewin.analogueitsolutions.com/guest-api/reset-password", formData);
+  return await axios.post("https://admin.ezewin.analogueitsolutions.com/guest-api/reset-password", formData);
 };
 
 

@@ -128,7 +128,7 @@ function Header() {
 
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {loginSelector ?
-                  <Button as={NavLink} to="/Profileupdate"
+                  <Button as={NavLink} to="/Profile"
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: "white", display: "block" }}>
                     <CgProfile size={25} /> Profile
@@ -138,7 +138,7 @@ function Header() {
                   <Button as={NavLink} to="/Contests"
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: "white", display: "block" }}>
-                    <SiTestrail size={25} /> Contests
+                    <b><SiTestrail size={25} /> Book Contest</b>
                   </Button> : ""}
 
                   

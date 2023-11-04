@@ -78,7 +78,7 @@ function Login() {
         setPasswordError(null)
 
         setTimeout(() => {
-          navigate('/Profileupdate');
+          navigate('/Profile');
         }, 1000);
       }
       else {
@@ -139,7 +139,7 @@ function Login() {
                             required  />  
                             <br />
 
-                            {emailError && <span className='text-danger'>{emailError}</span>}
+                            {/* {emailError && <span className='text-danger'>{emailError}</span>} */}
                           
 
                             <TextField 
@@ -157,7 +157,7 @@ function Login() {
                             <br />
 
 
-                            {passwordError && <span className='text-danger'>{passwordError}</span>}
+                            {/* {passwordError && <span className='text-danger'>{passwordError}</span>} */}
                           </div>
 
                         </Box>

@@ -31,6 +31,9 @@ const ProfileUpdate = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+
+    //to updated password
+    const [editProfile, setEditProfile] = useState(false);
     //Updated Profile 
 
     const [UpdatedName, setUpdatedName] = useState();
@@ -41,7 +44,6 @@ const ProfileUpdate = () => {
     const [UpdatedProfilePic, setUpdatedProfilePic] = useState(null);
     // const [selectedFile, setSelectedFile] = useState(null);
 
-    const [editProfile, setEditProfile] = useState(false);
 
     const handleFileChange = (e) => {
         setUpdatedProfilePic(e.target.files[0]);
@@ -82,9 +84,9 @@ const ProfileUpdate = () => {
     //updated password 
     const [PasswordBox, setPasswordBox] = useState(false);
 
-    const [password, setpassword] = useState("")
+    const [password, setpassword] = useState(null)
     const [errorpassword, setErrorpassword] = useState(null)
-    const [confirmpassword, setConfirmpassword] = useState("")
+    const [confirmpassword, setConfirmpassword] = useState(null)
 
 
     const handleLogout = () => {
@@ -148,80 +150,21 @@ const ProfileUpdate = () => {
             setErrorpassword(null);
         }
 
-        try {
-            const response = await UpdatePasswordAPI(password, confirmpassword, token);
-            if (response) {
-                if (response?.status === 200) {
-                    toast.success("Password Updated Successfully. Please Login Again ", { position: toast.POSITION.TOP_CENTER })
-
-                    setTimeout(() => {
-                        navigate('/Login');
-                        handleLogout()
-                    }, 2000);
-                }
-            }
-            else {
-                toast.success("No Data Found in api", { position: toast.POSITION.TOP_CENTER })
-            }
-        } catch (error) {
-
-            console.error(error.data)
-            if (error.response) {
-
-                if (error.response.status === 409) {
-                    toast.error('409...', { position: toast.POSITION.TOP_CENTER })
-
-                    // setErrorMessage('User is already registered. Please Login ...');
-                } else if (error.response.status === 401) {
-                    toast.error('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.', { position: toast.POSITION.TOP_CENTER })
-
-                    // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
-                } else if (error.response.status === 409) {
-                    toast.error('User Exisited ', { position: toast.POSITION.TOP_CENTER })
-
-                    // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
-                } else if (error.response.status === 404) {
-                    toast.error('Invalid user data.', { position: toast.POSITION.TOP_CENTER })
-
-                    // setErrorMessage('Invalid user data.');
-                } else if (error.response.status === 500) {
-                    toast.error('Internal server error', { position: toast.POSITION.TOP_CENTER })
-
-                    // setErrorMessage('Internal server error');
-                } else {
-                    toast.error('An error occurred during registration.', { position: toast.POSITION.TOP_CENTER })
-
-                    // setErrorMessage('An error occurred during registration.');
-                }
-            } else if (error.request) {
-                toast.error('No response received from the server.', { position: toast.POSITION.TOP_CENTER })
-
-                // setErrorMessage('No response received from the server.');
-            } else {
-                toast.error('Error setting up the request.', { position: toast.POSITION.TOP_CENTER })
-
-                // setErrorMessage('Error setting up the request.');
-            }
-
-
-            setTimeout(() => {
-                setErrorMessage("")
-                {
-                    setpassword("")
-                }
-                // setBtnDisabled(false);
-                navigate('/Profile');
-            }, 1000);
-
-        }
+       
     }
 
     //Updated password Handle
     const updatedPassword = async () => {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,}$/;
 
         if (!password) {
             setErrorpassword("Please enter your password.*")
             // toast.error('Please enter your full name.', { position: toast.POSITION.TOP_CENTER })
+            return false;
+        }
+        else if (!password.match(passwordRegex)) {
+            setErrorpassword("Please enter a valid password. It must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.");
+            // Display an error message using a toast or other method here.
             return false;
         }
         else {
@@ -326,7 +269,7 @@ const ProfileUpdate = () => {
         const userData = async () => {
             try {
                 // setIsLoading(true);   loading 
-                console.error("Sfdddf>>>>>>>")
+                // console.error("Sfdddf>>>>>>>")
                 const res = await UserGetProfileDetails(token)
                 const userData = res.data.user;
                 console.error(userData)
@@ -371,9 +314,9 @@ const ProfileUpdate = () => {
             <div className='row'>
                 {/* col first-left */}
                 <div className='col-sm-12 col-md-3'>
-                    <div className='card'>
+                    <div className='card pt-4 pb-2'>
                         <div className='profileCard text-center'>
-                            {Gender === "Female" ? <img
+                            {/* {Gender === "Female" ? <img
                                 src="src/assets/img/ProfileFemale.png"
                                 alt='profilePic'
                                 className='rounded-circle img-fluid'
@@ -388,15 +331,18 @@ const ProfileUpdate = () => {
                                 alt='profilePic'
                                 className='rounded-circle img-fluid'
                                 style={{ maxWidth: '100px',width:'90px' }}
-                            /></div>}
-
-                            <div></div>
-                            {/* <img
-                                src={`photo_path${Profile}`}
+                            /></div>}  profilePic */}
+              
+                            <div className='' >
+                            <img
+                                src={Profile}
                                 alt='profilePic'
-                                className='rounded-circle img-fluid'
-                                style={{ maxWidth: '150px' }}
-                            /> */}
+                                className='img-fluid profilePic'
+                                style={{ maxWidth: '180px',width:'200px',maxHeight: '200px' }}
+                            />
+                            </div>
+                            <div></div>
+                            
                             {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <div  className="d-flex flex-column mx-2"><input type="file" accept="image/*" className='mx-5' onChange={handleFileChange} />
                                 <div className='my-1'></div>
                                 <button onClick={UpdateProfile} className='w-75 mx-5'>Upload Profile Picture</button></div>}
@@ -484,9 +430,7 @@ const ProfileUpdate = () => {
                                         <MenuItem value="Female">
                                             Female
                                         </MenuItem>
-                                        <MenuItem value="other">
-                                            Other
-                                        </MenuItem>
+                             
 
                                     </TextField>}
                                 </div>

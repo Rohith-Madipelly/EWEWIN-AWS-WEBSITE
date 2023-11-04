@@ -22,6 +22,7 @@ const ProfileUpdate = () => {
     const [id, setId] = useState("**********");
     const [Name, setName] = useState([]);
     const [mycontest, setMycontest] = useState([]);
+    const [empty, setEmpty] = useState(false);
 
 
     const [ProfileData, setProfileData] = useState("");
@@ -38,10 +39,12 @@ const ProfileUpdate = () => {
                 const res = await upcoming_contestAPI(token)
                 const userData = res.data.data;
                 // console.error("Error in api ", res)
+                console.error("loss>>>>",userData)
 
                 setName(userData)
             } catch (error) {
                 console.error("Error in api ", error)
+                
             }
         }
         upcoming_contest()
@@ -52,8 +55,16 @@ const ProfileUpdate = () => {
 
 
                 const res2 = await Mycoming_contestAPI(token)
-                const userData1 = res2.data.data;
-                setMycontest(userData1)
+                if(res2.data.data.length === 0){
+                    console.error("no data found")
+                }
+                else{
+                    const userData1 = res2.data.data;
+                console.error("data vachinda ??",userData1)
+                setMycontest(userData1)}
+                setEmpty(true)
+            
+
             } catch (error) {
                 console.error("Error in api ", error)
             }
@@ -78,10 +89,20 @@ const ProfileUpdate = () => {
                 <div className="col col-md-4 col-sm-12">
                     <div className='card p-3 pb-4 '>
 
-                        <h5 className='ps-4 pt-4'><b>Your Contests</b></h5>                
-                            {mycontest.map((item, index) => (
+                        <h5 className='ps-4 pt-4'><b>Your Contests</b></h5> 
+                        {/* {empty?<div>yes</div>:<div>no</div>}    */}
+                       
+                            {empty ? <div>{mycontest.map((item, index) => (
                                 <ShopCard2 key={index} iteam={item} />
-                            ))}
+                            ))}</div> :<div className='card p-5 bg-red-500'>
+                               <div className='d-flex justify-content-center '>
+                                {/* <div>You have No Constest to Play</div> */}
+                                <b>You have No Constest. Pay and add for Up Coming contests</b>
+                                <br/>
+                               {/* <div> Pay and add Now</div> */}
+                                </div> 
+                            </div>
+                            }
 
                         {/* </div> */}
 
