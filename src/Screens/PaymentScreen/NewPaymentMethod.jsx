@@ -4,7 +4,9 @@ import { RAZORPAY_KEY, RAZORPAY_URL } from "../../Enviornment";
 import { useNavigate } from "react-router-dom";
 import {verifySignatureApi, createOrder} from '../../Services2/ApiCalls'
 
-function PaymentScreen() {
+const PaymentScreen=(price2)=> {
+
+  console.error("error price",price2)
   const navigate = useNavigate();
   const [formError,setFormError]=useState("");
 

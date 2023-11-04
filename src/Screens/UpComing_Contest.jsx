@@ -22,7 +22,7 @@ const ProfileUpdate = () => {
     const [id, setId] = useState("**********");
     const [Name, setName] = useState([]);
     const [mycontest, setMycontest] = useState([]);
-    const [empty, setEmpty] = useState(false);
+    const [empty, setEmpty] = useState(true);
 
 
     const [ProfileData, setProfileData] = useState("");
@@ -57,12 +57,14 @@ const ProfileUpdate = () => {
                 const res2 = await Mycoming_contestAPI(token)
                 if(res2.data.data.length === 0){
                     console.error("no data found")
+                setEmpty(false)
+
                 }
                 else{
                     const userData1 = res2.data.data;
                 console.error("data vachinda ??",userData1)
                 setMycontest(userData1)}
-                setEmpty(true)
+                // setEmpty(true)
             
 
             } catch (error) {
@@ -89,7 +91,7 @@ const ProfileUpdate = () => {
                 <div className="col col-md-4 col-sm-12">
                     <div className='card p-3 pb-4 '>
 
-                        <h5 className='ps-4 pt-4'><b>Your Contests</b></h5> 
+                        <h5 className='ps-4 pt-4'><b>Your Previous Contests</b></h5> 
                         {/* {empty?<div>yes</div>:<div>no</div>}    */}
                        
                             {empty ? <div>{mycontest.map((item, index) => (
@@ -97,7 +99,7 @@ const ProfileUpdate = () => {
                             ))}</div> :<div className='card p-5 bg-red-500'>
                                <div className='d-flex justify-content-center '>
                                 {/* <div>You have No Constest to Play</div> */}
-                                <b>You have No Constest. Pay and add for Up Coming contests</b>
+                                <b>You have No Constest. Pay and add from Up Coming contests</b>
                                 <br/>
                                {/* <div> Pay and add Now</div> */}
                                 </div> 

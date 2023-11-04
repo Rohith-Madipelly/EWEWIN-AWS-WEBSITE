@@ -352,6 +352,7 @@ const ProfileUpdate = () => {
                                 <h4 className='my-1'><b>{Name}</b></h4>
                                 <p className='mb-1'>{id}</p>
                                 <p className='mb-4'><b>Wallet Amount : </b>{wallet}</p>
+                                
 
 
                             </div>

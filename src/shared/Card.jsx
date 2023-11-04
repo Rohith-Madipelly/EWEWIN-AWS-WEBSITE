@@ -14,7 +14,8 @@ const Shopcard123 = ( item ) => {
                         <span><b>Price: </b>{item.entry_fee}</span> <br />
                         <span><b>Status: </b>{item.status}</span> <br />
                         <span><b>Starts at:</b> {item.starts_at}</span> <br />
-                    <PaymentScreen />
+                        
+                    <PaymentScreen price2={item.entry_fee}/>
                 </div>
 
                 {/* <div className="card123-body"> */}

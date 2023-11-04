@@ -165,7 +165,7 @@ function Register() {
             setErrorpassword(null);
         }
 
-        if (gender !== "male" && gender !== "female") {
+        if (gender !== "Male" && gender !== "Female") {
             setErrorGender("Please select gender");
             // toast.error('Please select gender.', { position: toast.POSITION.TOP_CENTER })
 
