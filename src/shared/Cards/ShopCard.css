@@ -40,16 +40,6 @@
    /*  */
 }
 
-
-
-
-.card123 {
-    /* width: 200px;
-    height: 200px; */
-    /* border: 1px solid #ccc; */
-    /* transition: transform 0.2s, box-shadow 0.2s; */
-  }
-  
   .card123:hover {
     transform: scale(1.02);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);

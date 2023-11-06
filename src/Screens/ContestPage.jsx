@@ -9,12 +9,12 @@ function ContestPage() {
         const Join_Contest = async () => {
             try {
 
-                const res = Join_ContestAPI(Contest_id,token)
-                if(res){
-                    console.error("res from Join_ContestAPI >>>",res)
+                const res = Join_ContestAPI(Contest_id, token)
+                if (res) {
+                    console.error("res from Join_ContestAPI >>>", res)
 
                 }
-                else{
+                else {
                     console.error("no res")
                 }
             } catch (error) {
@@ -24,9 +24,9 @@ function ContestPage() {
         }
         const { Contest_id } = useParams();
         const token = localStorage.getItem('token');
-Join_Contest()
+        Join_Contest()
     }, [])
-    
+
     return (
         <section className='container py-2 marginTopper-80'>
 

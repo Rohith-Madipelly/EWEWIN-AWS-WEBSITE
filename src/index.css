@@ -22,7 +22,14 @@ body {
 }
 
 
+.screenPage{
 
+  /* background-image: url('./assets/12.jpg'); */
+
+  /* background: linear-gradient(84.16deg, #5F2404 4.64%, #7C4111 68.12%, #EDB244 118.86%),
+linear-gradient(0deg, #6B4EFF, #6B4EFF); */
+
+}
 
 .profilePic{
   -webkit-clip-path: circle(50% at 50% 50%);

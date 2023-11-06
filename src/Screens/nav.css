@@ -1,5 +1,18 @@
-.marginTopper-80{
-    margin-top: 100px;
+.marginTopper-80 {
+  margin-top: 100px;
+
+}
+
+.profileHeading {
+  margin-left: 21vw;
+  color:black;
+  font-weight: 700;
   
+}
+@media screen and (max-width: 525px) {
+  .profileHeading {
+    margin-left: 8vw;
+   
   }
-  
+
+}

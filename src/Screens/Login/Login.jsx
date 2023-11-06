@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import { setToken } from '../../redux/actions/loginAction';
 import { useSelector } from "react-redux";
+import Loader from '../../shared/Loader/Loader';
 
 
 function Login() {
@@ -35,7 +36,7 @@ function Login() {
 
   const [loginBtn, setloginBtn] = useState(false);
 
-
+  const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ function Login() {
 
 
   const handleLogin = async (event) => {
+
     event.preventDefault();
     setErrorMessage(null);
 
@@ -54,6 +56,7 @@ function Login() {
     }
     else {
       setEmailError(null)
+      
     }
 
 
@@ -66,53 +69,61 @@ function Login() {
     else {
       setPasswordError(null)
     }
+    setIsLoading(true);
 
     try {
       const responsed = await UserLoginApi(email, password);
       if (responsed) {
+        setIsLoading(false)
         localStorage.setItem('token', responsed.data.Token);
-        toast.success(responsed.data.message, { position: toast.POSITION.TOP_CENTER })
+        toast.success(responsed.data.message, { position: toast.POSITION.TOP_CENTER, autoClose: 800, })
+
         dispatch(setToken(responsed.data.Token));
-      console.error("login Res",responsed)
+        console.error("login Res", responsed)
         setEmailError(null)
         setPasswordError(null)
 
+        // setIsLoading(false)
         setTimeout(() => {
-          navigate('/Profile');
-        }, 1000);
+          navigate('/Contests');
+        }, 3000);
       }
       else {
 
       }
 
     } catch (error) {
-        if (error.response) {
-          if (error.response.status === 401) {
-            setPasswordError("You have Enter Invalid password")
-            // toast.error('You have Entered Invalid password', { position: toast.POSITION.TOP_CENTER })
-          } else if (error.response.status === 404) {
-            toast.error('User Not Found', { position: toast.POSITION.TOP_CENTER })
-          } else if (error.response.status === 500) {
-            toast.error('Internal server error', { position: toast.POSITION.TOP_CENTER })
-          } else {
-            toast.error('An error occurred during .', { position: toast.POSITION.TOP_CENTER })
-          }
-        } else if (error.request) {
-          toast.error('No response received from the server.', { position: toast.POSITION.TOP_CENTER })
+      setIsLoading(false)
+      if (error.response) {
+        if (error.response.status === 401) {
+          setPasswordError("You have Enter Invalid password")
+          // toast.error('You have Entered Invalid password', { position: toast.POSITION.TOP_CENTER })
+        } else if (error.response.status === 404) {
+          toast.error('User Not Found', { position: toast.POSITION.TOP_CENTER })
+        } else if (error.response.status === 500) {
+          toast.error('Internal server error', { position: toast.POSITION.TOP_CENTER })
         } else {
-          toast.error('Error setting up the request.', { position: toast.POSITION.TOP_CENTER })
+          toast.error('An error occurred during .', { position: toast.POSITION.TOP_CENTER })
         }
+      } else if (error.request) {
+        toast.error('No response received from the server.', { position: toast.POSITION.TOP_CENTER })
+      } else {
+        toast.error('Error setting up the request.', { position: toast.POSITION.TOP_CENTER })
+      }
     }
   };
 
-
+ 
+  
   return (
-    <div className='Login'>
+    <div className='Login screenPage'>
+      {isLoading && <Loader />}
       <section className="vh-50 gradient-custom mt-5 hover12">
         <div className="container py-5 ">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div className="card bg-coustm text-dark" style={{ borderRadius: "0rem" }}>
+              <div className=' pt-5'>
+              <div className="card bg-coustm text-dark" style={{ borderRadius: "0rem"}}>
                 <div className="card-body pt-5 text-center">
                   <div className="t-4 pb-2">
                     <h2 className="fw-bold mb-2 text-uppercase text-dark">EZEWIN</h2>
@@ -129,31 +140,31 @@ function Login() {
                         >
 
                           <div >
-                            <TextField 
-                            id="outlined-email-input" 
-                            className='my-2 formobject text-white' 
-                            label="User Email" placeholder="User Email" 
-                            value={email} onChange={(e) => setEmail(e.target.value)} 
-                            error={emailError !== null}
-                            helperText={emailError} 
-                            required  />  
+                            <TextField
+                              id="outlined-email-input"
+                              className='my-2 formobject text-white'
+                              label="User Email" placeholder="User Email"
+                              value={email} onChange={(e) => setEmail(e.target.value)}
+                              error={emailError !== null}
+                              helperText={emailError}
+                              required />
                             <br />
 
                             {/* {emailError && <span className='text-danger'>{emailError}</span>} */}
-                          
 
-                            <TextField 
-                            id="outlined-password-input" 
-                            className='my-2 formobject' 
-                            type="password" 
-                            label="UserPassword" 
-                            placeholder="UserPassword" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} 
-                            error={passwordError !== null}
 
-                            helperText={passwordError} 
-                            required />
+                            <TextField
+                              id="outlined-password-input"
+                              className='my-2 formobject'
+                              type="password"
+                              label="User Password"
+                              placeholder="User Password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                              error={passwordError !== null}
+
+                              helperText={passwordError}
+                              required />
                             <br />
 
 
@@ -187,6 +198,7 @@ function Login() {
 
                   </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>

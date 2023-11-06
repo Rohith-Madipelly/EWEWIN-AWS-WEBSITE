@@ -28,6 +28,7 @@ import UpComing_Contest from './Screens/UpComing_Contest';
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 
 import ContestPage from './Screens/ContestPage';
+import Transactions from './Screens/Transactions';
 // UpComing_Contest
 
 function App() {
@@ -63,7 +64,7 @@ function App() {
         <Route path='/PaymentDone' element={!loginSelector?<Login/>:<PaymentDone/>}/>
         <Route path='/PaymentFailed' element={!loginSelector?<Login/>:<PaymentFailed/>}/>
 
-        {/* <Route path='/Wallet' element={<Wallet/>}/> */}
+        <Route path='/Transactions' element={<Transactions/>}/>
 
         <Route path='/TermandConditions' element={<TermandConditions/>}/>
         <Route path='/PrivacyPolicy' element={<PrivacyPolicy/>}/>

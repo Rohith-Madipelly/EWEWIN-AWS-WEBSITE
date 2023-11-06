@@ -64,8 +64,8 @@ function ResetPassword() {
 
   return (
     <div className='Login py-5'>
-      <section className="vh-50 gradient-custom mt-5 hover12">
-        <div className="container py-5 ">
+      <section className="vh-50 gradient-custom hover12">
+        <div className="container ">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
               <div className="card bg-coustm text-dark" style={{ borderRadius: "1rem" }}>
@@ -99,6 +99,18 @@ function ResetPassword() {
                             // helperText={passwordError} 
                             required />
                             <br />
+                            <TextField 
+                            id="outlined-password-input" 
+                            className='my-2 formobject' 
+                            type="password" 
+                            label="UserPassword" 
+                            placeholder="UserPassword" 
+                            value={newpassword} 
+                            onChange={(e) => setNewPassword(e.target.value)} 
+                            // error={passwordError !== null}
+
+                            // helperText={passwordError} 
+                            required />
                           
                             {/* <OtpInput className='ms-2 formobject'
                               value={otp}
@@ -127,7 +139,7 @@ function ResetPassword() {
                         </Box>
                       </div>
                     </div>
-                    <button className="btn btn-outline-dark btn-lg px-5" onClick={handleForgetPassword} type="submit">Submit</button>
+                    <button className="btn btn-outline-success w-75 btn-lg px-5" onClick={handleForgetPassword} type="submit"><b>Submit</b></button>
                     <ToastContainer></ToastContainer>
 
 

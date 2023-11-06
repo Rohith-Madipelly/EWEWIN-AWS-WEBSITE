@@ -117,6 +117,17 @@ export const UserGetProfileDetails = async (token) => {
 
 
 
+// {{base_url}}/transactions
+export const transactionsAPI = async (token) => {
+  console.error("log from Transactions API ",token)
+  const formData = new FormData();
+ const res= await axios.post("https://admin.ezewin.analogueitsolutions.com/api/transactions",formData ,{
+    headers: { Authorization:"Bearer " + token}
+  });
+  console.error("log form trans ",res)
+  return res
+};
+
 //update Profile api
 export const UpdateProfileAPI = async (UpdatedName,UpdatedEmail,UpdatedPhone_Number,UpdatedGender,UpdatedAddress,UpdatedProfilePic,token) => {
   const formData = new FormData();
@@ -148,9 +159,9 @@ export const UpdatePasswordAPI = async (password, confirmpassword,token) => {
 //update Join Contest Page
 export const Join_ContestAPI = async (contest_id,token) => {
   const formData = new FormData();
-  formData.append("contest_id", contest_id);
+  formData.append('contest_id', contest_id);
 
-  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/join-contest",formData ,{
+  return await axios.post(`${BASE_URL1}/join-contest`,formData,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -204,7 +215,7 @@ export const createOrder = async (amount,token) => {
     Price: amount
   };
 
-  return await axios.post('https://admin.ezewin.analogueitsolutions.com/api/payment/createOrder', { Price: (amount)}, {
+  return await axios.post('https://admin.ezewin.analogueitsolutions.com/api/create-razorpay-order', { Price: (amount)}, {
     headers: {
         'Content-Type': 'application/json',
         Accept: '*/*',
@@ -226,7 +237,7 @@ export const verifySignatureApi = async (paymentData,token) => {
     "razorpay_signature" : paymentData.razorpay_signature
   }
 
-  return await axios.post(`${BASE_URL1}/payment/verifySignature`, formData,{
+  return await axios.post(`${BASE_URL1}/verify-razorpay-signature`, formData,{
     headers: {
       Authorization: "Bearer " + token,
       'Content-Type': 'application/json',
@@ -237,7 +248,7 @@ export const verifySignatureApi = async (paymentData,token) => {
 
 
 
-
+// {{base_url}}/transactions
 
 
 

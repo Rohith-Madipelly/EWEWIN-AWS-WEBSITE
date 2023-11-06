@@ -80,28 +80,28 @@ function Footer() {
                                 width={35}
                                 alt="Facebook"/>
                             </a>
-                            <a href='https://www.Twitter.com/' target='blank'>
+                            <a href='https://twitter.com/ezewintech' target='_blank'>
                                 <img 
                                 className="social Twitter"
                                 src='src/assets/img/Social Icons/XTwitter.png'
                                 width={34}
                                 alt="Twitter"/>
                             </a>
-                            <a href='https://www.instagram.com/' target='blank'>
+                            <a href='https://www.instagram.com/' target='_blank'>
                                 <img 
                                 className="social Instagram"
                                 src='src/assets/img/Social Icons/Instagram.png'
                                 width={35}
                                 alt="Instagram"/>
                             </a>
-                            <a href='https://www.youtube.com/' target='blank'>
+                            <a href='https://www.youtube.com/' target='_blank'>
                                 <img 
                                 className="social Youtube"
                                 src='src/assets/img/Social Icons/Youtube.png'
                                 width={35}
                                 alt="Youtube"/>
                             </a>
-                            <a href='https://www.linkedin.com/feed/' target='blank'>
+                            <a href='http://linkedin.com/company/ezewintechgaming' target='_blank'>
                                 <img 
                                 className="social LinkedIn"
                                 src='src/assets/img/Social Icons/LinkedIn.png'

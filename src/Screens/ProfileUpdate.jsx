@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import MenuItem from '@mui/material/MenuItem';
 import './newButton.css'
-import { UserGetProfileDetails, UpdatePasswordAPI, UpdateProfileAPI } from '../Services2/ApiCalls'
+import { UserGetProfileDetails, UpdatePasswordAPI, UpdateProfileAPI, transactionsAPI } from '../Services2/ApiCalls'
 import TextField from '@mui/material/TextField';
+import { BsCurrencyRupee } from "react-icons/bs";
 
 
 import { toast, ToastContainer, Zoom } from 'react-toastify';
@@ -15,6 +16,8 @@ import { toast, ToastContainer, Zoom } from 'react-toastify';
 import { setToken } from '../redux/actions/loginAction';
 import { useDispatch } from "react-redux";
 import { Button } from 'bootstrap';
+import PaymentScreen from './PaymentScreen/NewPaymentMethod';
+
 
 const ProfileUpdate = () => {
     //Profile api
@@ -24,9 +27,14 @@ const ProfileUpdate = () => {
     const [Phone_Number, setPhone_Number] = useState("**********");
     const [Gender, setGender] = useState("******");
     const [wallet, setWallet] = useState("**");
+
     const [Address, setAddress] = useState("");
     const [Profile, setProfile] = useState(null);
 
+
+
+    const [addwallet, setAddWallet] = useState(45);
+    const [transactionData,setTransactionData]=useState([])
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -37,10 +45,21 @@ const ProfileUpdate = () => {
     //Updated Profile 
 
     const [UpdatedName, setUpdatedName] = useState();
+    const [erroruserName, setErrorUserName] = useState(null)
+
     const [UpdatedEmail, setUpdatedEmail] = useState();
+    const [erroremail, setErroremail] = useState(null)
+
     const [UpdatedPhone_Number, setUpdatedPhone_Number] = useState()
+    const [errorPhoneNumber, setErrorPhoneNumber] = useState(null)
+
+
     const [UpdatedGender, setUpdatedGender] = useState();
+    const [errorgender, setErrorGender] = useState(null);
+
     const [UpdatedAddress, setUpdatedAddress] = useState();
+    const [errorUpdatedAddress, seterrorUpdatedAddress] = useState();
+
     const [UpdatedProfilePic, setUpdatedProfilePic] = useState(null);
     // const [selectedFile, setSelectedFile] = useState(null);
 
@@ -61,6 +80,58 @@ const ProfileUpdate = () => {
     }, [editProfile])
 
     const UpdateProfile = async () => {
+
+        if (!UpdatedName) {
+            setErrorUserName("Please enter your full name.*")
+            // toast.error('Please enter your full name.', { position: toast.POSITION.TOP_CENTER })
+            return false;
+        }
+        else {
+            setErrorUserName(null);
+        }
+        if (/^[a-zA-Z]+$/.test(UpdatedName)) {
+            event.preventDefault();
+        }
+
+
+
+
+
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(UpdatedEmail)) {
+            setErroremail('Please enter valid email address.')
+            // toast.error('Please enter valid email address.', { position: toast.POSITION.TOP_CENTER })
+            return false;
+        }
+        else {
+            setErroremail(null);
+        }
+
+        // console.error("Phone number",UpdatedPhone_Number.length < 10)
+        if (UpdatedPhone_Number.length < 10) {
+            setErrorPhoneNumber("Please enter 10 digits valid mobile number");
+            // toast.error('Please enter 10 digits valid mobile number', { position: toast.POSITION.TOP_CENTER })
+
+            return false;
+        }
+        else {
+            setErrorPhoneNumber(null);
+        }
+
+
+        if (!UpdatedAddress) {
+            setErrorUserName("Please enter your full name.*")
+            // toast.error('Please enter your full name.', { position: toast.POSITION.TOP_CENTER })
+            return false;
+        }
+        else {
+            setErrorUserName(null);
+        }
+
+
+
+
+
+
         try {
             const res = await UpdateProfileAPI(UpdatedName, UpdatedEmail, UpdatedPhone_Number, UpdatedGender, UpdatedAddress, UpdatedProfilePic, token)
 
@@ -122,36 +193,8 @@ const ProfileUpdate = () => {
 
 
 
-    //Updated Profile Handle
-    const updatedPasswords = async () => {
 
-        if (!password) {
-            setErrorpassword("Please enter your password.*")
-            // toast.error('Please enter your full name.', { position: toast.POSITION.TOP_CENTER })
-            return false;
-        }
-        else {
-            setErrorpassword(null);
-        }
-        if (!confirmpassword) {
-            setErrorpassword("Please enter your confirmpassword.*")
-            // toast.error('Please enter your confirmpassword.', { position: toast.POSITION.TOP_CENTER })
-            return false;
-        }
-        else {
-            setErrorpassword(null);
-        }
-        if (confirmpassword !== password) {
-            setErrorpassword("Please enter Same Password.")
-            // toast.error('Please enter Same Password.', { position: toast.POSITION.TOP_CENTER })
-            return false;
-        }
-        else {
-            setErrorpassword(null);
-        }
 
-       
-    }
 
     //Updated password Handle
     const updatedPassword = async () => {
@@ -264,6 +307,18 @@ const ProfileUpdate = () => {
         setPasswordBox(!PasswordBox)
     }
 
+
+    // TransactionsAPI
+    
+
+
+
+
+
+
+
+
+
     //Profile API
     useEffect(() => {
         const userData = async () => {
@@ -304,12 +359,13 @@ const ProfileUpdate = () => {
             }
         }
         userData()
+      
     }, []);
 
     return (
         <section className='container py-2 marginTopper-80'>
 
-            <h1 style={{ marginLeft: "21vw", color: "black" }}>Profile Page</h1>
+            <h1 className='profileHeading'>Profile Page</h1>
 
             <div className='row'>
                 {/* col first-left */}
@@ -332,31 +388,75 @@ const ProfileUpdate = () => {
                                 className='rounded-circle img-fluid'
                                 style={{ maxWidth: '100px',width:'90px' }}
                             /></div>}  profilePic */}
-              
+
                             <div className='' >
-                            <img
-                                src={Profile}
-                                alt='profilePic'
-                                className='img-fluid profilePic'
-                                style={{ maxWidth: '180px',width:'200px',maxHeight: '200px' }}
-                            />
+                                <img
+                                    src={Profile}
+                                    alt='profilePic'
+                                    className='img-fluid profilePic'
+                                    style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
+                                />
                             </div>
                             <div></div>
-                            
-                            {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <div  className="d-flex flex-column mx-2"><input type="file" accept="image/*" className='mx-5' onChange={handleFileChange} />
+
+                            {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <div className="d-flex flex-column mx-2"><input type="file" accept="image/*" className='mx-5 btn btn-primary' onChange={handleFileChange} />
+
                                 <div className='my-1'></div>
                                 <button onClick={UpdateProfile} className='w-75 mx-5'>Upload Profile Picture</button></div>}
 
 
                             <div className='data mt-2'>
                                 <h4 className='my-1'><b>{Name}</b></h4>
-                                <p className='mb-1'>{id}</p>
-                                <p className='mb-4'><b>Wallet Amount : </b>{wallet}</p>
+                                {/* <p className='mb-1'>{id}</p> */}
+                                <h5 className='mb-4 '><b>Wallet Amount : <BsCurrencyRupee size={22} />{wallet}</b></h5>
+
+                                <button type="button" class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Money to wallet</button>
+
+                                <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Add Money To wallet</b></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body d-flex justify-content-start ">
+
+                                                <div> <h4><b>Balance</b></h4>
+                                                    <div><h2><BsCurrencyRupee size={45} /><b  >{wallet}</b></h2></div>
+                                                    {/* <div><TextField
+                                                        id="outlined-Name-input"
+                                                        value=""
+                                                        error={erroruserName !== null}
+                                                        helperText={erroruserName}
+                                                        onChange={(e) => handleInputOnlyNumbersPay(e)}
+                                                        required size="small" />
+                                                        </div> */}
+                                                    <div><input type='number' value={addwallet} onChange={(e) => setAddWallet(e.target.value)} /></div>
+
+                                                </div>
+
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                {/* <button type="button" class="btn btn-primary">Send message</button> */}
+                                                <PaymentScreen price2={addwallet} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                {/* <PaymentScreen price2={90} /> */}
+
+
                                 
-
-
                             </div>
                         </div>
+                    </div>
+                    <div className='card mt-2 p-3'>
+                         {/* transactionsAPI  */}
+                         <Link to="/Transactions"><b> Click Here to view Transactions  </b></Link>
                     </div>
 
                 </div>
@@ -379,8 +479,8 @@ const ProfileUpdate = () => {
                                         // label="Name as per Aadhaar card"
                                         // placeholder="Name as per Aadhaar card"
                                         value={UpdatedName}
-                                        // error={erroruserName !== null}
-                                        // helperText={erroruserName}
+                                        error={erroruserName !== null}
+                                        helperText={erroruserName}
                                         onChange={(e) => handleInputOnlyAlphabets(e)}
                                         required size="small" />}
                                 </div>
@@ -400,8 +500,8 @@ const ProfileUpdate = () => {
                                         label="Email" placeholder="Email"
                                         value={UpdatedEmail}
                                         onChange={(e) => setUpdatedEmail(e.target.value)}
-                                        // error={erroremail !== null}
-                                        // helperText={erroremail}
+                                        error={erroremail !== null}
+                                        helperText={erroremail}
                                         required size="small" />}
                                 </div>
                             </div>
@@ -431,7 +531,7 @@ const ProfileUpdate = () => {
                                         <MenuItem value="Female">
                                             Female
                                         </MenuItem>
-                             
+
 
                                     </TextField>}
                                 </div>
@@ -449,8 +549,8 @@ const ProfileUpdate = () => {
                                         placeholder="Mobile number"
                                         value={UpdatedPhone_Number}
                                         onChange={(e) => handleInputOnlyNumbers(e)}
-                                        // error={errorPhoneNumber !== null}
-                                        // helperText={errorPhoneNumber}
+                                        error={errorPhoneNumber !== null}
+                                        helperText={errorPhoneNumber}
                                         required size="small" />}
                                 </div>
                             </div>
@@ -479,8 +579,8 @@ const ProfileUpdate = () => {
                                         // placeholder="Address"
                                         value={UpdatedAddress}
                                         onChange={(e) => setUpdatedAddress(e.target.value)}
-                                        // error={errorPhoneNumber !== null}
-                                        // helperText={errorPhoneNumber}
+                                        error={errorUpdatedAddress !== null}
+                                        helperText={errorUpdatedAddress}
                                         required size="small" />}
 
 

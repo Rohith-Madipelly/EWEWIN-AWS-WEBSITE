@@ -12,7 +12,11 @@ import MenuItem from "@mui/material/MenuItem";
 import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { SiTestrail } from "react-icons/si";
+import { AiFillHome } from "react-icons/ai";
+
+
 import { MdPrivacyTip } from "react-icons/md";
+import {HiClipboardDocument} from "react-icons/hi2"
 // Funtionality 
 import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from "react-redux";
@@ -127,6 +131,16 @@ function Header() {
 {/* Contests */}
 
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+
+              {loginSelector ?
+                  <Button as={NavLink} to="/Contests"
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}>
+                    <b><SiTestrail size={25} /> Book Contest</b>
+                  </Button> : ""}
+
+
+                  
                 {loginSelector ?
                   <Button as={NavLink} to="/Profile"
                     onClick={handleCloseNavMenu}
@@ -134,12 +148,7 @@ function Header() {
                     <CgProfile size={25} /> Profile
                   </Button> : ""}
 
-                  {loginSelector ?
-                  <Button as={NavLink} to="/Contests"
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}>
-                    <b><SiTestrail size={25} /> Book Contest</b>
-                  </Button> : ""}
+                  
 
                   
 
@@ -154,7 +163,7 @@ function Header() {
 
 
 
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none"} }}>
                 <IconButton
                   onClick={handleOpenNavMenu}
                 >
@@ -164,7 +173,7 @@ function Header() {
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorElNav}
-
+                  // style={{ backgroundColor:"red"}}
                   keepMounted
                   transformOrigin={{
                     vertical: "top",
@@ -173,32 +182,42 @@ function Header() {
                   open={Boolean(anchorElNav)}
                   onClose={handleCloseNavMenu}
                   sx={{
-                    display: { xs: "block", md: "none" }
+                    color: 'black',
+                    display: { xs: "block", md: "none" },
+                    
                   }}
-                ><NavLink to="/">
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      Home
+                ><div style={{color:"red",fontWeight:"700",backgroundColor:"black",margin:"-15px 0px",padding:"12px 0px"}}>
+                  <NavLink to="/" >
+                    <MenuItem onClick={handleCloseNavMenu} style={{color:"white",fontWeight:"700",backgroundColor:"black"}} className='MenuItemHover'>
+                     <AiFillHome size={23} className='me-2'/> Home
                     </MenuItem></NavLink>
                   <NavLink to="/TermandConditions">
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">Term & Conditions</Typography>
+                    <MenuItem onClick={handleCloseNavMenu} style={{color:"white",fontWeight:"700",backgroundColor:"black"}}>
+                      <Typography textAlign="center" style={{color:"white",fontWeight:"700",backgroundColor:"black"}}><HiClipboardDocument size={25}  className='me-1'/>Term & Conditions</Typography>
                     </MenuItem></NavLink>
-                  <NavLink to="/PrivacyPolicy"><MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center"><MdPrivacyTip size={25} /> Privacy Policy</Typography>
+                  <NavLink to="/PrivacyPolicy"><MenuItem onClick={handleCloseNavMenu} style={{color:"white",fontWeight:"700",backgroundColor:"black"}}>
+                    <Typography textAlign="center" style={{color:"white",fontWeight:"700",backgroundColor:"black"}}><MdPrivacyTip size={25}  className='me-1'/> Privacy Policy</Typography>
                   </MenuItem></NavLink>
 
                   {loginSelector ?
                     <NavLink to="/Profile">
-                      <MenuItem onClick={handleCloseNavMenu} >
-                        <CgProfile size={25} /> Profile
+                      <MenuItem onClick={handleCloseNavMenu} style={{color:"white",fontWeight:"700",backgroundColor:"black"}}>
+                        <b></b><CgProfile size={25}  className='me-2'/> Profile
                       </MenuItem></NavLink> : ""}
+
+                      {loginSelector ?
+                    <NavLink to="/Contests">
+                      <MenuItem onClick={handleCloseNavMenu} style={{color:"white",fontWeight:"700",backgroundColor:"black"}}>
+                        <b><SiTestrail size={25} className='me-1'/> Book Contest</b>
+                      </MenuItem></NavLink> : ""}
+
 
                   <MenuItem onClick={handleCloseNavMenu} >
                     {loginSelector ?
-                      <NavLink onClick={handleLogout} to="/"><RiLogoutBoxLine size={25} /> Log Out </NavLink> :
-                      <span><NavLink to="/Login" >Login</NavLink> / <NavLink to="/Register">Register</NavLink></span>}
+                      <NavLink onClick={handleLogout} to="/" style={{color:"white",fontWeight:"700",backgroundColor:"black"}}><RiLogoutBoxLine size={25} className='me-1'/> Log Out </NavLink> :
+                      <span ><NavLink to="/Login" style={{color:"white",fontWeight:"700",backgroundColor:"black"}} >Login</NavLink> / <NavLink to="/Register" style={{color:"white",fontWeight:"700",backgroundColor:"black"}}>Register</NavLink></span>}
                   </MenuItem>
-
+                  </div>
                 </Menu>
               </Box>
 

@@ -21,9 +21,11 @@ import { UserRegisterApi } from '../../Services2/ApiCalls'
 
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import Loader from '../../shared/Loader/Loader';
 
 
 function Register() {
+    const [isLoading,setIsLoading]=useState(false)
     //form fields
     const [userName, setUserName] = useState("")
     const [erroruserName, setErrorUserName] = useState(null)
@@ -191,10 +193,15 @@ function Register() {
 
         try {
             const response = await UserRegisterApi(userName, email, PhoneNumber, password, gender);
+        setIsLoading(true)
+
             if (response) {
                 if (response?.status === 200) {
+                    
                     console.error("response Data", response)
                     // toast.success("User registered successfully. Please login.", { position: toast.POSITION.TOP_CENTER })
+        setIsLoading(false)
+
                     setTimeout(() => {
                         navigate('/Login');
                     }, 2000);
@@ -205,6 +212,7 @@ function Register() {
             }
         } catch (error) {
             setErrorMessage('Error during Register:', error)
+            setIsLoading(false)
                 console.error(error.data)
                 if (error.response) {
 
@@ -268,6 +276,8 @@ function Register() {
 
     return (
         <div className='Register py-3'>
+      {isLoading && <Loader />}
+
             <section className="">
 
 
