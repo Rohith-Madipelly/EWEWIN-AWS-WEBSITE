@@ -17,9 +17,7 @@ function Home() {
 
 
   return (
-    <div>
-        
-     
+    <div>  
       
       <Layout1 />
    

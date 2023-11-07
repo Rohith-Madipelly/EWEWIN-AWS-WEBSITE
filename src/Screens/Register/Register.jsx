@@ -220,7 +220,7 @@ function Register() {
                 if (error.response) {
 
                     if (error.response.status === 409) {
-                        toast.error('User is already registered. Please Login ...', { position: toast.POSITION.TOP_CENTER })
+                        toast.error('This email or Phone is already registered. Please Login ...', { position: toast.POSITION.TOP_CENTER })
 
                         // setErrorMessage('User is already registered. Please Login ...');
                     } else if (error.response.status === 401) {

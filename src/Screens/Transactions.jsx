@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { transactionsAPI } from '../Services2/ApiCalls'
 import { BsCurrencyRupee } from "react-icons/bs";
+import Loader from '../shared/Loader/Loader';
 
 
 function Transactions() {
     const [transactionData, setTransactionData] = useState([])
     // const [infobox, setInfobox] = useState(false)
   
+    const [isLoading, setIsLoading] = useState(false);
 
     const TransactionsMethod = async () => {
+
+
         const token = localStorage.getItem('token');
+  setIsLoading(true)
 
         try {
             const res = await transactionsAPI(token)
+      setIsLoading(false)
+
             if (res) {
                 // console.error(">>> in transaction api ",res.data.data)
                 setTransactionData(res.data.data)
@@ -24,6 +31,8 @@ function Transactions() {
             }
 
         } catch (error) {
+      setIsLoading(false)
+
             console.error("error in tddransaction api ", error)
         }
     }
@@ -36,6 +45,8 @@ function Transactions() {
 
     return (
         <section className='container'>
+      {isLoading && <Loader />}
+
             <div className='' style={{ marginTop: "100px" }}>
                 <h1 className='text-dark'><b>Transactions History</b></h1>
                 {transactionData.map((item, index) => (

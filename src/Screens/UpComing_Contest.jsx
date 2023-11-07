@@ -11,6 +11,7 @@ import Your_ContestsCard from '../shared/Cards/Your_ContestsCard';
 
 
 
+
 const UpComing_ContestPage = () => {
 
     const [id, setId] = useState("**********");
@@ -19,13 +20,17 @@ const UpComing_ContestPage = () => {
     const [empty, setEmpty] = useState(true);
     const [empty_upcoming_contest, setEmpty_upcoming_contest] = useState(true);
 
+
     const token = localStorage.getItem('token');
+
 
 
     //Method for Upcoming contest api 
     const upcoming_contest = async () => {
         try {
+
             const res = await upcoming_contestAPI(token)
+
             const userData = res.data.data;
             if (userData.length === 0) {
                 setEmpty_upcoming_contest(false)
@@ -38,6 +43,8 @@ const UpComing_ContestPage = () => {
             }
 
         } catch (error) {
+
+
             console.error("upcoming_contest >", error)
             // setEmpty_upcoming_contest(true)
         }
@@ -49,16 +56,20 @@ const UpComing_ContestPage = () => {
             // setIsLoading(true);   loading 
 
             const res2 = await Mycoming_contestAPI(token)
+     
+
             const userData1 = res2.data.data;
             if (userData1.length === 0) {
                 console.error("no data found")
-                setEmpty(false)
+               
             }
             else {
                 console.error("data vachinda ??", userData1)
                 setMycontestData(userData1)
             }
         } catch (error) {
+ 
+
             console.error("Error in Mycoming_contestAPI", error)
         }
     }
@@ -70,12 +81,15 @@ const UpComing_ContestPage = () => {
 
     return (
         <section className='container py-2 marginTopper-80'>
+             
             <div className='row'>
+ 
+
 
                 {/* Up Coming Contests data */}
                 <div className="col col-md-8 col-sm-12">
                     <div className='card  p-3 pb-4 '>
-                        <h5 className='ps-4 pt-4'><b>Up Coming Contests</b></h5>
+                        <h5 className='ps-4 pt-4'><b>UpComing Contests</b></h5>
 
                         {empty_upcoming_contest ?
                             <div>

@@ -32,6 +32,7 @@ import Transactions from './Screens/Transactions';
 // UpComing_Contest
 
 function App() {
+
   const loginSelector = useSelector((state) => state.isLogin);
 
   console.error("dscfds>>>>",loginSelector)
@@ -58,7 +59,8 @@ function App() {
         <Route path='/Profile' element={!loginSelector?<Login/>:<ProfileUpdate />} />
 
         <Route path='/Contests' element={!loginSelector?<Login/>:<UpComing_Contest/>} />
-        <Route path='/Join/:id?' element={!loginSelector?<Login/>:<ContestPage/>}/>
+
+        {/* <Route path='/Join/:id?' element={!loginSelector?<Login/>:<ContestPage/>}/> */}
 
         <Route path='/PaymentScreen' element={!loginSelector?<Login/>:<PaymentScreen/>}/>
         <Route path='/PaymentDone' element={!loginSelector?<Login/>:<PaymentDone/>}/>

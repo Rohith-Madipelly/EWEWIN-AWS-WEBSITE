@@ -11,15 +11,19 @@ import TextField from '@mui/material/TextField';
 import { BsCurrencyRupee } from "react-icons/bs";
 
 
+
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 
 import { setToken } from '../redux/actions/loginAction';
 import { useDispatch } from "react-redux";
 import { Button } from 'bootstrap';
 import PaymentScreen from './PaymentScreen/NewPaymentMethod';
+import Loader from '../shared/Loader/Loader';
 
 
 const ProfileUpdate = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
     //Profile api
     const [id, setId] = useState("**********");
     const [Name, setName] = useState("**********");
@@ -31,9 +35,9 @@ const ProfileUpdate = () => {
     const [Address, setAddress] = useState("");
     const [Profile, setProfile] = useState(null);
 
+    const [btnDisabledPay,setBtnDisabledPay]=useState(false)
 
-
-    const [addwallet, setAddWallet] = useState(45);
+    const [addwallet, setAddWallet] = useState();
     const [transactionData,setTransactionData]=useState([])
 
     const navigate = useNavigate();
@@ -131,9 +135,11 @@ const ProfileUpdate = () => {
 
 
 
+        setIsLoading(true)
 
         try {
             const res = await UpdateProfileAPI(UpdatedName, UpdatedEmail, UpdatedPhone_Number, UpdatedGender, UpdatedAddress, UpdatedProfilePic, token)
+            setIsLoading(false)
 
             // toast.success(res.data.message, { position: toast.POSITION.TOP_CENTER })
             setTimeout(() => {
@@ -146,6 +152,8 @@ const ProfileUpdate = () => {
             }, 100);
 
         } catch (error) {
+            setIsLoading(false)
+
             toast.error(res.data.message, { position: toast.POSITION.TOP_CENTER })
 
         }
@@ -229,9 +237,12 @@ const ProfileUpdate = () => {
         else {
             setErrorpassword(null);
         }
+        setIsLoading(true)
 
         try {
             const response = await UpdatePasswordAPI(password, confirmpassword, token);
+        setIsLoading(false)
+
             if (response) {
                 if (response?.status === 200) {
                     toast.success("Password Updated Successfully. Please Login Again ", { position: toast.POSITION.TOP_CENTER })
@@ -246,6 +257,7 @@ const ProfileUpdate = () => {
                 toast.success("No Data Found in api", { position: toast.POSITION.TOP_CENTER })
             }
         } catch (error) {
+            setIsLoading(false)
 
             console.error(error.data)
             if (error.response) {
@@ -322,6 +334,8 @@ const ProfileUpdate = () => {
     //Profile API
     useEffect(() => {
         const userData = async () => {
+        setIsLoading(true)
+
             try {
                 // setIsLoading(true);   loading 
                 // console.error("Sfdddf>>>>>>>")
@@ -330,6 +344,8 @@ const ProfileUpdate = () => {
                 console.error(userData)
 
                 if (res) {
+        setIsLoading(false)
+
                     setId(userData._id)
                     setName(userData.Name)
                     setEmail(userData.Email)
@@ -355,6 +371,8 @@ const ProfileUpdate = () => {
 
 
             } catch (error) {
+        setIsLoading(false)
+
                 console.error("Error in api ", error)
             }
         }
@@ -364,6 +382,7 @@ const ProfileUpdate = () => {
 
     return (
         <section className='container py-2 marginTopper-80'>
+      {isLoading && <Loader />}
 
             <h1 className='profileHeading'>Profile Page</h1>
 
@@ -410,16 +429,16 @@ const ProfileUpdate = () => {
                                 {/* <p className='mb-1'>{id}</p> */}
                                 <h5 className='mb-4 '><b>Wallet Amount : <BsCurrencyRupee size={22} />{wallet}</b></h5>
 
-                                <button type="button" class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Money to wallet</button>
+                                <button type="button" class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Money</button>
 
                                 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog ">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel"><b>Add Money To wallet</b></h5>
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Ezewin Wallet Balance</b></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body d-flex justify-content-start ">
+                                            <div class="modal-body d-flex justify-content-center me-3">
 
                                                 <div> <h4><b>Balance</b></h4>
                                                     <div><h2><BsCurrencyRupee size={45} /><b  >{wallet}</b></h2></div>
@@ -431,16 +450,19 @@ const ProfileUpdate = () => {
                                                         onChange={(e) => handleInputOnlyNumbersPay(e)}
                                                         required size="small" />
                                                         </div> */}
-                                                    <div><input type='number' value={addwallet} onChange={(e) => setAddWallet(e.target.value)} /></div>
+                                                        {/* <span>₹ Enter recharge amount</span> */}
+                                                    <div><input type='number' placeholder='₹ Enter recharge amount' value={addwallet} onChange={(e) => setAddWallet(e.target.value)} /></div>
 
                                                 </div>
 
 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
                                                 {/* <button type="button" class="btn btn-primary">Send message</button> */}
-                                                <PaymentScreen price2={addwallet} />
+                                                
+                                                <PaymentScreen price2={addwallet} btnDisabledP={btnDisabledPay}/>
+                                                
                                             </div>
                                         </div>
                                     </div>

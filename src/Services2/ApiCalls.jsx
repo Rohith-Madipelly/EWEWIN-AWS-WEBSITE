@@ -28,7 +28,7 @@ export const HomeTimerApi = async () => {
 
 export const upcoming_contestAPI = async (token) => {
   const formData = new FormData();
-  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/upcoming-contest",formData ,{
+  return await axios.post(`${BASE_URL1}/upcoming-contest`,formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -36,7 +36,7 @@ export const upcoming_contestAPI = async (token) => {
 
 export const Mycoming_contestAPI = async (token) => {
   const formData = new FormData();
-  return await axios.post("https://admin.ezewin.analogueitsolutions.com/api/my-contests",formData ,{
+  return await axios.post(`${BASE_URL1}/my-contests`,formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };

@@ -124,7 +124,7 @@ function ForgetPassword() {
                   </div>
 
                   <div>
-                    <p className="mb-0 "> <Link to="/Register" className='text-primary'>Back to Login</Link>
+                    <p className="mb-0 "> <Link to="/Login" className='text-primary'>Back to Login</Link>
                     {/* <p className="mb-0 ">Don't have an account? <Link to="/Register" className='text-dark'>Register</Link> */}
                     </p>
                   </div>

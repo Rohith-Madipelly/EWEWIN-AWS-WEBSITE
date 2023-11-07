@@ -1,42 +1,21 @@
-import React, { useState } from 'react'
+
 
 import { RAZORPAY_KEY, RAZORPAY_URL } from "../../Enviornment";
 import { useNavigate } from "react-router-dom";
 import { verifySignatureApi, createOrder } from '../../Services2/ApiCalls'
-// import {sdf} from '../../../public/Logo4.png'
-const PaymentScreen = ({ price2,btnDisabledP }) => {
-console.error(">>>>>>>>>>>>>>>>>>>dddddddddddd>>>>>>>>>>",btnDisabledP)
-  const navigate = useNavigate();
-  const [formError, setFormError] = useState("");
-
-
-  //Script to Load Payment 
-  const loadScript = (src) => {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
-      document.body.appendChild(script);
-    });
-  };
 
 
 
 //Method to call Razorpay method
-  const payMoney = async ( price23 ) => {
+export const payMoney12 = async ( price23 ) => {
     try {
       const res = await loadScript(RAZORPAY_URL);
       if (!res) {
         alert("Razorpay SDK failed to load. Are you online?");
         return;
       }
-
-      const Price = parseInt(price2)
+  
+      const Price = parseInt(price23)
       const token = localStorage.getItem('token');
       //api call or CreateOrder
       const order = await createOrder(Price, token);
@@ -50,7 +29,7 @@ console.error(">>>>>>>>>>>>>>>>>>>dddddddddddd>>>>>>>>>>",btnDisabledP)
           image: '../../../public/Logo4.png',
           order_id: order.data.data.id,
           handler: function (response) {
-            verifySignature(response);
+            verifySignature12(response);
           },
           prefill: {
             name: "dd",//profileData.name,
@@ -64,9 +43,9 @@ console.error(">>>>>>>>>>>>>>>>>>>dddddddddddd>>>>>>>>>>",btnDisabledP)
             color: "#3399cc",
           },
         };
-
+  
         const rzp1 = new window.Razorpay(options);
-
+  
         rzp1.on("payment.failed", function (response) {
           // alert(response.error.code);
           // alert(response.error.description);
@@ -80,11 +59,11 @@ console.error(">>>>>>>>>>>>>>>>>>>dddddddddddd>>>>>>>>>>",btnDisabledP)
           // alert(response.error.metadata.order_id);
           // alert(response.error.metadata.payment_id);
         });
-
+  
         rzp1.open();
       }
     } catch (error) {
-
+  
       if (error?.response?.status === 401) {
         // await dispatch(setToken(""));
         // history.push({
@@ -97,50 +76,35 @@ console.error(">>>>>>>>>>>>>>>>>>>dddddddddddd>>>>>>>>>>",btnDisabledP)
       }
     }
   };
-
-
-
-  const verifySignature = async (paymentData) => {
+  
+  
+  
+  export  const verifySignature12 = async (paymentData) => {
     const token = localStorage.getItem('token');
     try {
    
-
-      const res = await verifySignatureApi(paymentData, token);
-
+  
+   const res = await verifySignatureApi(paymentData, token);
+  
       if (res?.data.message) {
-
+  
         window.location.reload();
-
+  
         setTimeout(() => {
-          navigate('/Profile');
+        //   navigate('/Profile');
           // alert("Successfull")
           
-//  window.location.reload();
+  //  window.location.reload();
         }, 2000);
       }
     } catch (error) {
-console.error(error)
+  console.error(error)
       setFormError("Something went wrong.");
       setTimeout(() => {
-        navigate('/PaymentFailed');
-
-
+        // navigate('/PaymentFailed');
+  
+  
       }, 2000);
     }
   };
-
-  return (
-    <div>
-       {/* {toast.error(formError, { position: toast.POSITION.TOP_CENTER })} */}
-
-      <button className='btn btn-outline-danger' data-bs-dismiss="modal"   onClick={() => payMoney({price2})}><b>Add Now {price2}</b></button>
-    </div>
-  )
-}
-
-export default PaymentScreen
-
-
-
-
-
+  

@@ -10,7 +10,7 @@ const UpComing_ContestsCard= (item) => {
 
   if(item.iteam.is_joined)
   {
-    console.error("sdds>>>>>>>>")
+    // console.error("sdds>>>>>>>>")
   }
     item = item.iteam
     const price23 = item.entry_fee;
@@ -24,13 +24,13 @@ const UpComing_ContestsCard= (item) => {
         console.error("Booking for ",item._id)
       try{
         const res=await Join_ContestAPI(item._id,token)
-        console.error("res >",res)
+        // console.error("res >",res.data.message)
         if(res)
         {
-        console.error("Hello Booked",res)
-        toast.success("sad", { position: toast.POSITION.TOP_CENTER, autoClose: 800, })
+       
+        toast.success(res.data.message, { position: toast.POSITION.TOP_CENTER, autoClose: 800, })
 
-//  window.location.reload();
+ window.location.reload();
 
         }
         else{

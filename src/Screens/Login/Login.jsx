@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Avatar from '@mui/material/Avatar';
 import './Login.css'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -56,7 +57,7 @@ function Login() {
     }
     else {
       setEmailError(null)
-      
+
     }
 
 
@@ -113,8 +114,8 @@ function Login() {
     }
   };
 
- 
-  
+
+
   return (
     <div className='Login screenPage'>
       {isLoading && <Loader />}
@@ -123,82 +124,83 @@ function Login() {
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
               <div className=' pt-5'>
-              <div className="card bg-coustm text-dark" style={{ borderRadius: "0rem"}}>
-                <div className="card-body pt-5 text-center">
-                  <div className="t-4 pb-2">
-                    <h2 className="fw-bold mb-2 text-uppercase text-dark">EZEWIN</h2>
-                    <p className="text-dark-50 mb-3">Login to your account</p>
-                    <div className="form-outline form-white mb-4">
-                      <div className="mb-2">
-                        <Box
-                          component="form"
-                          sx={{
-                            "& .MuiTextField-root": { m: 1, width: "90%" },
-                          }}
-                          noValidate
-                          autoComplete="off"
-                        >
+                <div className="card bg-coustm text-dark" style={{ borderRadius: "0rem" }}>
+                  <div className="card-body pt-5 text-center">
+                    <div className="t-4 pb-2">
+                      <h2 className="fw-bold mb-2 text-uppercase text-dark">EZEWIN</h2>
+                      
+                      <p className="text-dark-50 mb-3">Login to your account</p>
+                      <div className="form-outline form-white mb-4">
+                        <div className="mb-2">
+                          <Box
+                            component="form"
+                            sx={{
+                              "& .MuiTextField-root": { m: 1, width: "90%" },
+                            }}
+                            noValidate
+                            autoComplete="off"
+                          >
 
-                          <div >
-                            <TextField
-                              id="outlined-email-input"
-                              className='my-2 formobject text-white'
-                              label="User Email" placeholder="User Email"
-                              value={email} onChange={(e) => setEmail(e.target.value)}
-                              error={emailError !== null}
-                              helperText={emailError}
-                              required />
-                            <br />
+                            <div >
+                              <TextField
+                                id="outlined-email-input"
+                                className='my-2 formobject text-white'
+                                label="User Email" placeholder="User Email"
+                                value={email} onChange={(e) => setEmail(e.target.value)}
+                                error={emailError !== null}
+                                helperText={emailError}
+                                required />
+                              <br />
 
-                            {/* {emailError && <span className='text-danger'>{emailError}</span>} */}
-
-
-                            <TextField
-                              id="outlined-password-input"
-                              className='my-2 formobject'
-                              type="password"
-                              label="User Password"
-                              placeholder="User Password"
-                              value={password}
-                              onChange={(e) => setPassword(e.target.value)}
-                              error={passwordError !== null}
-
-                              helperText={passwordError}
-                              required />
-                            <br />
+                              {/* {emailError && <span className='text-danger'>{emailError}</span>} */}
 
 
-                            {/* {passwordError && <span className='text-danger'>{passwordError}</span>} */}
-                          </div>
+                              <TextField
+                                id="outlined-password-input"
+                                className='my-2 formobject'
+                                type="password"
+                                label="User Password"
+                                placeholder="User Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                error={passwordError !== null}
 
-                        </Box>
+                                helperText={passwordError}
+                                required />
+                              <br />
+
+
+                              {/* {passwordError && <span className='text-danger'>{passwordError}</span>} */}
+                            </div>
+
+                          </Box>
+                        </div>
+
+
+
                       </div>
 
 
 
+                      {/* disabled={loginBtn} */}
+
+                      <button className="btn btn-primary w-75 mb-2 " disabled={loginBtn} onClick={handleLogin} type="submit"><b>LOGIN</b></button>
+                      <p className="small mb-3 pb-lg-2">
+
+
+                        <Link to="/Forget_Password" className='text-primary'>Forgot password?</Link>
+                      </p>
+                      <ToastContainer></ToastContainer>
+
+
+
+
+                      <p className="mb-0 ">Don't have an account? <Link to="/Register" className='text-danger'>Register</Link>
+                      </p>
+
                     </div>
-
-
-
-                    {/* disabled={loginBtn} */}
-
-                    <button className="btn btn-primary w-75 mb-2 " disabled={loginBtn} onClick={handleLogin} type="submit"><b>LOGIN</b></button>
-                    <p className="small mb-3 pb-lg-2">
-
-
-                      <Link to="/Forget_Password" className='text-primary'>Forgot password?</Link>
-                    </p>
-                    <ToastContainer></ToastContainer>
-
-
-
-
-                    <p className="mb-0 ">Don't have an account? <Link to="/Register" className='text-danger'>Register</Link>
-                    </p>
-
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
