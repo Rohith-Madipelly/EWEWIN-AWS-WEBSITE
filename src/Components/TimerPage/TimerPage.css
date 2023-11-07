@@ -62,6 +62,7 @@
       /* grid-column-gap: 20px; */
       grid-row-gap: 50px; 
       }
+
     
     .TimerGrid-2{
       display: flex;
@@ -70,10 +71,9 @@
     
       .TimerImg{
         position: absolute;
-        right: 17vw;
+        left: 2vw;
         width: 60vw;
         bottom: 2px;
-       
       }
 
       .TimerPage{

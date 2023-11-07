@@ -24,8 +24,10 @@ import 'react-toastify/dist/ReactToastify.css'
 import Loader from '../../shared/Loader/Loader';
 
 
+
 function Register() {
-    const [isLoading,setIsLoading]=useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+
     //form fields
     const [userName, setUserName] = useState("")
     const [erroruserName, setErrorUserName] = useState(null)
@@ -190,17 +192,18 @@ function Register() {
 
         setBtnDisabled(true);
 
-
+        setIsLoading(true);
         try {
             const response = await UserRegisterApi(userName, email, PhoneNumber, password, gender);
-        setIsLoading(true)
+    
+        setIsLoading(false)
 
             if (response) {
                 if (response?.status === 200) {
                     
                     console.error("response Data", response)
                     // toast.success("User registered successfully. Please login.", { position: toast.POSITION.TOP_CENTER })
-        setIsLoading(false)
+        
 
                     setTimeout(() => {
                         navigate('/Login');

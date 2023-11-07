@@ -114,7 +114,9 @@ function LPattern2() {
       </div>
 
       <div className='TimerGrid-2 gridSetting'>
-        <img src="src/assets/img/Timer.png" alt="no logo" className='TimerImg' />
+        {/* <img src="src/assets/img/Timer.png" alt="no logo" className='TimerImg' /> */}
+        <img src="src/assets/img/TimerDanceing.gif" alt="no logo" className='TimerImg' style={{width:"380px"}}/>
+        
       </div>
 
 

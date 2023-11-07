@@ -49,6 +49,7 @@ function ForgetPassword() {
       setErroremail(null);
   }
 
+  setIsLoading(true)
 
     try {
       const res = await ForgetPasswordApi(email);

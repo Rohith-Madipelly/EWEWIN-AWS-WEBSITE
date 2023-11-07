@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 import { ResetPasswordAPI } from '../../Services2/ApiCalls'
 import { ReportGmailerrorred } from '@mui/icons-material';
 import OtpInput from 'react-otp-input';
+import Loader from '../../shared/Loader/Loader';
 
 
 function ResetPassword() {
@@ -28,6 +29,9 @@ function ResetPassword() {
   const [errorMessage, setErrorMessage] = useState();
   const [successMessage, setsuccessMessage] = useState();
 
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleForgetPassword = async (event) => {
@@ -35,9 +39,15 @@ function ResetPassword() {
     event.preventDefault();
     setErrorMessage(null);
 
+
+  setIsLoading(true)
+
     try {
       const res = await ResetPasswordAPI(email, otp, newpassword);
+      setIsLoading(false)
+
       if (res) {
+
         toast.success(res.data.msg, { position: toast.POSITION.TOP_CENTER })
         setTimeout(() => {
           navigate('/login');
@@ -47,6 +57,8 @@ function ResetPassword() {
         console.error("not res found")
       }
     } catch (error) {
+      setIsLoading(false)
+
       if (error.response) {
         if (error.response.status === 400) {
           toast.error(error.response.data.msg, { position: toast.POSITION.TOP_CENTER })
@@ -64,6 +76,8 @@ function ResetPassword() {
 
   return (
     <div className='Login py-5'>
+      {isLoading && <Loader />}
+
       <section className="vh-50 gradient-custom hover12">
         <div className="container ">
           <div className="row d-flex justify-content-center align-items-center">
