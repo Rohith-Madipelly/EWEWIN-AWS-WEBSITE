@@ -56,6 +56,7 @@ function Login() {
       return false;
     }
     else {
+      // setEmail(email.toLowerCase());
       setEmailError(null)
 
     }
@@ -100,6 +101,9 @@ function Login() {
           setPasswordError("You have Enter Invalid password")
           // toast.error('You have Entered Invalid password', { position: toast.POSITION.TOP_CENTER })
         } else if (error.response.status === 404) {
+          setEmailError('User Not Found Please Register Your Self')
+          setPasswordError("User Not Found Please Register Your Self")
+
           toast.error('User Not Found', { position: toast.POSITION.TOP_CENTER })
         } else if (error.response.status === 500) {
           toast.error('Internal server error', { position: toast.POSITION.TOP_CENTER })
@@ -128,7 +132,7 @@ function Login() {
                   <div className="card-body pt-5 text-center">
                     <div className="t-4 pb-2">
                       <h2 className="fw-bold mb-2 text-uppercase text-dark">EZEWIN</h2>
-                      
+
                       <p className="text-dark-50 mb-3">Login to your account</p>
                       <div className="form-outline form-white mb-4">
                         <div className="mb-2">
@@ -146,7 +150,7 @@ function Login() {
                                 id="outlined-email-input"
                                 className='my-2 formobject text-white'
                                 label="User Email" placeholder="User Email"
-                                value={email} onChange={(e) => setEmail(e.target.value)}
+                                value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())}
                                 error={emailError !== null}
                                 helperText={emailError}
                                 required />

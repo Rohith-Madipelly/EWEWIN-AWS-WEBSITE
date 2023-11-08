@@ -10,11 +10,11 @@ const UpComing_ContestsCard= (item) => {
 
   if(item.iteam.is_joined)
   {
-    // console.error("sdds>>>>>>>>")
+    console.error("sdds>>>>>>>>",item)
   }
     item = item.iteam
     const price23 = item.entry_fee;
-    const Booking_status=item.is_joined;
+  
   
     const token = localStorage.getItem('token');
 
@@ -62,21 +62,22 @@ const UpComing_ContestsCard= (item) => {
         
     }
     return (
-        <div className="card123 shadow mt-3">
-            <div className='border rounded border-5 '>
-                <div className='imgbox py-3 ps-4' >
-                    <span><b>Id: </b>{item._id}</span><br />
-                    <span><b>Contests Name: </b>{item.name}</span><br />
-                    <span><b>Price: </b>{item.entry_fee}</span> <br />
-                    <span><b>Status: </b>{item.status}</span> <br />
-                    <span><b>Starts at:</b> {item.starts_at}</span> <br />
+      
+        <div>{item.is_joined ?"":<div className="card123 shadow mt-3">
+        <div className='border rounded border-5 '>
+            <div className='imgbox py-3 ps-4' >
+                <span><b>Id: </b>{item._id}</span><br />
+                <span><b>Contests Name: </b>{item.name}</span><br />
+                <span><b>Price: </b>{item.entry_fee}</span> <br />
+                <span><b>Status: </b>{item.status}</span> <br />
+                <span><b>Starts at:</b> {item.starts_at}</span> <br />
 
-                    {Booking_status?<div className='btn btn-primary'>You Have Booked</div>:<button className='btn btn-success' onClick={BookNow}>Book Now</button> }
-                </div>
-
-         
+                <button className='btn btn-success' onClick={BookNow}>Book Now</button> 
             </div>
+
+     
         </div>
+    </div>}</div>
 
     )
 }

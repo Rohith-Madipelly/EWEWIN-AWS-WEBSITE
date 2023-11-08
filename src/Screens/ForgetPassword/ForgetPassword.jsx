@@ -102,7 +102,7 @@ function ForgetPassword() {
                                                         className='my-2 formobject text-white'
                                                         label="User Email" placeholder="User Email"
                                                         value={email}
-                                                        onChange={(e) => setEmail(e.target.value)}
+                                                        onChange={(e) => setEmail(e.target.value.toLowerCase())}
                                                         error={erroremail !== null}
                                                         helperText={erroremail}
                                                         required />  <br />

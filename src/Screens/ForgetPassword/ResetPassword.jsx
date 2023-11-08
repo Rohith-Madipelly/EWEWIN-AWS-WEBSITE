@@ -98,7 +98,7 @@ function ResetPassword() {
                           autoComplete="off"
                         >
                           <div>
-                            <TextField id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value)} required />  <br />
+                            <TextField id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} required />  <br />
                             <TextField id="outlined-otp" className='my-2 formobject text-white' label="otp" placeholder="otp" value={otp} onChange={(e) => setOtp(e.target.value)} required />  <br />
                             <TextField 
                             id="outlined-password-input" 

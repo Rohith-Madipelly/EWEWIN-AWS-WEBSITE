@@ -37,7 +37,40 @@ const ProfileUpdate = () => {
 
     const [btnDisabledPay,setBtnDisabledPay]=useState(false)
 
+
     const [addwallet, setAddWallet] = useState();
+    const [erroraddwallet, setErrorAddWallet] = useState(null);
+
+   
+    function walletPoints(e) {
+        const input = e.target.value;
+        const regex = /^[0-9]*$/;
+
+        if (!regex.test(input)) {
+            setErrorAddWallet("Only numbers are allowed");
+
+            return;
+        }
+        if (input.length < 1) {
+            setErrorAddWallet("You must enter at least 1 digit");
+
+          }
+        if (input.length > 10) {
+            setErrorAddWallet("You can enter only 10 digits");
+            
+            return;
+
+        }
+        else{
+            setErrorAddWallet("");
+
+        }
+        
+
+        setAddWallet(e.target.value);
+    }
+
+
     const [transactionData,setTransactionData]=useState([])
 
     const navigate = useNavigate();
@@ -195,8 +228,10 @@ const ProfileUpdate = () => {
             //   toast.error('Only numbers are allowed', { position: toast.POSITION.TOP_CENTER });
             return;
         }
+        if (input.length <= 10) {
+            setUpdatedPhone_Number(input);
+        }
 
-        setUpdatedPhone_Number(e.target.value);
     }
 
 
@@ -391,31 +426,37 @@ const ProfileUpdate = () => {
                 <div className='col-sm-12 col-md-3'>
                     <div className='card pt-4 pb-2'>
                         <div className='profileCard text-center'>
-                            {/* {Gender === "Female" ? <img
-                                src="src/assets/img/ProfileFemale.png"
+                            {Gender === "Female" ? <img
+                                src={Profile}
                                 alt='profilePic'
                                 className='rounded-circle img-fluid'
-                                style={{ maxWidth: '100px',width:'100px',height:'150px' }}
+                                style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
+                                onError={(e) => {
+                                    e.target.src = 'src/assets/img/ProfileFemale.png';
+                                }}
                             /> : Gender === 'Male' ? <img
                                 src={Profile}   //MzFfMTY5ODQyODY2NzgxOF8zNjQ=.jpeg
                                 alt='profilePic'
                                 className='rounded-pill img-fluid'
-                                style={{ maxWidth: '150px',maxheight:'150px' }}
+                                style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
+                                onError={(e) => {
+                                    e.target.src = 'src/assets/img/ProfileMale.jpg';
+                                }}
                             /> : <div><img
                                 src={Name}
                                 alt='profilePic'
                                 className='rounded-circle img-fluid'
-                                style={{ maxWidth: '100px',width:'90px' }}
-                            /></div>}  profilePic */}
+                                style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
+                            /></div>} 
 
-                            <div className='' >
+                            {/* <div className='' >
                                 <img
                                     src={Profile}
                                     alt='profilePic'
                                     className='img-fluid profilePic'
                                     style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
                                 />
-                            </div>
+                            </div> */}
                             <div></div>
 
                             {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <div className="d-flex flex-column mx-2"><input type="file" accept="image/*" className='mx-5 btn btn-primary' onChange={handleFileChange} />
@@ -452,7 +493,16 @@ const ProfileUpdate = () => {
                                                         </div> */}
                                                         {/* <span>₹ Enter recharge amount</span> */}
                                                     <div><input type='number' placeholder='₹ Enter recharge amount' value={addwallet} onChange={(e) => setAddWallet(e.target.value)} /></div>
-
+                                                    {/* <TextField
+                                                        id="outlined-phone-input"
+                                                        className='my-1 formobject text-white'
+                                                        label="Mobile number"
+                                                        placeholder="Mobile number"
+                                                        value={addwallet}
+                                                        onChange={(e) => walletPoints(e)}
+                                                        error={erroraddwallet !== null}
+                                                        helperText={erroraddwallet}
+                                                        required size="small" /> */}
                                                 </div>
 
 
@@ -460,7 +510,7 @@ const ProfileUpdate = () => {
                                             <div class="modal-footer">
                                                 {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
                                                 {/* <button type="button" class="btn btn-primary">Send message</button> */}
-                                                
+
                                                 <PaymentScreen price2={addwallet} btnDisabledP={btnDisabledPay}/>
                                                 
                                             </div>
@@ -521,7 +571,7 @@ const ProfileUpdate = () => {
                                         className='my-1 formobject text-white'
                                         label="Email" placeholder="Email"
                                         value={UpdatedEmail}
-                                        onChange={(e) => setUpdatedEmail(e.target.value)}
+                                        onChange={(e) => setUpdatedEmail(e.target.value.toLowerCase())}
                                         error={erroremail !== null}
                                         helperText={erroremail}
                                         required size="small" />}
