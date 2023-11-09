@@ -21,34 +21,9 @@ import PaymentScreen from './PaymentScreen/NewPaymentMethod';
 import Loader from '../shared/Loader/Loader';
 
 
-import FormControl from '@mui/material/FormControl';
-
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
-
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
-
 const ProfileUpdate = () => {
-    const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setConfirmPassword] = useState(false);
-
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-
-
-    const handleClickShowConfirmPassword = () => setConfirmPassword((show) => !show);
-    const handleMouseDownConfirmPassword = (event) => {
-        event.preventDefault();
-    }
     //Profile api
     const [id, setId] = useState("**********");
     const [Name, setName] = useState("**********");
@@ -60,13 +35,13 @@ const ProfileUpdate = () => {
     const [Address, setAddress] = useState("");
     const [Profile, setProfile] = useState(null);
 
-    const [btnDisabledPay, setBtnDisabledPay] = useState(false)
+    const [btnDisabledPay,setBtnDisabledPay]=useState(false)
 
 
     const [addwallet, setAddWallet] = useState();
     const [erroraddwallet, setErrorAddWallet] = useState(null);
 
-
+   
     function walletPoints(e) {
         const input = e.target.value;
         const regex = /^[0-9]*$/;
@@ -79,24 +54,24 @@ const ProfileUpdate = () => {
         if (input.length < 1) {
             setErrorAddWallet("You must enter at least 1 digit");
 
-        }
+          }
         if (input.length > 10) {
             setErrorAddWallet("You can enter only 10 digits");
-
+            
             return;
 
         }
-        else {
+        else{
             setErrorAddWallet("");
 
         }
-
+        
 
         setAddWallet(e.target.value);
     }
 
 
-    const [transactionData, setTransactionData] = useState([])
+    const [transactionData,setTransactionData]=useState([])
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -301,7 +276,7 @@ const ProfileUpdate = () => {
 
         try {
             const response = await UpdatePasswordAPI(password, confirmpassword, token);
-            setIsLoading(false)
+        setIsLoading(false)
 
             if (response) {
                 if (response?.status === 200) {
@@ -381,7 +356,7 @@ const ProfileUpdate = () => {
 
 
     // TransactionsAPI
-
+    
 
 
 
@@ -394,7 +369,7 @@ const ProfileUpdate = () => {
     //Profile API
     useEffect(() => {
         const userData = async () => {
-            setIsLoading(true)
+        setIsLoading(true)
 
             try {
                 // setIsLoading(true);   loading 
@@ -404,7 +379,7 @@ const ProfileUpdate = () => {
                 console.error(userData)
 
                 if (res) {
-                    setIsLoading(false)
+        setIsLoading(false)
 
                     setId(userData._id)
                     setName(userData.Name)
@@ -431,18 +406,18 @@ const ProfileUpdate = () => {
 
 
             } catch (error) {
-                setIsLoading(false)
+        setIsLoading(false)
 
                 console.error("Error in api ", error)
             }
         }
         userData()
-
+      
     }, []);
 
     return (
         <section className='container py-2 marginTopper-80'>
-            {isLoading && <Loader />}
+      {isLoading && <Loader />}
 
             <h1 className='profileHeading'>Profile Page</h1>
 
@@ -472,7 +447,7 @@ const ProfileUpdate = () => {
                                 alt='profilePic'
                                 className='rounded-circle img-fluid'
                                 style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
-                            /></div>}
+                            /></div>} 
 
                             {/* <div className='' >
                                 <img
@@ -516,7 +491,7 @@ const ProfileUpdate = () => {
                                                         onChange={(e) => handleInputOnlyNumbersPay(e)}
                                                         required size="small" />
                                                         </div> */}
-                                                    {/* <span>₹ Enter recharge amount</span> */}
+                                                        {/* <span>₹ Enter recharge amount</span> */}
                                                     <div><input type='number' placeholder='₹ Enter recharge amount' value={addwallet} onChange={(e) => setAddWallet(e.target.value)} /></div>
                                                     {/* <TextField
                                                         id="outlined-phone-input"
@@ -536,8 +511,8 @@ const ProfileUpdate = () => {
                                                 {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
                                                 {/* <button type="button" class="btn btn-primary">Send message</button> */}
 
-                                                <PaymentScreen price2={addwallet} btnDisabledP={btnDisabledPay} />
-
+                                                <PaymentScreen price2={addwallet} btnDisabledP={btnDisabledPay}/>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -547,13 +522,13 @@ const ProfileUpdate = () => {
                                 {/* <PaymentScreen price2={90} /> */}
 
 
-
+                                
                             </div>
                         </div>
                     </div>
                     <div className='card mt-2 p-3'>
-                        {/* transactionsAPI  */}
-                        <Link to="/Transactions"><b> Click Here to view Transactions  </b></Link>
+                         {/* transactionsAPI  */}
+                         <Link to="/Transactions"><b> Click Here to view Transactions  </b></Link>
                     </div>
 
                 </div>
@@ -725,82 +700,37 @@ const ProfileUpdate = () => {
                                         {!PasswordBox && <div className='text-danger' onClick={openPasswordBox}>Click Here</div>}
 
 
-                                        {PasswordBox && <div className=' p-3 card rounded-4'>
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-8 p-0">
-                                                        <TextField
-                                                            id="outlined-password-input"
-                                                            className='my-1 formobject'
-                                                       
-                                                            label="New Password"
-                                                            placeholder="New Password"
-                                                            // value={password}
-                                                            onChange={(e) => setpassword(e.target.value)}
-                                                            error={errorpassword !== null}
-                                                            helperText={errorpassword}
-                                                            required size="small" 
-                                                            type={showPassword ? 'text' : 'password'}
-                                                        InputProps={{
-                                                            endAdornment: (
-                                                                <InputAdornment position="end">
-                                                                    <IconButton
-                                                                        aria-label="toggle password visibility"
-                                                                        onClick={handleClickShowPassword}
-                                                                        onMouseDown={handleMouseDownPassword}
-                                                                        edge="end"
-                                                                    >
-                                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                                                    </IconButton>
-                                                                </InputAdornment>
-                                                            ),
-                                                        }}/>
-
-                                                        <TextField
-                                                            id="outlined-password-input"
-                                                            className='my-1 formobject'
-                                                       
-                                                            label="Confirm Password"
-                                                            placeholder="Confirm Password"
-                                                            // value={confirmpassword}
-                                                            onChange={(e) => setConfirmpassword(e.target.value)}
-                                                            error={errorpassword !== null}
-                                                            helperText={errorpassword}
-                                                            required size="small" 
-                                                            type={showConfirmPassword ? 'text' : 'password'}
-
-                                                        InputProps={{
-                                                            endAdornment: (
-                                                                <InputAdornment position="end">
-                                                                    <IconButton
-                                                                        aria-label="toggle confirm password visibility"
-                                                                        onClick={handleClickShowConfirmPassword}
-                                                                        onMouseDown={handleMouseDownConfirmPassword}
-                                                                        edge="end"
-                                                                    >
-                                                                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                                                    </IconButton>
-                                                                </InputAdornment>
-                                                            ),
-                                                        }} />
-                                                    </div>
-
-                                                    <div class="col-4 p-0">
-                                                    <button onClick={openPasswordBox}  className='w-100 bg-danger mt-3'>close</button>
-
-                                                        <button onClick={updatedPassword} className='w-100 mt-2'>Submit</button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        {PasswordBox && <div className=' p-2 card rounded-4'>
                                             <div>
 
+                                                <TextField
+                                                    id="outlined-password-input"
+                                                    className='my-1 formobject'
+                                                    type="password"
+                                                    label="New Password"
+                                                    placeholder="New Password"
+                                                    // value={password}
+                                                    onChange={(e) => setpassword(e.target.value)}
+                                                    error={errorpassword !== null}
+                                                    helperText={errorpassword}
+                                                    required size="small" />
 
+                                                <TextField
+                                                    id="outlined-password-input"
+                                                    className='my-1 formobject'
+                                                    type="password"
+                                                    label="Confirm Password"
+                                                    placeholder="Confirm Password"
+                                                    // value={confirmpassword}
+                                                    onChange={(e) => setConfirmpassword(e.target.value)}
+                                                    error={errorpassword !== null}
+                                                    helperText={errorpassword}
+                                                    required size="small" />
+                                                <br />
 
-
-
+                                                <button onClick={updatedPassword}>Submit</button>
+                                                <button onClick={openPasswordBox}>close</button>
                                             </div>
-                                            <div>    </div>
-
                                         </div>}
                                     </strong>
 

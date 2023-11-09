@@ -21,6 +21,7 @@ body {
 
 }
 
+input::-ms-reveal { display: none; }
 
 .screenPage{
 

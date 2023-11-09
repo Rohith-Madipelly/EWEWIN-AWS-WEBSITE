@@ -22,26 +22,96 @@ import OtpInput from 'react-otp-input';
 import Loader from '../../shared/Loader/Loader';
 
 
+
+import FormControl from '@mui/material/FormControl';
+
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+
+
 function ResetPassword() {
+
   const [email, setEmail] = useState('');
-  const [otp, setOtp] = useState('');
-  const [newpassword, setNewPassword] = useState('Rohith@78');
-  const [errorMessage, setErrorMessage] = useState();
-  const [successMessage, setsuccessMessage] = useState();
+  const [emailError, setEmailError] = useState(null);
+
+  const [otp, setOtp] = useState();
+  const [errorOtp, setErrorOtp] = useState(null);
+
+  const [newpassword, setNewPassword] = useState();
+  const [errorpassword, setErrorPassword] = useState(null);
+
+
+  const [newconfirmPassword, setNewConfirmPassword] = useState();
+  const [errorconfirmPassword, setErrorConfirmPassword] = useState();
+
 
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirmPassword, setConfirmPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+
+  const handleClickShowConfirmPassword = () => setConfirmPassword((show) => !show);
+  const handleMouseDownConfirmPassword = (event) => {
+    event.preventDefault();
+  };
+
+
   const navigate = useNavigate();
 
   const handleForgetPassword = async (event) => {
-
+console.error("username:>",email, otp, newpassword)
     event.preventDefault();
-    setErrorMessage(null);
+    // setErrorMessage(null);
+
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+
+      setEmailError("Please enter valid email address.*")
+      return false;
+    }
+    else {
+
+      setEmailError(null)
+
+    }
+
+    if(!otp)
+    {
+      setErrorOtp("Please enter valid email address.*")
+      return false;
+
+    }
+    else {
+
+      setErrorOtp(null)
+
+    }
 
 
-  setIsLoading(true)
+    if (!newpassword) {
+      // toast.error('Please enter your Password.', { position: toast.POSITION.TOP_CENTER })
+      setErrorPassword('Please enter your Password.')
+      // setErrorMessage("Please enter your Password.");
+      return false;
+    }
+    else {
+      setErrorPassword(null)
+    }
 
+    setIsLoading(true);
     try {
       const res = await ResetPasswordAPI(email, otp, newpassword);
       setIsLoading(false)
@@ -53,18 +123,20 @@ function ResetPassword() {
           navigate('/login');
         }, 2000);
       }
-      else{
+      else {
         console.error("not res found")
       }
     } catch (error) {
       setIsLoading(false)
 
       if (error.response) {
+        toast.error(error.response.data.msg, { position: toast.POSITION.TOP_CENTER })
+
         if (error.response.status === 400) {
           toast.error(error.response.data.msg, { position: toast.POSITION.TOP_CENTER })
         }
       }
-      else{
+      else {
         console.error("not res found")
       }
 
@@ -98,56 +170,90 @@ function ResetPassword() {
                           autoComplete="off"
                         >
                           <div>
-                            <TextField id="outlined-email-input" className='my-2 formobject text-white' label="User Email" placeholder="User Email" value={email} onChange={(e) => setEmail(e.target.value.toLowerCase())} required />  <br />
-                            <TextField id="outlined-otp" className='my-2 formobject text-white' label="otp" placeholder="otp" value={otp} onChange={(e) => setOtp(e.target.value)} required />  <br />
-                            <TextField 
-                            id="outlined-password-input" 
-                            className='my-2 formobject' 
-                            type="password" 
-                            label="UserPassword" 
-                            placeholder="UserPassword" 
-                            value={newpassword} 
-                            onChange={(e) => setNewPassword(e.target.value)} 
-                            // error={passwordError !== null}
+                            <TextField
+                              id="outlined-email-input"
+                              className='my-2 formobject text-white'
+                              label="User Email"
+                              placeholder="User Email"
+                              value={email}
+                              error={emailError !== null}
+                              helperText={emailError}
+                              onChange={(e) => setEmail(e.target.value.toLowerCase())}
+                              required />  <br />
 
-                            // helperText={passwordError} 
-                            required />
-                            <br />
-                            <TextField 
-                            id="outlined-password-input" 
-                            className='my-2 formobject' 
-                            type="password" 
-                            label="UserPassword" 
-                            placeholder="UserPassword" 
-                            value={newpassword} 
-                            onChange={(e) => setNewPassword(e.target.value)} 
-                            // error={passwordError !== null}
 
-                            // helperText={passwordError} 
-                            required />
-                          
-                            {/* <OtpInput className='ms-2 formobject'
+                            <TextField
+                              id="outlined-otp"
+                              className='my-2 formobject text-white'
+                              label="otp"
+                              placeholder="otp"
                               value={otp}
-                              onChange={setOtp}
-                              numInputs={4}
-                              renderSeparator={<span>-</span>}
-                              renderInput={(props) => <input {...props} />}
+                              error={errorOtp !== null}
+                              helperText={errorOtp}
+                              onChange={(e) => setOtp(e.target.value)}
+                              required />  <br />
 
-                              inputStyle={{
-                                // border: "1px solid transparent",
-                                // borderRadius: "8px",
-                                width: "25px",
-                                height: "25px",
-                                fontSize: "12px",
-                                color: "#000",
-                                fontWeight: "400",
-                                caretColor: "blue"
+
+                            <TextField
+                              id="outlined-password-input"
+                              className='my-2 formobject'
+                              type={showPassword ? 'text' : 'password'}
+                              label="UserPassword"
+                              placeholder="UserPassword"
+                              value={newpassword}
+                              onChange={(e) => setNewPassword(e.target.value)}
+                              error={errorpassword !== null}
+                              helperText={errorpassword}
+                              required
+
+
+                              InputProps={{
+                                endAdornment: (
+                                  <InputAdornment position="end">
+                                    <IconButton
+                                      aria-label="toggle password visibility"
+                                      onClick={handleClickShowPassword}
+                                      onMouseDown={handleMouseDownPassword}
+                                      edge="end"
+                                    >
+                                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                  </InputAdornment>
+                                ),
                               }}
-                              // focusStyle={{
-                              //   border: "1px solid #CFD3DB",
-                              //   outline: "none"
-                              // }}
-                            /> */}
+                            />
+
+                            <TextField
+                              id="outlined-confirm-input"
+                              className='my-2 formobject'
+                              type={showConfirmPassword ? 'text' : 'password'}
+                              label="Confirm Password"
+                              placeholder="Confirm Password"
+                              value={newconfirmPassword}
+                              error={errorpassword !== null}
+                              helperText={errorpassword}
+                              onChange={(e) => setNewConfirmPassword(e.target.value)}
+                              required
+                              InputProps={{
+                                endAdornment: (
+                                  <InputAdornment position="end">
+                                    <IconButton
+                                      aria-label="toggle confirm password visibility"
+                                      onClick={handleClickShowConfirmPassword}
+                                      onMouseDown={handleMouseDownConfirmPassword}
+                                      edge="end"
+                                    >
+                                      {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                  </InputAdornment>
+                                ),
+                              }}
+                            />
+
+
+
+
+
 
                           </div>
                         </Box>

@@ -17,6 +17,18 @@ import { useSelector } from "react-redux";
 import Loader from '../../shared/Loader/Loader';
 
 
+import FormControl from '@mui/material/FormControl';
+
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+
+
 function Login() {
   // const loginSelector = useSelector((state) => state.isLogin);
   // if (loginSelector.isLogin) {
@@ -42,7 +54,12 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [showPassword, setShowPassword] = React.useState(false);
 
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const handleLogin = async (event) => {
 
@@ -156,25 +173,34 @@ function Login() {
                                 required />
                               <br />
 
-                              {/* {emailError && <span className='text-danger'>{emailError}</span>} */}
-
-
                               <TextField
                                 id="outlined-password-input"
                                 className='my-2 formobject'
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 label="User Password"
                                 placeholder="User Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 error={passwordError !== null}
-
                                 helperText={passwordError}
-                                required />
-                              <br />
+                                required
 
+                                InputProps={{
+                                  endAdornment: (
+                                    <InputAdornment position="end">
+                                      <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        edge="end"
+                                      >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                      </IconButton>
+                                    </InputAdornment>
+                                  ),
+                                }}
+                              />
 
-                              {/* {passwordError && <span className='text-danger'>{passwordError}</span>} */}
                             </div>
 
                           </Box>

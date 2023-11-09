@@ -8,6 +8,18 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { Checkbox, Typography } from "@mui/material";
 
+
+import FormControl from '@mui/material/FormControl';
+
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+
 //Router 
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -28,6 +40,23 @@ import Loader from '../../shared/Loader/Loader';
 function Register() {
     const [isLoading, setIsLoading] = useState(false);
 
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setConfirmPassword] = useState(false);
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
+
+    const handleClickShowConfirmPassword = () => setConfirmPassword((show) => !show);
+    const handleMouseDownConfirmPassword = (event) => {
+        event.preventDefault();
+    };
+
+
+
     //form fields
     const [userName, setUserName] = useState("")
     const [erroruserName, setErrorUserName] = useState(null)
@@ -44,7 +73,7 @@ function Register() {
 
     const [confirmpassword, setConfirmpassword] = useState("")
 
-    const [gender, setGender] = useState();
+    const [gender, setGender] = useState("Male");
     const [errorgender, setErrorGender] = useState(null);
 
 
@@ -55,6 +84,7 @@ function Register() {
     const [btnDisabled, setBtnDisabled] = useState(false);
 
 
+    const [isChecked, setIsChecked] = useState(false);
 
     //error display fields
 
@@ -63,6 +93,16 @@ function Register() {
 
     const RegisterURL12 = `${BASE_URL}register`;
 
+
+    const handleCheckboxChange = () => {
+        // Your validation logic goes here
+        // For example, let's say you want to make sure the checkbox is checked
+        if (isChecked) {
+            setIsChecked(false); // If already checked, uncheck it
+        } else {
+            setIsChecked(true); // If not checked, check it
+        }
+    };
 
     function handleInputOnlyAlphabets(e) {
         const input = e.target.value;
@@ -88,7 +128,7 @@ function Register() {
         }
         if (input.length > 10) {
             setErrorPhoneNumber("you can enter only 10 digits");
-            
+
             return;
         }
 
@@ -180,7 +220,9 @@ function Register() {
         }
 
 
-        if (terms==false) {
+
+
+        if (isChecked == false) {
             setErrorTerms("Please accept the terms & conditions.")
             // toast.error('Please accept the terms & conditions.', { position: toast.POSITION.TOP_CENTER })
 
@@ -195,15 +237,15 @@ function Register() {
         setIsLoading(true);
         try {
             const response = await UserRegisterApi(userName, email, PhoneNumber, password, gender);
-    
-        setIsLoading(false)
+
+            setIsLoading(false)
 
             if (response) {
                 if (response?.status === 200) {
-                    
+
                     console.error("response Data", response)
                     // toast.success("User registered successfully. Please login.", { position: toast.POSITION.TOP_CENTER })
-        
+
 
                     setTimeout(() => {
                         navigate('/Login');
@@ -216,60 +258,60 @@ function Register() {
         } catch (error) {
             setErrorMessage('Error during Register:', error)
             setIsLoading(false)
-                console.error(error.data)
-                if (error.response) {
+            console.error(error.data)
+            if (error.response) {
 
-                    if (error.response.status === 409) {
-                        toast.error('This email or Phone is already registered. Please Login ...', { position: toast.POSITION.TOP_CENTER })
+                if (error.response.status === 409) {
+                    toast.error('This email or Phone is already registered. Please Login ...', { position: toast.POSITION.TOP_CENTER })
 
-                        // setErrorMessage('User is already registered. Please Login ...');
-                    } else if (error.response.status === 401) {
-                        toast.error('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.', { position: toast.POSITION.TOP_CENTER })
+                    // setErrorMessage('User is already registered. Please Login ...');
+                } else if (error.response.status === 401) {
+                    toast.error('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.', { position: toast.POSITION.TOP_CENTER })
 
-                        // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
-                    }else if (error.response.status === 409) {
-                        toast.error('User Exisited ', { position: toast.POSITION.TOP_CENTER })
+                    // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
+                } else if (error.response.status === 409) {
+                    toast.error('User Exisited ', { position: toast.POSITION.TOP_CENTER })
 
-                        // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
-                    } else if (error.response.status === 404) {
-                        toast.error('Invalid user data.', { position: toast.POSITION.TOP_CENTER })
+                    // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
+                } else if (error.response.status === 404) {
+                    toast.error('Invalid user data.', { position: toast.POSITION.TOP_CENTER })
 
-                        // setErrorMessage('Invalid user data.');
-                    } else if (error.response.status === 500) {
-                        toast.error('Internal server error', { position: toast.POSITION.TOP_CENTER })
+                    // setErrorMessage('Invalid user data.');
+                } else if (error.response.status === 500) {
+                    toast.error('Internal server error', { position: toast.POSITION.TOP_CENTER })
 
-                        // setErrorMessage('Internal server error');
-                    } else {
-                        toast.error('An error occurred during registration.', { position: toast.POSITION.TOP_CENTER })
-
-                        // setErrorMessage('An error occurred during registration.');
-                    }
-                } else if (error.request) {
-                    toast.error('No response received from the server.', { position: toast.POSITION.TOP_CENTER })
-
-                    // setErrorMessage('No response received from the server.');
+                    // setErrorMessage('Internal server error');
                 } else {
-                    toast.error('Error setting up the request.', { position: toast.POSITION.TOP_CENTER })
+                    toast.error('An error occurred during registration.', { position: toast.POSITION.TOP_CENTER })
 
-                    // setErrorMessage('Error setting up the request.');
+                    // setErrorMessage('An error occurred during registration.');
                 }
+            } else if (error.request) {
+                toast.error('No response received from the server.', { position: toast.POSITION.TOP_CENTER })
+
+                // setErrorMessage('No response received from the server.');
+            } else {
+                toast.error('Error setting up the request.', { position: toast.POSITION.TOP_CENTER })
+
+                // setErrorMessage('Error setting up the request.');
+            }
 
 
-                setTimeout(() => {
-                    setErrorMessage("")
-                    setUserName("")
-                    {
-                        setEmail("")
-                        setPhoneNumber("")
-                        setpassword("")
-                        setConfirmpassword("")
-                        setGender("")
-                        setTerms("")
-                    }
-                    setBtnDisabled(false);
-                    navigate('/Register');
-                }, 1000);
-            
+            setTimeout(() => {
+                setErrorMessage("")
+                setUserName("")
+                {
+                    setEmail("")
+                    setPhoneNumber("")
+                    setpassword("")
+                    setConfirmpassword("")
+                    setGender("")
+                    setTerms("")
+                }
+                setBtnDisabled(false);
+                navigate('/Register');
+            }, 1000);
+
         }
     }
 
@@ -279,7 +321,7 @@ function Register() {
 
     return (
         <div className='Register py-3'>
-      {isLoading && <Loader />}
+            {isLoading && <Loader />}
 
             <section className="">
 
@@ -342,31 +384,68 @@ function Register() {
                                                         onChange={(e) => handleInputOnlyNumbers(e)}
                                                         error={errorPhoneNumber !== null}
                                                         helperText={errorPhoneNumber}
-                                                        required size="small" />  <br />
+                                                        required size="small"
+
+
+
+                                                    />  <br />
 
                                                     <TextField
                                                         id="outlined-password-input"
                                                         className='my-1 formobject'
-                                                        type="password"
+                                                        
+
                                                         label="New Password"
                                                         placeholder="New Password"
                                                         value={password}
                                                         onChange={(e) => setpassword(e.target.value)}
                                                         error={errorpassword !== null}
                                                         helperText={errorpassword}
-                                                        required size="small" />
+                                                        required size="small"
+                                                        type={showPassword ? 'text' : 'password'}
+                                                        InputProps={{
+                                                            endAdornment: (
+                                                                <InputAdornment position="end">
+                                                                    <IconButton
+                                                                        aria-label="toggle password visibility"
+                                                                        onClick={handleClickShowPassword}
+                                                                        onMouseDown={handleMouseDownPassword}
+                                                                        edge="end"
+                                                                    >
+                                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                                    </IconButton>
+                                                                </InputAdornment>
+                                                            ),
+                                                        }}
+                                                    />
 
                                                     <TextField
                                                         id="outlined-password-input"
                                                         className='my-1 formobject'
-                                                        type="password"
+
                                                         label="Confirm Password"
                                                         placeholder="Confirm Password"
                                                         value={confirmpassword}
                                                         onChange={(e) => setConfirmpassword(e.target.value)}
                                                         error={errorpassword !== null}
                                                         helperText={errorpassword}
-                                                        required size="small" />
+                                                        required size="small"
+                                                        type={showConfirmPassword ? 'text' : 'password'}
+
+                                                        InputProps={{
+                                                            endAdornment: (
+                                                                <InputAdornment position="end">
+                                                                    <IconButton
+                                                                        aria-label="toggle confirm password visibility"
+                                                                        onClick={handleClickShowConfirmPassword}
+                                                                        onMouseDown={handleMouseDownConfirmPassword}
+                                                                        edge="end"
+                                                                    >
+                                                                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                                                    </IconButton>
+                                                                </InputAdornment>
+                                                            ),
+                                                        }} />
 
                                                     <TextField size="small"
                                                         id="outlined-select-currency"
@@ -376,6 +455,7 @@ function Register() {
                                                         // helperText="Please select your Gender"
                                                         className='my-1'
                                                         value={gender}
+
                                                         onChange={(e) => setGender(e.target.value)}
                                                         error={errorgender !== null}
                                                         helperText={errorgender}
@@ -388,7 +468,7 @@ function Register() {
                                                         <MenuItem value="Female">
                                                             Female
                                                         </MenuItem>
-                                                      
+
 
                                                     </TextField>
 
@@ -398,7 +478,8 @@ function Register() {
 
                                                         <FormControlLabel size="small" className='ms-3 me-4'
                                                             control={
-                                                                <Checkbox value={terms} onChange={() => setTerms(!terms)} />
+                                                                <Checkbox checked={isChecked}
+                                                                    onChange={handleCheckboxChange} />
                                                             }
                                                             // error={errorterms !== null}
 

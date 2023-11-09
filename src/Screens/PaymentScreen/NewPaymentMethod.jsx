@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { verifySignatureApi, createOrder } from '../../Services2/ApiCalls'
 // import {sdf} from '../../../public/Logo4.png'
 const PaymentScreen = ({ price2,btnDisabledP }) => {
-console.error(">>>>>>>>>>>>>>>>>>>dddddddddddd>>>>>>>>>>",btnDisabledP)
+
   const navigate = useNavigate();
   const [formError, setFormError] = useState("");
 
@@ -113,9 +113,7 @@ console.error(">>>>>>>>>>>>>>>>>>>dddddddddddd>>>>>>>>>>",btnDisabledP)
 
         setTimeout(() => {
           navigate('/Profile');
-          // alert("Successfull")
-          
-//  window.location.reload();
+
         }, 2000);
       }
     } catch (error) {
