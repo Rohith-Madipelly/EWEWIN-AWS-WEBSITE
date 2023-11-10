@@ -184,6 +184,7 @@ function Login() {
                                 error={passwordError !== null}
                                 helperText={passwordError}
                                 required
+                                // type={showPassword ? 'text' : 'password'}
 
                                 InputProps={{
                                   endAdornment: (
