@@ -441,6 +441,7 @@ const ProfileUpdate = () => {
     }, []);
 
     return (
+        <div className='screenPage mt-0 vh-100'>
         <section className='container py-2 marginTopper-80 '>
             {isLoading && <Loader />}
 
@@ -867,6 +868,7 @@ const ProfileUpdate = () => {
             </section>
 
         </section>
+        </div>
 
     )
 }

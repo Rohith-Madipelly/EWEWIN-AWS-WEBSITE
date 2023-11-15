@@ -22,17 +22,17 @@ const Your_ContestsCard = (item) => {
         >
             <div className='border '>
                 <div className='imgbox pt-3 ps-4' >
-                    {/* <span>Id: {item._id}</span><br /> */}
-                    <span>Name: {item.name}</span><br />
-                    <span>Price: {item.entry_fee}</span> <br />
+                    {/* <b>Id: {item._id}</b><br /> */}
+                    <b>Contest Name: {item.name}</b><br />
+                    <b>Price: {item.entry_fee}</b> <br />
 
-                    <span>Status: <b className='text-danger'>{item.status}</b></span><br />
+                    <b>Status: <b className='text-danger'>{item.status}</b></b><br />
 
                     {item.status === "Upcoming" ? (
-                        <span>
+                        <b>
                             Time Left for quiz <br />
-                            {/* <span>Price: {item.starts_at}</span> <br /> */}
-                            <Timer resTime={item.starts_at}/></span>
+                            {/* <b>Price: {item.starts_at}</b> <br /> */}
+                            <Timer resTime={item.starts_at}/></b>
                     ) : ""}
                 </div>
             </div>

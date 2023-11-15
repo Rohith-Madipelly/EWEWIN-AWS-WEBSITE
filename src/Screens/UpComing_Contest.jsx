@@ -80,6 +80,7 @@ const UpComing_ContestPage = () => {
     }, []);
 
     return (
+        <div className='screenPage mt-0 vh-auto'>
         <section className='container py-2 marginTopper-80 ' 
         // style={{ background: "linear-gradient(135deg, #F1B94F,#CE7E1C, #8C440A, #592401,#1B0801)" }}
         >
@@ -132,7 +133,7 @@ const UpComing_ContestPage = () => {
 
 
         </section>
-
+        </div>
     )
 }
 

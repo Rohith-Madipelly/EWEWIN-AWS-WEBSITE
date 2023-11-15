@@ -43,11 +43,12 @@ function Transactions() {
 
 
 
-    return (
-        <section className='container'>
+    return ( 
+        <div className='mt-0 screenPage vh-100'>
+            <div className='container'>
       {isLoading && <Loader />}
 
-            <div className='' style={{ marginTop: "100px" }}>
+            <div className='' style={{ marginTop: "85px" }}>
                 <h1 className='text-dark'><b>Transactions History</b></h1>
                 {transactionData.map((item, index) => (
                     <div key={index._id}>
@@ -69,8 +70,8 @@ function Transactions() {
                 ))}
 
 
-            </div>
-        </section>
+            </div></div>
+        </div>
     )
 }
 
