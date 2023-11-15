@@ -23,7 +23,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux"
 import { setToken } from '../../redux/actions/loginAction';
 
-
+import {HomeClick,NextContest,PriceMoney,WinnersList,FAQS} from '../../shared/Navigations/Navigations'
 
 function Header() {
 
@@ -62,29 +62,7 @@ function Header() {
     localStorage.removeItem('token');
   };
 
-  const HomeClick = () => {
-    // Scroll to a specific height (e.g., 500 pixels from the top)
-    window.scrollTo(0, 0);
-  };
 
-  const NextContest = () => {
-    // Scroll to a specific height (e.g., 500 pixels from the top)
-    window.scrollTo(0, 600);
-  };
-
-  const PriceMoney = () => {
-    // Scroll to a specific height (e.g., 500 pixels from the top)
-    window.scrollTo(0, 900);
-  };
-  const WinnersList = () => {
-    // Scroll to a specific height (e.g., 500 pixels from the top)
-    window.scrollTo(0, 1300);
-  };
-
-  const FAQS = () => {
-    // Scroll to a specific height (e.g., 500 pixels from the top)
-    window.scrollTo(0, 2200);
-  };
   return (
     <div className='fixed-top Header  header2'>
       <nav className=''>

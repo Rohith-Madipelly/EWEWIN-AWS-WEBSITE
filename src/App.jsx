@@ -1,82 +1,80 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import Login from './Screens/Login/Login';
-import Register from './Screens/Register/Register';
-import ForgetPassword from './Screens/ForgetPassword/ForgetPassword';
-import Home from './Screens/Home';
-import { BrowserRouter as Router,Routes,Route,Link } from 'react-router-dom';
-
-import NotFoundPage from './Screens/NotFoundPage/NotFoundPage';
-import TermandConditions from './Screens/Term Conditions/TermandConditions';
-import PrivacyPolicy from './Screens/PrivacyPolicy/PrivacyPolicy';
-import PaymentScreen from './Screens/PaymentScreen/PaymentScreen';
-// import ProfilePage from './Screens/ProfilePage';
-import PaymentDone from './Screens/PaymentDone';
-import PaymentFailed from './Screens/PaymentFailed';
-import VerifyOtp from './Screens/VerifyOtp';
-
+import React,{ lazy, Suspense }  from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import SupportPage from './Screens/SupportPage';
-import ResetPassword from './Screens/ForgetPassword/ResetPassword';
-import ProfileUpdate from './Screens/ProfileUpdate';
-import UpComing_Contest from './Screens/UpComing_Contest';
+import { ToastContainer } from 'react-toastify';
+
+
+
+const Loader = lazy(() => import('./shared/Loader/Loader'));
+
+
+const LoadingFallback = () => <Loader/>;
+
+
+
+//Page Route
+const Home = lazy(() => import('./Screens/Home'));
+const Login = lazy(() => import('./Screens/Login/Login'));
+const Register = lazy(() => import('./Screens/Register/Register'));
+const ForgetPassword = lazy(() => import('./Screens/ForgetPassword/ForgetPassword'));
+const NotFoundPage = lazy(() => import('./Screens/NotFoundPage/NotFoundPage'));
+const TermandConditions = lazy(() => import('./Screens/Term Conditions/TermandConditions'));
+const PrivacyPolicy = lazy(() => import('./Screens/PrivacyPolicy/PrivacyPolicy'));
+const PaymentScreen = lazy(() => import('./Screens/PaymentScreen/PaymentScreen'));
+const PaymentDone = lazy(() => import('./Screens/PaymentDone'));
+const PaymentFailed = lazy(() => import('./Screens/PaymentFailed'));
+const SupportPage = lazy(() => import('./Screens/SupportPage'));
+const ResetPassword = lazy(() => import('./Screens/ForgetPassword/ResetPassword'));
+const ProfileUpdate = lazy(() => import('./Screens/ProfileUpdate'));
+const ContestPage = lazy(() => import('./Screens/ContestPage'));
+const Transactions = lazy(() => import('./Screens/Transactions'));
+const UpComing_Contest = lazy(() => import('./Screens/UpComing_Contest'));
+const VerifyOtp = lazy(() => import('./Screens/VerifyOtp'));
 
 
 
 
-import { toast, ToastContainer, Zoom } from 'react-toastify';
 
-import ContestPage from './Screens/ContestPage';
-import Transactions from './Screens/Transactions';
-import PhotoUploader from './Dataaa';
-// UpComing_Contest
+
+
+
+
+
+const LoadingFallback2 = () => <LoadingFallback />;
+
 
 function App() {
 
   const loginSelector = useSelector((state) => state.isLogin);
-
-  console.error("dscfds>>>>",loginSelector)
   return (
     <div className="App">
-      <div>
 
-      </div>
+      <Suspense fallback={<LoadingFallback2/>}>
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route path='/Login' element={!loginSelector ? <Login /> : <Home />} />
+          <Route path='/Register' element={!loginSelector ? <Register /> : <Home />} />
+          <Route path='/Forget_Password' element={!loginSelector ? <ForgetPassword /> : <Home />} />
+          <Route path='/ResetPassword' element={!loginSelector ? <ResetPassword /> : <Home />} />
+          <Route path='/VerifyOtp' element={<VerifyOtp />} />
+          <Route path='/Profile' element={!loginSelector ? <Login /> : <ProfileUpdate />} />
+          <Route path='/Profile' element={!loginSelector ? <Login /> : <ProfileUpdate />} />
+          <Route path='/Contests' element={!loginSelector ? <Login /> : <UpComing_Contest />} />
+          <Route path='/Join/:id?' element={!loginSelector ? <Login /> : <ContestPage />} />
+          <Route path='/PaymentScreen' element={!loginSelector ? <Login /> : <PaymentScreen />} />
+          <Route path='/PaymentDone' element={!loginSelector ? <Login /> : <PaymentDone />} />
+          <Route path='/PaymentFailed' element={!loginSelector ? <Login /> : <PaymentFailed />} />
+          <Route path='/Transactions' element={<Transactions />} />
+          <Route path='/TermandConditions' element={<TermandConditions />} />
+          <Route path='/PrivacyPolicy' element={<PrivacyPolicy />} />
+          <Route path='/Support' element={<SupportPage />} />
+          <Route path='*' element={<NotFoundPage />} /> 
+        </Routes>
+      </Suspense>
+
       <ToastContainer></ToastContainer>
-
-      <Routes>
-
-        {/* <Route exact path='/' element={<PhotoUploader/>} /> */}
-        <Route exact path='/' element={<Home/>} />
-        <Route path='/Login' element={!loginSelector?<Login/>:<Home />} />
-        <Route path='/Register' element={!loginSelector?<Register />:<Home />} />
-        <Route path='/Forget_Password' element={!loginSelector?<ForgetPassword />:<Home />} />
-        <Route path='/ResetPassword' element={!loginSelector?<ResetPassword/>:<Home />} />
-      
-        <Route path='/VerifyOtp' element={<VerifyOtp />} />
-
-        
-        {/* <Route path='/Profile' element={!loginSelector?<Login/>:<ProfilePage />} /> */}
-        <Route path='/Profile' element={!loginSelector?<Login/>:<ProfileUpdate />} />
-        <Route path='/Profile' element={!loginSelector?<Login/>:<ProfileUpdate />} />
-
-        <Route path='/Contests' element={!loginSelector?<Login/>:<UpComing_Contest/>} />
-
-        {/* <Route path='/Join/:id?' element={!loginSelector?<Login/>:<ContestPage/>}/> */}
-
-        <Route path='/PaymentScreen' element={!loginSelector?<Login/>:<PaymentScreen/>}/>
-        <Route path='/PaymentDone' element={!loginSelector?<Login/>:<PaymentDone/>}/>
-        <Route path='/PaymentFailed' element={!loginSelector?<Login/>:<PaymentFailed/>}/>
-
-        <Route path='/Transactions' element={<Transactions/>}/>
-
-        <Route path='/TermandConditions' element={<TermandConditions/>}/>
-        <Route path='/PrivacyPolicy' element={<PrivacyPolicy/>}/>
-        <Route path='/Support' element={<SupportPage/>}/>
-        <Route path='*' element={<NotFoundPage />} />
-
-      </Routes>
-
     </div>
   );
 }

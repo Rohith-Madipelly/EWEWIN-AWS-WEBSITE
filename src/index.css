@@ -4,41 +4,37 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Outfit', sans-serif;
+  font-family: outfit!important;
 
-  font-family: 'League Gothic', sans-serif;
+  /* font-family: 'League Gothic', sans-serif;
   font-family: 'Poppins', sans-serif;
   
-  box-sizing: border-box;
-  /* overflow-x: hidden;  */
+  box-sizing: border-box; */
 
-
-  /* background: linear-gradient(135deg, gold, darkgoldenrod, orange); */
-  /* background: linear-gradient(135deg, #F1B94F,#CE7E1C, #8C440A, #592401,#1B0801) */
 }
 
-.card{
-  /* background-color: transparent!important; */
-}
+/* .card{
+  background-color: rgba(150, 135, 135, 0.09);
+} */
 
+a{
+  text-decoration: none; 
+
+}
 NavLink{
-	/* color: white; */
   text-decoration: none; 
 }
+
+
 input::-ms-reveal { display: none; }
 
-.screenPage{
 
-  /* background-image: url('./assets/12.jpg'); */
-
-  /* background: linear-gradient(84.16deg, #5F2404 4.64%, #7C4111 68.12%, #EDB244 118.86%),
-linear-gradient(0deg, #6B4EFF, #6B4EFF); */
-
-}
 
 .profilePic{
   -webkit-clip-path: circle(50% at 50% 50%);
@@ -47,30 +43,11 @@ clip-path: circle(50% at 50% 50%);
 
 }
 *{
-
-
-    font-family: outfit!important;
-    /* font-weight: 600; */
-
-
-  
+  font-family: outfit!important;
 }
 
 a{
  cursor: pointer;
-}
-
-body{
-  font-family: 'Outfit', sans-serif;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-@media (min-width: 370px) {
-
 }
 
 
@@ -187,7 +164,7 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 
 body {
   margin: 0;
-  font-family: "Inter UI", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  /* font-family: "Inter UI", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;

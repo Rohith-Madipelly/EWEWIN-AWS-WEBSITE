@@ -1,31 +1,33 @@
-import React, { useState } from 'react'
-import Avatar from '@mui/material/Avatar';
+import React, {useState,lazy, Suspense } from 'react'
 import './Login.css'
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import { Link } from 'react-router-dom';
-import { UserLoginApi } from '../../Services2/ApiCalls'
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
+
+
+//UI Part 
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
-import { setToken } from '../../redux/actions/loginAction';
-import { useSelector } from "react-redux";
-import Loader from '../../shared/Loader/Loader';
-
-
-import FormControl from '@mui/material/FormControl';
-
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
+//UI Part Material UI
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
-
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+
+const Loader = lazy(() => import('../../shared/Loader/Loader'));
+
+import { useDispatch,useSelector } from "react-redux";
+import { Link,useNavigate,useLocation } from 'react-router-dom';
+import { UserLoginApi } from '../../Services2/ApiCalls'
+import { setToken } from '../../redux/actions/loginAction';
+
+
+
+
+
+
 
 
 
@@ -59,7 +61,9 @@ function Login() {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
-  };
+  };  
+  
+
 
   const handleLogin = async (event) => {
 
@@ -149,6 +153,7 @@ function Login() {
                   <div className="card-body pt-5 text-center">
                     <div className="t-4 pb-2">
                       <h2 className="fw-bold mb-2 text-uppercase text-dark">EZEWIN</h2>
+                      {/* <img src='src/assets/img/Logo4.png' alt=""  width={80}/> */}
 
                       <p className="text-dark-50 mb-3">Login to your account</p>
                       <div className="form-outline form-white mb-4">

@@ -52,7 +52,7 @@ function Transactions() {
                 <h1 className='text-dark'><b>Transactions History</b></h1>
                 {transactionData.map((item, index) => (
                     <div key={index._id}>
-                    <div className={`card p-4 mt-2  btn`}>
+                    <div className={`card  p-4 mt-2 `}>
                         <div className=' container d-flex justify-content-between'>
                             <div className={`${item.type === 'Credit' ? 'text-success' : 'text-danger'}`}><b>{item.type} Payment of Rs {item.amount} to EZEWIN Wallet  was {item.status}</b>
                             </div>
