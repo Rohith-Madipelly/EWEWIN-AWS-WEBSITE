@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './TimerPage.css'
+
 import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown"
 import '@leenguyen/react-flip-clock-countdown/dist/index.css'
+
+
 import { HomeTimerApi } from '../../Services2/ApiCalls'
 import { Fade } from 'react-awesome-reveal';
+
 
 
 function LPattern2() {
@@ -12,11 +16,11 @@ function LPattern2() {
   const [timeData, setTimeData] = useState(null)
 
   const HomeTimer = async () => {
-
     try {
       const res = await HomeTimerApi()
       if (res) {
-        const resTime = res.data.first_upcoming[0].starts_at;
+        const resTime = res.data.contest.starts_at;
+       
         console.error(resTime)
         dsd(resTime)
       }
@@ -25,7 +29,7 @@ function LPattern2() {
       }
 
     } catch (error) {
-      console.error("api error in HomeTime")
+      console.error("api error in HomeTime",error)
     }
 
   }
@@ -45,12 +49,7 @@ function LPattern2() {
     var seconds = startDate.getSeconds();
 
     var formattedDate = `${month} ${day}, ${year} ${hours}:${minutes}:${seconds}`;
-
-    console.error("helooo >>>>>>>", formattedDate);
-
     setTimeData(formattedDate)
-
-
   }
 
 
@@ -93,14 +92,13 @@ function LPattern2() {
 
 
   return (
-    <div className='w-75 bg-dark rounder rounded-3' id='nextContest'>
+    <div className='TimerPage' id='nextContest'>
 
-      <div className='d-flex justify-content-center'>
-        <div className='m-5'>
-          <div>
+      <div className='w-100 TimerL2 hellodd gridSetting'>
+        <div className=''>
           <h2 className='mb-3'>Get Ready To Win in</h2>
-          <FlipClockCountdown
-             
+          <Fade> <FlipClockCountdown
+
             digitBlockStyle={size}
             to={new Date(timeData).getTime()}
             // to={new Date('OCT 31, 2023 18:30:00').getTime()}
@@ -109,9 +107,15 @@ function LPattern2() {
             labels={['DAYS', 'HOURS', 'MINUTES', 'SECONDS']}
 
             duration={0.5} />
-</div>
-          
+
+          </Fade>
         </div>
+      </div>
+
+      <div className='TimerGrid-2 gridSetting'>
+        {/* <img src="src/assets/img/Timer.png" alt="no logo" className='TimerImg' /> */}
+        <img src="src/assets/img/TimerDanceing.gif" alt="no logo" className='TimerImg' style={{ width: "380px" }} />
+
       </div>
 
 

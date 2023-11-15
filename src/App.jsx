@@ -34,24 +34,11 @@ const UpComing_Contest = lazy(() => import('./Screens/UpComing_Contest'));
 const VerifyOtp = lazy(() => import('./Screens/VerifyOtp'));
 
 
-
-
-
-
-
-
-
-
-const LoadingFallback2 = () => <LoadingFallback />;
-
-
 function App() {
-
   const loginSelector = useSelector((state) => state.isLogin);
   return (
     <div className="App">
-
-      <Suspense fallback={<LoadingFallback2/>}>
+      <Suspense fallback={<LoadingFallback/>}>
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route path='/Login' element={!loginSelector ? <Login /> : <Home />} />

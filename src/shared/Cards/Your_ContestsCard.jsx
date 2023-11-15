@@ -33,7 +33,7 @@ const Your_ContestsCard = (item) => {
                             Time Left for quiz <br />
                             {/* <b>Price: {item.starts_at}</b> <br /> */}
                             <Timer resTime={item.starts_at}/></b>
-                    ) : ""}
+                    ) : <div className='mt-3'></div>}
                 </div>
             </div>
         </div>

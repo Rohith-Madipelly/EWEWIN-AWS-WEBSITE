@@ -73,39 +73,40 @@ function Header() {
               <a href='#'><NavLink to="/"><img src="src/assets/img/Logo4.png" alt="no logo" loading={"lazy"} style={{ width: '70px' }} /></NavLink></a>
             </div>
             {/* Right Side */}
+            
             <Toolbar disableGutters>
               
               {isHomePage == true ? <div><Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} id="main-header">
-                <Button onClick={HomeClick} to="/"
+                <MenuItem onClick={HomeClick} to="/"
                  
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b> Home</b>
-                </Button>
+                </MenuItem>
 
-                <Button
+                <MenuItem
                   onClick={NextContest}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b>Next Contest</b>
-                </Button>
+                </MenuItem>
 
-                <Button
+                <MenuItem
                   onClick={PriceMoney}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b>Price Money</b>
-                </Button>
+                </MenuItem>
 
 
-                <Button
+                <MenuItem
                   onClick={WinnersList}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b>Winners List </b>
-                </Button>
+                </MenuItem>
 
-                <Button 
+                <MenuItem
                   onClick={FAQS}
                   sx={{ my: 2, color: "white", display: "block" }}>
-                  <b>FAQ </b>
-                </Button>
+                  <b>Faq </b>
+                </MenuItem>
               </Box></div> 
               :"" 
               // <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} id="main-header">
@@ -132,20 +133,20 @@ function Header() {
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 
               {loginSelector ?
-                  <Button as={NavLink} to="/Contests"
+                  <MenuItem as={NavLink} to="/Contests"
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: "white", display: "block" }}>
                     <b><SiTestrail size={25} /> Book Contest</b>
-                  </Button> : ""}
+                  </MenuItem> : ""}
 
 
                   
                 {loginSelector ?
-                  <Button as={NavLink} to="/Profile"
+                  <MenuItem as={NavLink} to="/Profile"
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: "white", display: "block" }}>
                     <CgProfile size={25} /> Profile
-                  </Button> : ""}
+                  </MenuItem> : ""}
 
                   
 

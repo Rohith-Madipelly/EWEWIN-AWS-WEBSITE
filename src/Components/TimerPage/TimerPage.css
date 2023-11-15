@@ -1,17 +1,12 @@
 
 .TimerPage{
-   
-}
-.TimerPage{
     background-color: black;
-    /* background: linear-gradient(135deg, rgb(54, 53, 47), rgb(43, 40, 33), rgb(0, 0, 0)); */
     height: 320px;
     position: relative;
     right: 0px;
 }
 
 .TimerL2{
-  /* height: auto; */
   padding: 0 40px;
 }
 

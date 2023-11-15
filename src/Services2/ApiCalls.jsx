@@ -20,6 +20,11 @@ const config = {
 
 export const HomeTimerApi = async () => {
   const formData = new FormData();
+  return await axios.post(`${GUEST_URL}/first-upcoming`)
+};
+
+export const HomePriceMoneyListApi = async () => {
+  const formData = new FormData();
   return await axios.post(`${GUEST_URL}/first-upcoming`,formData)
 };
 
@@ -42,10 +47,6 @@ export const Mycoming_contestAPI = async (token) => {
 };
 
 
-export const HomePriceMoneyListApi = async () => {
-  const formData = new FormData();
-  return await axios.post(`${GUEST_URL}/first-upcoming`,formData)
-};
 
 
 

@@ -1,38 +1,31 @@
-import React, { useRef } from 'react';
-import Layout1 from '../Components/HeroSection/Layout1';
-import TimerPage from '../Components/TimerPage/TimerPage';
-import DownloadSection from '../Components/DownloadSection/DownloadSection';
-import Gallary from '../Components/Gallery/Gallery';
-import FAQSection from '../Components/FAQSection';
-import Footer from '../Components/Footer/Footer';
-import ArrowBackToTopButton from '../shared/ArrowButtons/ArrowBackToTopButton';
-import { toast, ToastContainer, Zoom } from 'react-toastify';
+import React from 'react';
 
-import Header1 from '../Components/Header/Header2';
+import { ToastContainer } from 'react-toastify';
+
+import { lazy, Suspense } from 'react';
+
+const HeroSection = lazy(() => import('../Components/HeroSection/HeroSection'));
+const ContestTimerPage = lazy(() => import('../Components/TimerPage/ContestTimerPage'));
+
+const PriceMoneyPage = lazy(() => import('../Components/PriceMoneyPage/PriceMoneyPage'));
+const Gallary = lazy(() => import('../Components/Gallery/Gallery'));
+const FAQSection = lazy(() => import('../Components/FAQSection'));
+const Footer = lazy(() => import('../Components/Footer/Footer'));
+const ArrowBackToTopButton = lazy(() => import('../shared/ArrowButtons/ArrowBackToTopButton'));
 
 function Home() {
 
-  // const div2Ref = useRef(null);
-  // const div3Ref = useRef(null);
-
-
   return (
-    <div>  
-      
-      <Layout1 />
-   
-      <TimerPage/>
-
-      <DownloadSection/>
-      <Gallary/>
-      
-       <FAQSection/>
-
-       <Footer/>
-       <ArrowBackToTopButton/>
-       <ToastContainer></ToastContainer>
-      
-    </div>
+    <>
+      <HeroSection />
+      <ContestTimerPage />
+      <PriceMoneyPage />
+      <Gallary />
+      <FAQSection />
+      <Footer />
+      <ArrowBackToTopButton />
+      <ToastContainer></ToastContainer>
+    </>
   )
 }
 

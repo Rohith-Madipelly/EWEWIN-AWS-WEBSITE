@@ -6,7 +6,7 @@ import "../StanderdStyles/Style.css"
 
 import { HomePriceMoneyListApi } from '../../Services2/ApiCalls'
 
-function DownloadSection() {
+function PriceMoneyPage() {
   const [winnersList, setWinningList] = useState([])
   const [winningData1, setWinningData1] = useState([])
   const [winningData2, setWinningData2] = useState([])
@@ -21,10 +21,10 @@ function DownloadSection() {
   const HomePriceMoneyList = async () => {
 
     try {
-      const res12 = await HomePriceMoneyListApi()
-      if (res12) {
-        const resTime = res12.data.first_upcoming[0].winnings;
-        // const resTime=res.data.first_upcoming[0].winnings;
+      const res = await HomePriceMoneyListApi()
+      if (res) {
+        const resTime = res.data.contest.winnings;
+        
         if (resTime != "") {
           setWinningList([resTime])
           console.error("HomePriceMoneyListApi >>>>>>", resTime)
@@ -85,9 +85,10 @@ function DownloadSection() {
                 </div>
               </div>
 
-              {/* {winnersList.map((item, index) => (
-                               <div>{item}</div>
-                            ))} */}
+              {winnersList.map((item, index) => (
+                console.error(item)
+                              //  <div>{item}</div>
+                            ))}
               <div class="d-grid gap-2">
                 <span><Link to="/Register"><button className='btn12 btn-rr'>Register</button></Link></span>
               </div>
@@ -133,4 +134,4 @@ function DownloadSection() {
   )
 }
 
-export default DownloadSection
+export default PriceMoneyPage
