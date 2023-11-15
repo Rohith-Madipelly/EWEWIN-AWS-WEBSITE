@@ -29,6 +29,7 @@ import { toast, ToastContainer, Zoom } from 'react-toastify';
 
 import ContestPage from './Screens/ContestPage';
 import Transactions from './Screens/Transactions';
+import PhotoUploader from './Dataaa';
 // UpComing_Contest
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
 
       <Routes>
 
+        {/* <Route exact path='/' element={<PhotoUploader/>} /> */}
         <Route exact path='/' element={<Home/>} />
         <Route path='/Login' element={!loginSelector?<Login/>:<Home />} />
         <Route path='/Register' element={!loginSelector?<Register />:<Home />} />

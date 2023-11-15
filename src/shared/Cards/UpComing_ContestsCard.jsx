@@ -6,7 +6,7 @@ import { toast} from 'react-toastify';
 
 
 const UpComing_ContestsCard= (item) => {
-  // console.error("sdds>>>>>>>>",Keys)
+ 
 
   if(item.iteam.is_joined)
   {
@@ -63,7 +63,9 @@ const UpComing_ContestsCard= (item) => {
     }
     return (
       
-        <div>{item.is_joined ?"":<div className="card123 shadow mt-3">
+        <div>{item.is_joined ?"":<div className="card123 shadow mt-3" 
+        style={{ background: "linear-gradient(135deg, #F1B94F,#CE7E1C, #8C440A, #592401,#1B0801)" }}
+        >
         <div className='border rounded border-5 '>
             <div className='imgbox py-3 ps-4' >
                 <span><b>Id: </b>{item._id}</span><br />

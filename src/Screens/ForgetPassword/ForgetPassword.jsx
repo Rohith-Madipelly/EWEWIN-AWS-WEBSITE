@@ -72,7 +72,7 @@ function ForgetPassword() {
   };
 
   return (
-    <div className='Login py-5'>
+    <div className='Login py-5 screenPage vh-100 mt-0'>
       {isLoading && <Loader />}
 
       <section className="vh-50 gradient-custom mt-5 hover12">

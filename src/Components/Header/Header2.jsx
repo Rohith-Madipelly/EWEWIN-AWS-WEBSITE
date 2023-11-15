@@ -62,8 +62,29 @@ function Header() {
     localStorage.removeItem('token');
   };
 
+  const HomeClick = () => {
+    // Scroll to a specific height (e.g., 500 pixels from the top)
+    window.scrollTo(0, 0);
+  };
 
+  const NextContest = () => {
+    // Scroll to a specific height (e.g., 500 pixels from the top)
+    window.scrollTo(0, 600);
+  };
 
+  const PriceMoney = () => {
+    // Scroll to a specific height (e.g., 500 pixels from the top)
+    window.scrollTo(0, 900);
+  };
+  const WinnersList = () => {
+    // Scroll to a specific height (e.g., 500 pixels from the top)
+    window.scrollTo(0, 1300);
+  };
+
+  const FAQS = () => {
+    // Scroll to a specific height (e.g., 500 pixels from the top)
+    window.scrollTo(0, 2200);
+  };
   return (
     <div className='fixed-top Header  header2'>
       <nav className=''>
@@ -77,33 +98,33 @@ function Header() {
             <Toolbar disableGutters>
               
               {isHomePage == true ? <div><Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} id="main-header">
-                <Button href="#HomeTop" to="/"
-                  onClick={handleCloseNavMenu}
+                <Button onClick={HomeClick} to="/"
+                 
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b> Home</b>
                 </Button>
 
-                <Button href="#nextContest"
-                  onClick={handleCloseNavMenu}
+                <Button
+                  onClick={NextContest}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b>Next Contest</b>
                 </Button>
 
-                <Button href="#PriceMoney"
-                  onClick={handleCloseNavMenu}
+                <Button
+                  onClick={PriceMoney}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b>Price Money</b>
                 </Button>
 
 
-                <Button href="#WinnersList"
-                  onClick={handleCloseNavMenu}
+                <Button
+                  onClick={WinnersList}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b>Winners List </b>
                 </Button>
 
-                <Button href="#FAQ"
-                  onClick={handleCloseNavMenu}
+                <Button 
+                  onClick={FAQS}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   <b>FAQ </b>
                 </Button>

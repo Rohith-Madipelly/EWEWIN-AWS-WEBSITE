@@ -138,11 +138,11 @@ function Login() {
 
 
   return (
-    <div className='Login screenPage'>
+    <div className='Login screenPage mt-0 vh-100'>
       {isLoading && <Loader />}
-      <section className="vh-50 gradient-custom mt-5 hover12">
+      <section className=" gradient-custom mt-5 hover12">
         <div className="container py-5 ">
-          <div className="row d-flex justify-content-center align-items-center">
+          <div className="row d-flex justify-content-center align-items-center">  
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
               <div className=' pt-5'>
                 <div className="card bg-coustm text-dark" style={{ borderRadius: "0rem" }}>

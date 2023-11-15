@@ -51,7 +51,9 @@ const data = {
 
 const styles = {
     // bgColor: 'white',
-    bgColor: '#efedee',
+    bgColor: 'rgba(255, 255, 255, 0)',
+    // bgColor: '#efedee',
+    // bgColor:trasparent
     // background-color: #efedee,
     titleTextColor: "black",
     rowTitleColor: "black",

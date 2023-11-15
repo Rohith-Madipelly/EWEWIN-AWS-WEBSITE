@@ -441,7 +441,7 @@ const ProfileUpdate = () => {
     }, []);
 
     return (
-        <section className='container py-2 marginTopper-80'>
+        <section className='container py-2 marginTopper-80 '>
             {isLoading && <Loader />}
 
             <h1 className='profileHeading'>Profile Page</h1>

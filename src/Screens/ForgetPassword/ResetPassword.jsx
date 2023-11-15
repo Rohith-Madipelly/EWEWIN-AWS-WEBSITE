@@ -147,10 +147,10 @@ console.error("username:>",email, otp, newpassword)
 
 
   return (
-    <div className='Login py-5'>
+    <div className='Login py-5 screenPage vh-100 mt-1'>
       {isLoading && <Loader />}
 
-      <section className="vh-50 gradient-custom hover12">
+      <section className="mt-5 gradient-custom hover12">
         <div className="container ">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">

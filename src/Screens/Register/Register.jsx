@@ -320,7 +320,7 @@ function Register() {
 
 
     return (
-        <div className='Register py-3'>
+        <div className='Register screenPage pt-3 vh-100'>
             {isLoading && <Loader />}
 
             <section className="">

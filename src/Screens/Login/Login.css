@@ -24,3 +24,12 @@ background:linear-gradient(135deg, #645a5a, #6c5050) */
 body{
     background-color: #efedee;
 }
+
+.screenPage
+{
+    background-image:url('src/assets/bglogin.jpg') ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+
+}

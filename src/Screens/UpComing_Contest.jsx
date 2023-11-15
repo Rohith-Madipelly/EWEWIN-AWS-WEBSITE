@@ -80,7 +80,9 @@ const UpComing_ContestPage = () => {
     }, []);
 
     return (
-        <section className='container py-2 marginTopper-80'>
+        <section className='container py-2 marginTopper-80 ' 
+        // style={{ background: "linear-gradient(135deg, #F1B94F,#CE7E1C, #8C440A, #592401,#1B0801)" }}
+        >
              
             <div className='row'>
  
