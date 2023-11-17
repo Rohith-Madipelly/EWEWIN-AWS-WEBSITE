@@ -79,7 +79,7 @@ function PriceMoneyPage() {
                 <h5 className="text-dark">Install EZEWIN App on</h5>
                 <div className="downloadApp w-100">
                   <div className="oneApp">
-                    <a href="https://www.appcracy.com/category/app/" target='_blank' tabIndex="0"><img class="bn45" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="bn45" /></a>
+                    <a href="https://play.google.com/" target='_blank' tabIndex="0"><img class="bn45" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="bn45" /></a>
                     <a href="https://www.apple.com/app-store/" target='_blank' tabIndex="0"><img class="bn46" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="bn45" /></a>
                   </div>
                 </div>

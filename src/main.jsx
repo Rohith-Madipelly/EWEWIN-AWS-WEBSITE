@@ -8,26 +8,28 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { store } from './redux/store';
 import Header1 from './Components/Header/Header2';
-import YourComponent from './YourComponent.jsx';
 
+import DataChecker from './DataChecker'
 
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  <Provider store={store}>
-  
-     <BrowserRouter>
+    <Provider store={store}>
+      
+
+
+      <BrowserRouter>
         <Header1/>
      
         <App/>
 
        
       </BrowserRouter>
-    
-    
-     </Provider>
 
 
-    </React.StrictMode>,
+    </Provider>
+
+
+  </React.StrictMode>,
 )

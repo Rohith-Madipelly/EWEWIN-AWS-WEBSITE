@@ -198,8 +198,8 @@ console.error("username:>",email, otp, newpassword)
                               id="outlined-password-input"
                               className='my-2 formobject'
                               type={showPassword ? 'text' : 'password'}
-                              label="UserPassword"
-                              placeholder="UserPassword"
+                              label="User Password"
+                              placeholder="User Password"
                               value={newpassword}
                               onChange={(e) => setNewPassword(e.target.value)}
                               error={errorpassword !== null}

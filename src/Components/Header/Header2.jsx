@@ -145,7 +145,7 @@ function Header() {
                   <MenuItem as={NavLink} to="/Profile"
                     onClick={handleCloseNavMenu}
                     sx={{ my: 2, color: "white", display: "block" }}>
-                    <CgProfile size={25} /> Profile
+                    <b><CgProfile size={25} /> Profile</b>
                   </MenuItem> : ""}
 
                   

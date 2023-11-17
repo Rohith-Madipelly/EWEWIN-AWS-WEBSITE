@@ -83,7 +83,7 @@ function ForgetPassword() {
                 <div className="card-body pt-5 text-center">
                   <div className="t-4 pb-4">
                     <h2 className="fw-bold mb-2 text-uppercase text-dark">EZEWIN</h2>
-                    <p className="text-dark-50 mb-1">ForgetPassword ?</p>
+                    <p className="text-dark-50 mb-1">Forget Password ?</p>
 
                     <div className="form-outline form-white my-3">
                       <div className="mb-2">

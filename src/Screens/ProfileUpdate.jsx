@@ -49,6 +49,17 @@ const ProfileUpdate = () => {
     const handleMouseDownConfirmPassword = (event) => {
         event.preventDefault();
     }
+    const addwalletMethod=(event)=>{
+        const inputValue = event.target.value;
+
+        if (inputValue.startsWith('0')||inputValue.includes('+')||inputValue.includes('-')||inputValue.includes('.')) {
+          return;
+        }
+   
+  
+
+        // setAddWallet(inputValue)
+    }
     //Profile api
     const [id, setId] = useState("**********");
     const [Name, setName] = useState("**********");
@@ -518,7 +529,19 @@ const ProfileUpdate = () => {
                                                         required size="small" />
                                                         </div> */}
                                                     {/* <span>₹ Enter recharge amount</span> */}
-                                                    <div><input type='number' placeholder='₹ Enter recharge amount' value={addwallet} onChange={(e) => setAddWallet(e.target.value)} /></div>
+                                                    <div>
+                                                        {/* <input type='text' placeholder='₹ Enter recharge amount' value={addwallet} onChange={(e) => {addwalletMethod(e)}} /> */}
+                                                    <TextField
+                                                        id="outlined-phone-input"
+                                                        className='my-1 formobject text-white'
+                                                        label="₹ Enter recharge amount"
+                                                        placeholder="₹ Enter recharge amount"
+                                                        value={addwallet}
+                                                        onChange={(e) => {addwalletMethod(e)}}
+                                                        error={erroraddwallet !== null}
+                                                        helperText={erroraddwallet}
+                                                        required size="small" />
+                                                    </div>
                                                     {/* <TextField
                                                         id="outlined-phone-input"
                                                         className='my-1 formobject text-white'
