@@ -460,6 +460,11 @@ function Register() {
                                                         error={errorgender !== null}
                                                         helperText={errorgender}
                                                         required
+                                                        sx={{
+                                                            "& .MuiInputLabel-root": { textAlign: "left" },
+                                                            "& .MuiSelect-root": { textAlign: "left" },
+                                                            "& .MuiSelect-select": { textAlign: "left" },
+                                                        }}
                                                     >
 
                                                         <MenuItem value="Male">

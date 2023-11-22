@@ -28,7 +28,7 @@ function HeroSection() {
                                     "We Make dreams come true"
                                 </p>
                                 <div></div>
-                                <Link to="/Register"><button class="bn632-hover bn20 ms-auto pok">Get Started!</button></Link>
+                                <Link to="/Contests"><button class="bn632-hover bn20 ms-auto pok">Get Started !</button></Link>
                             </div></div>
                     </div>
 
