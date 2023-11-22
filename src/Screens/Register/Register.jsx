@@ -266,7 +266,7 @@ function Register() {
 
                     // setErrorMessage('User is already registered. Please Login ...');
                 } else if (error.response.status === 401) {
-                    toast.error('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.', { position: toast.POSITION.TOP_CENTER })
+                    toast.error(error.response.data.message, { position: toast.POSITION.TOP_CENTER })
 
                     // setErrorMessage('Please Enter Password must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.');
                 } else if (error.response.status === 409) {
@@ -309,7 +309,7 @@ function Register() {
                     setTerms("")
                 }
                 setBtnDisabled(false);
-                navigate('/Register');
+                // navigate('/Register');
             }, 1000);
 
         }

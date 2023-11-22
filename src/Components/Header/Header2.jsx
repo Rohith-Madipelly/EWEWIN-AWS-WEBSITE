@@ -152,7 +152,7 @@ function Header() {
 
                   
 
-                <Button className='p-0'
+                <Button className='p-1'
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}>
                   {loginSelector ? <NavLink className="navlogsty" onClick={handleLogout} to="/"><RiLogoutBoxLine size={25} /> Log Out </NavLink> : <span className='bn632-hover bn19 px-3 py-2'>

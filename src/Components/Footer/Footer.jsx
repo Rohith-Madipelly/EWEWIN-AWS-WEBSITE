@@ -15,7 +15,7 @@ function Footer() {
         event.preventDefault();
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
             // setErrorMessage("Please enter valid email address.");
-            toast.error('Please enter valid email address.', { position: toast.POSITION.TOP_CENTER })
+            // toast.error('Please enter valid email address.', { position: toast.POSITION.TOP_CENTER })
 
             return false;
         }
@@ -38,7 +38,11 @@ function Footer() {
 
                 if (error.response.status === 409) {
                     toast.error(error.response.data.message, { position: toast.POSITION.TOP_CENTER })
-                } else {
+                }
+                else if(error.response.status === 401){
+                    toast.error(error.response.data.message, { position: toast.POSITION.TOP_CENTER })
+                }
+                 else {
                     toast.error('An error occurred .', { position: toast.POSITION.TOP_CENTER })
                 }
             } else if (error.request) {
@@ -59,7 +63,7 @@ function Footer() {
                 <div className="Newsletter">
                     <div className="headline">
                         <h2 className='text-white'>Our Newsletter</h2>
-                        <p className='centerr  text-white'>Get in touch with us to raise a query regarding the service you need with a easy call. Every customer is served with great attention and priority time.</p>
+                        <p className='ms-4 text-white'>Get in touch with us to raise a query regarding the service you need with a easy call. Every customer is served with great attention and priority time.</p>
                     </div>
                 </div>
                 <div className="subscribe centerr my-2">

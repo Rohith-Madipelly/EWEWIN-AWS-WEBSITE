@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { ToastContainer } from 'react-toastify';
 
 import { lazy, Suspense } from 'react';
 
@@ -24,7 +23,7 @@ function Home() {
       <FAQSection />
       <Footer />
       <ArrowBackToTopButton />
-      <ToastContainer></ToastContainer>
+
     </>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import './Components/Button.css'
 import { useRef } from 'react';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -10,7 +11,7 @@ import { store } from './redux/store';
 import Header1 from './Components/Header/Header2';
 
 import DataChecker from './DataChecker'
-
+// import './'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -47,6 +47,10 @@ export const Mycoming_contestAPI = async (token) => {
 };
 
 
+export const SettingAPI = async () => {
+  const formData = new FormData();
+  return await axios.post(`${GUEST_URL}/setting`,formData)
+};
 
 
 

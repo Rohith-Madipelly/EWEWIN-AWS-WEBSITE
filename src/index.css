@@ -22,7 +22,14 @@ body {
 /* .card{
   background-color: rgba(150, 135, 135, 0.09);
 } */
+.screenPage
+{
+    background-image:url('src/assets/bglogin.jpg') ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
 
+}
 a{
   text-decoration: none; 
 

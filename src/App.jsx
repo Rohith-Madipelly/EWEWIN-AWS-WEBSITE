@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React,{ lazy, Suspense }  from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer, Zoom } from 'react-toastify';
 
 
 
@@ -29,7 +29,7 @@ const SupportPage = lazy(() => import('./Screens/SupportPage'));
 const ResetPassword = lazy(() => import('./Screens/ForgetPassword/ResetPassword'));
 const ProfileUpdate = lazy(() => import('./Screens/ProfileUpdate'));
 const ContestPage = lazy(() => import('./Screens/ContestPage'));
-const Transactions = lazy(() => import('./Screens/Transactions'));
+const Transactions = lazy(() => import('./Screens/Transactions')); 
 const UpComing_Contest = lazy(() => import('./Screens/UpComing_Contest'));
 const VerifyOtp = lazy(() => import('./Screens/VerifyOtp'));
 
@@ -38,6 +38,7 @@ function App() {
   const loginSelector = useSelector((state) => state.isLogin);
   return (
     <div className="App">
+
       <Suspense fallback={<LoadingFallback/>}>
         <Routes>
           <Route exact path='/' element={<Home />} />
@@ -60,8 +61,8 @@ function App() {
           <Route path='*' element={<NotFoundPage />} /> 
         </Routes>
       </Suspense>
-
       <ToastContainer></ToastContainer>
+      
     </div>
   );
 }
