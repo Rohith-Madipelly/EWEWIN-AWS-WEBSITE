@@ -6,9 +6,12 @@ const initialState = {
 };
 
 const loginReducer = (state = initialState, action) => {
+  
   switch (action.type) {
     case "SET_TOKEN":
-      sessionStorage.setItem("token", action.token);
+      // sessionStorage.setItem("token", action.token);
+      localStorage.setItem('token', action.token);
+
       return {
         ...state,
         token: action.token,

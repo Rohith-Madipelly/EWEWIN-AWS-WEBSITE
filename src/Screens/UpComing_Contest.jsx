@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './nav.css';
 import './newButton.css'
 import { upcoming_contestAPI, Mycoming_contestAPI } from '../Services2/ApiCalls'
+import { onTop} from '../Services2/commonService'
 
 
 import UpComing_ContestsCard from '../shared/Cards/UpComing_ContestsCard';
@@ -77,6 +78,7 @@ const UpComing_ContestPage = () => {
     }
 
     useEffect(() => {
+        onTop()
         upcoming_contest()
         mycoming_contest()
     }, []);

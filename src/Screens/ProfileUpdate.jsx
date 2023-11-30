@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import MenuItem from '@mui/material/MenuItem';
 import './newButton.css'
 import { UserGetProfileDetails, UpdatePasswordAPI, UpdateProfileAPI, transactionsAPI } from '../Services2/ApiCalls'
+import { onTop} from '../Services2/commonService'
+
 import TextField from '@mui/material/TextField';
 import { BsCurrencyRupee } from "react-icons/bs";
 
@@ -142,6 +144,7 @@ const ProfileUpdate = () => {
     };
 
     useEffect(() => {
+
         setUpdatedName(Name)
         setUpdatedEmail(Email)
         setUpdatedPhone_Number(Phone_Number)
@@ -447,6 +450,7 @@ const ProfileUpdate = () => {
                 console.error("Error in api ", error)
             }
         }
+        onTop()
         userData()
 
     }, []);

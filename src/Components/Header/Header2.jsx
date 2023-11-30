@@ -76,6 +76,11 @@ function Header() {
             
             <Toolbar disableGutters>
               
+             
+
+              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+
+                
               {isHomePage == true ? <div><Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }} id="main-header">
                 <MenuItem onClick={HomeClick} to="/"
                  
@@ -124,14 +129,6 @@ function Header() {
               //   </Button>
               // </Box>
               }
-
-
-
-
-{/* Contests */}
-
-              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-
               {loginSelector ?
                   <MenuItem as={NavLink} to="/Contests"
                     onClick={handleCloseNavMenu}

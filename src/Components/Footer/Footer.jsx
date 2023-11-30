@@ -4,9 +4,10 @@ import { BiCopyright } from 'react-icons/bi'
 import { IoIosArrowForward } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { toast } from 'react-toastify';
+
 import { SubscribeAPI } from '../../Services2/ApiCalls'
 import { HomeClick, NextContest, PriceMoney, WinnersList, FAQS } from '../../shared/Navigations/Navigations'
+import { toast, ToastContainer, Zoom } from 'react-toastify';
 
 
 function Footer() {
@@ -14,8 +15,7 @@ function Footer() {
     const handleSubscribe = async (event) => {
         event.preventDefault();
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-            // setErrorMessage("Please enter valid email address.");
-            // toast.error('Please enter valid email address.', { position: toast.POSITION.TOP_CENTER })
+
 
             return false;
         }
@@ -26,7 +26,10 @@ function Footer() {
         try {
             const responsed = await SubscribeAPI(email);
             if (responsed) {
+               
                 toast.success(`Thank You for ${responsed.data.msg} `, { position: toast.POSITION.TOP_CENTER })
+      
+
                 setEmail("")
             }
             else {
@@ -144,10 +147,13 @@ function Footer() {
                     </div>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
+
             <div className="copyRight pt-2">
                 <p className='text-white'><BiCopyright /> Copyright Ezewin. All Rights Reserved</p>
             </div>
+          
         </footer>
     )
 }
-export default Footer;
+export default Footer; 

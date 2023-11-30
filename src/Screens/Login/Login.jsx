@@ -71,22 +71,16 @@ function Login() {
     setErrorMessage(null);
 
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-      // toast.error('Please enter valid email address.', { position: toast.POSITION.TOP_CENTER })
       setEmailError("Please enter valid email address.*")
-      // setErrorMessage("Please enter valid email address.");
       return false;
     }
     else {
-      // setEmail(email.toLowerCase());
       setEmailError(null)
-
     }
 
 
     if (!password) {
-      // toast.error('Please enter your Password.', { position: toast.POSITION.TOP_CENTER })
       setPasswordError('Please enter your Password.')
-      // setErrorMessage("Please enter your Password.");
       return false;
     }
     else {
@@ -98,15 +92,17 @@ function Login() {
       const responsed = await UserLoginApi(email, password);
       if (responsed) {
         setIsLoading(false)
-        localStorage.setItem('token', responsed.data.Token);
+
+        // localStorage.setItem('token', responsed.data.Token);
+        
         toast.success(responsed.data.message, { position: toast.POSITION.TOP_CENTER, autoClose: 800, })
 
         dispatch(setToken(responsed.data.Token));
-        console.error("login Res", responsed)
+        
         setEmailError(null)
         setPasswordError(null)
 
-        // setIsLoading(false)
+
         setTimeout(() => {
           navigate('/Contests');
         }, 3000);

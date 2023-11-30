@@ -95,7 +95,7 @@ function LPattern2() {
     <div className='TimerPage' id='nextContest'>
 
       <div className='w-100 TimerL2 hellodd gridSetting'>
-        <div className=''>
+        <div className='Indexerr'>
           <h2 className='mb-3'>Get Ready To Win in</h2>
           <Fade> <FlipClockCountdown
 
@@ -114,7 +114,7 @@ function LPattern2() {
 
       <div className='TimerGrid-2 gridSetting'>
         {/* <img src="src/assets/img/Timer.png" alt="no logo" className='TimerImg' /> */}
-        <img src="src/assets/img/TimerDanceing.gif" alt="no logo" className='TimerImg' style={{ width: "380px" }} />
+        <img src="src/assets/img/TimerDanceing.gif" alt="no logo" className='TimerImg' />
 
       </div>
 

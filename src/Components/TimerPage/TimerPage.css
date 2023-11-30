@@ -16,7 +16,11 @@
 }
 
 
-
+.TimerImg{
+ 
+  
+  width: 360px!important;
+}
 /* Page Started Here ----- */
 
 
@@ -44,11 +48,18 @@
   @media (min-width: 768px) and (max-width: 991px) {
 
   }
-  
+  .Indexerr
+  {
+    z-index: 2;
+  }
 
   @media (max-width: 575px) {
-
-
+  
+    .TimerImg{
+ 
+  
+      width: 160px!important;
+    }
     /* CSS styles for mobile phones in portrait orientation */
     .TimerPage{
       display: grid;

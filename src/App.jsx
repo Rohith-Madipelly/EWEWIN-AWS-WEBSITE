@@ -4,7 +4,7 @@ import React,{ lazy, Suspense }  from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { toast, ToastContainer, Zoom } from 'react-toastify';
-
+import "react-toastify/dist/ReactToastify.min.css";
 
 
 const Loader = lazy(() => import('./shared/Loader/Loader'));
@@ -15,6 +15,7 @@ const LoadingFallback = () => <Loader/>;
 
 
 //Page Route
+// import Home from './Screens/Home';
 const Home = lazy(() => import('./Screens/Home'));
 const Login = lazy(() => import('./Screens/Login/Login'));
 const Register = lazy(() => import('./Screens/Register/Register'));
@@ -59,6 +60,8 @@ function App() {
           <Route path='/PrivacyPolicy' element={<PrivacyPolicy />} />
           <Route path='/Support' element={<SupportPage />} />
           <Route path='*' element={<NotFoundPage />} /> 
+      
+
         </Routes>
       </Suspense>
       <ToastContainer></ToastContainer>

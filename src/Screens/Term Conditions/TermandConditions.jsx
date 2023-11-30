@@ -30,10 +30,10 @@ function TermandConditions() {
   return (
 
 
-    <div className='mt-0 screenPage vh-100'>
+    <div className=' screenPage vh-100' style={{ marginTop: "-4px" }}>
 
       <div className='container' style={{ marginTop: "90px" }}>
-        <h1 className='text-dark'><b>Privacy Policy</b></h1>
+        <h1 className='text-dark'><b>Term and Conditions</b></h1>
 
         <div className='m-4'>
           <b>{Data ? <div style={{ color: "black" }}>{parse(Data)}</div> : <div>Are updating the data</div>}</b>
