@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 
 import { RAZORPAY_KEY, RAZORPAY_URL } from "../../Enviornment";
 import { useNavigate } from "react-router-dom";
-import { verifySignatureApi, createOrder } from '../../Services2/ApiCalls'
-// import {sdf} from '../../../public/Logo4.png'
-const PaymentScreen = ({ price2,btnDisabledP }) => {
+import { verifySignatureApi, createOrder } from '../../Services/ApiCalls'
+
+const PaymentScreen = ({ price2,btnDisabledP}) => {
 
   const navigate = useNavigate();
   const [formError, setFormError] = useState("");
@@ -131,7 +131,7 @@ console.error(error)
     <div>
        {/* {toast.error(formError, { position: toast.POSITION.TOP_CENTER })} */}
 
-      <button className='btn btn-outline-danger' data-bs-dismiss="modal"   onClick={() => payMoney({price2})}><b>Add Now {price2}</b></button>
+      <button className='btn btn-outline-danger' data-bs-dismiss="modal"   onClick={() => payMoney({price2})} disabled={btnDisabledP}><b>Add Now {price2}</b></button>
     </div>
   )
 }

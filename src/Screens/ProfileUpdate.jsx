@@ -6,19 +6,21 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import MenuItem from '@mui/material/MenuItem';
 import './newButton.css'
-import { UserGetProfileDetails, UpdatePasswordAPI, UpdateProfileAPI, transactionsAPI } from '../Services2/ApiCalls'
-import { onTop} from '../Services2/commonService'
+import { UserGetProfileDetails, UpdatePasswordAPI, UpdateProfileAPI, transactionsAPI } from '../Services/ApiCalls'
+import { onTop } from '../Services/commonService'
 
 import TextField from '@mui/material/TextField';
 import { BsCurrencyRupee } from "react-icons/bs";
 
+import { FaCamera } from "react-icons/fa";
 
 
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 
 import { setToken } from '../redux/actions/loginAction';
 import { useDispatch } from "react-redux";
-import { Button } from 'bootstrap';
+
+
 import PaymentScreen from './PaymentScreen/NewPaymentMethod';
 import Loader from '../shared/Loader/Loader';
 
@@ -33,8 +35,13 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
+import { Asset_Path } from '../Enviornment'
 
 const ProfileUpdate = () => {
+
+
+    // const [ProfileimageSrc, setImageSrc] = useState('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
+
     const [isLoading, setIsLoading] = useState(false);
 
     const [showPassword, setShowPassword] = useState(false);
@@ -51,31 +58,19 @@ const ProfileUpdate = () => {
     const handleMouseDownConfirmPassword = (event) => {
         event.preventDefault();
     }
-    const addwalletMethod=(event)=>{
-        const inputValue = event.target.value;
 
-        if (inputValue.startsWith('0')||inputValue.includes('+')||inputValue.includes('-')||inputValue.includes('.')) {
-          return;
-        }
-   
-  
-
-        // setAddWallet(inputValue)
-    }
     //Profile api
-    const [id, setId] = useState("**********");
-    const [Name, setName] = useState("**********");
-    const [Email, setEmail] = useState("****************");
-    const [Phone_Number, setPhone_Number] = useState("**********");
-    const [Gender, setGender] = useState("******");
-    const [wallet, setWallet] = useState("**");
-
+    const [id, setId] = useState("");
+    const [Name, setName] = useState("");
+    const [Email, setEmail] = useState("");
+    const [Phone_Number, setPhone_Number] = useState("");
+    const [Gender, setGender] = useState("");
+    const [wallet, setWallet] = useState("");
     const [Address, setAddress] = useState("");
+
     const [Profile, setProfile] = useState(null);
 
     const [btnDisabledPay, setBtnDisabledPay] = useState(false)
-
-
     const [addwallet, setAddWallet] = useState();
     const [erroraddwallet, setErrorAddWallet] = useState(null);
 
@@ -89,10 +84,16 @@ const ProfileUpdate = () => {
 
             return;
         }
-        if (input.length < 1) {
-            setErrorAddWallet("You must enter at least 1 digit");
+        if (input.startsWith('0')) {
+            setErrorMessage("Amount cannot start with '00'");
+            return;
 
         }
+        // if (input.length < 1) {
+        //     setBtnDisabledPay(true)
+        //     setErrorAddWallet("You must enter at least 1 digit");
+
+        // }
         if (input.length > 10) {
             setErrorAddWallet("You can enter only 10 digits");
 
@@ -100,7 +101,7 @@ const ProfileUpdate = () => {
 
         }
         else {
-            setErrorAddWallet("");
+            setErrorAddWallet(null);
 
         }
 
@@ -139,9 +140,7 @@ const ProfileUpdate = () => {
     // const [selectedFile, setSelectedFile] = useState(null);
 
 
-    const handleFileChange = (e) => {
-        setUpdatedProfilePic(e.target.files[0]);
-    };
+
 
     useEffect(() => {
 
@@ -430,7 +429,6 @@ const ProfileUpdate = () => {
 
                     if (userData.address === undefined) {
                         setAddress("Pending ...")
-
                     }
                     else {
                         setAddress(userData.address)
@@ -455,76 +453,123 @@ const ProfileUpdate = () => {
 
     }, []);
 
+
+
+
+    const handleFileChange = (e) => {
+        setUpdatedProfilePic(e.target.files[0]);
+        console.error("adsda>>222",e.target.files[0])
+        console.error("adsda>>333",UpdatedProfilePic)
+
+    };
+
+    const handleFileChange2 = async (e) => {
+        const file = e.target.files[0];
+        setUpdatedProfilePic(e.target.files[0]);
+        console.error("adsda>Pink>",UpdatedProfilePic)
+
+        // UpdateProfile();
+    };
+
+    const handleUploadButtonClick = () => {
+        document.getElementById('fileInput').click();
+        // This will open the file manager to select the pic for input >>type >file
+    };
+
     return (
-        <div className='screenPage mt-0 vh-100'>
-        <section className='container py-2 marginTopper-80 '>
-            {isLoading && <Loader />}
+        <div className='screenPage mt-0 '>
+            <section className='container py-2 marginTopper-80 '>
+                {isLoading && <Loader />}
 
-            <h1 className='profileHeading'>Profile Page</h1>
+                <h1 className='profileHeading'>Profile Page</h1>
 
-            <div className='row'>
-                {/* col first-left */}
-                <div className='col-sm-12 col-md-3'>
-                    <div className='card pt-4 pb-2'>
-                        <div className='profileCard text-center'>
-                            {Gender === "Female" ? <img
-                                src={Profile}
-                                alt='profilePic'
-                                className='rounded-circle img-fluid'
-                                style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
-                                onError={(e) => {
-                                    e.target.src = 'src/assets/img/ProfileFemale.png';
-                                }}
-                            /> : Gender === 'Male' ? <img
-                                src={Profile}   //MzFfMTY5ODQyODY2NzgxOF8zNjQ=.jpeg
-                                alt='profilePic'
-                                className='rounded-pill img-fluid'
-                                style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
-                                onError={(e) => {
-                                    e.target.src = 'src/assets/img/ProfileMale.jpg';
-                                }}
-                            /> : <div><img
-                                src={Name}
-                                alt='profilePic'
-                                className='rounded-circle img-fluid'
-                                style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
-                            /></div>}
+                <div className='row'>
+                    {/* col first-left */}
+                    <div className='col-sm-12 col-md-3'>
+                        <div className='card pt-4 pb-2'>
+                            <div className='profileCard text-center'>
+                                {/* <ProfilePictureUpload/> */}
 
-                            {/* <div className='' >
-                                <img
-                                    src={Profile}
+                                {/* // Profile Section */}
+                                <div className='Pic-Section mx-auto'>
+
+                                    <div className="circle">
+                                        <img className="profile-pic " src={Asset_Path + Profile} alt="Profile" onClick={handleUploadButtonClick}
+                                            onError={(e) => {
+                                                e.target.src = 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg';
+                                            }} />
+                                    </div>
+
+                                    <div className="p-image">
+                                        
+                                {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <FaCamera className="upload-button" onClick={handleUploadButtonClick} /> }
+
+                                        {/* <FaCamera className="upload-button" onClick={handleUploadButtonClick} /> */}
+                                        <input
+                                            id="fileInput"
+                                            className="file-upload"
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={handleFileChange2}
+                                        />
+                                    </div>
+
+                                </div>
+
+
+
+                                {/* {Gender === "Female" ? <img
+                                    src={Asset_Path + Profile}
                                     alt='profilePic'
-                                    className='img-fluid profilePic'
+                                    className='rounded-circle img-fluid'
                                     style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
-                                />
-                            </div> */}
-                            <div></div>
+                                    onError={(e) => {
+                                        e.target.src = 'src/assets/img/ProfileFemale.png';
+                                    }}
 
-                            {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <div className="d-flex flex-column mx-2"><input type="file" accept="image/*" className='mx-5 btn btn-primary' onChange={handleFileChange} />
+                                /> : Gender === 'Male' ? <img
+                                    src={Asset_Path + Profile}
+                                    alt='profilePic'
+                                    className='rounded-pill img-fluid'
+                                    style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
+                                    onError={(e) => {
+                                        e.target.src = 'src/assets/img/ProfileMale.jpg';
+                                    }}
+                                /> : <div><img
+                                    src={Asset_Path + Profile}
+                                    alt='profilePic'
+                                    className='rounded-circle img-fluid'
+                                    style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
+                                /></div>} */}
 
-                                <div className='my-1'></div>
-                                <button onClick={UpdateProfile} className='w-75 mx-5'>Upload Profile Picture</button></div>}
+                                <div></div>
+
+                                {
+                                !editProfile ? <diV className="d-flex justify-content-center"></diV> : <div className="d-flex flex-column mx-2">
+
+                                    
+                                    <button onClick={UpdateProfile} className='w-25 mx-auto'>Save</button></div>}
 
 
-                            <div className='data mt-2'>
-                                <h4 className='my-1'><b>{Name}</b></h4>
-                                {/* <p className='mb-1'>{id}</p> */}
-                                <h5 className='mb-4 '><b>Wallet Amount : <BsCurrencyRupee size={22} />{wallet}</b></h5>
+                                <div className='data mt-2'>
+                                    <h4 className='my-1'><b>{Name}</b></h4>
+                                    {/* <p className='mb-1'>{id}</p> */}
+                                    <h5 className='mb-4 '><b>Wallet Amount : <BsCurrencyRupee size={22} />{wallet}</b></h5>
 
-                                <button type="button" class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Money</button>
+                                    <button type="button" class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Money</button>
 
-                                <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog ">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel"><b>Ezewin Wallet Balance</b></h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body d-flex justify-content-center me-3">
+                                    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog ">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel"><b>Ezewin Wallet Balance</b></h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body d-flex justify-content-center me-3">
 
-                                                <div> <h4><b>Balance</b></h4>
-                                                    <div><h2><BsCurrencyRupee size={45} /><b  >{wallet}</b></h2></div>
-                                                    {/* <div><TextField
+                                                    <div> <h4><b>Balance</b></h4>
+                                                        <div><h2><BsCurrencyRupee size={45} /><b  >{wallet}</b></h2></div>
+                                                        {/* <div><TextField
                                                         id="outlined-Name-input"
                                                         value=""
                                                         error={erroruserName !== null}
@@ -532,157 +577,151 @@ const ProfileUpdate = () => {
                                                         onChange={(e) => handleInputOnlyNumbersPay(e)}
                                                         required size="small" />
                                                         </div> */}
-                                                    {/* <span>₹ Enter recharge amount</span> */}
-                                                    <div>
-                                                        {/* <input type='text' placeholder='₹ Enter recharge amount' value={addwallet} onChange={(e) => {addwalletMethod(e)}} /> */}
-                                                    <TextField
-                                                        id="outlined-phone-input"
-                                                        className='my-1 formobject text-white'
-                                                        label="₹ Enter recharge amount"
-                                                        placeholder="₹ Enter recharge amount"
-                                                        value={addwallet}
-                                                        onChange={(e) => {addwalletMethod(e)}}
-                                                        error={erroraddwallet !== null}
-                                                        helperText={erroraddwallet}
-                                                        required size="small" />
+                                                        {/* <span>₹ Enter recharge amount</span> */}
+                                                        <div>
+                                                            {/* <input type='text' placeholder='₹ Enter recharge amount' value={addwallet} onChange={(e) => {addwalletMethod(e)}} /> */}
+                                                            <TextField
+                                                                id="outlined-phone-input"
+                                                                className='my-1 formobject text-white'
+                                                                label="₹ Enter recharge amount"
+                                                                placeholder="₹ Enter recharge amount"
+                                                                value={addwallet}
+                                                                onChange={(e) => { walletPoints(e) }}
+                                                                error={erroraddwallet !== null}
+                                                                helperText={erroraddwallet}
+                                                                required size="small" />
+
+                                                        </div>
+
+
+
+
+
                                                     </div>
-                                                    {/* <TextField
-                                                        id="outlined-phone-input"
-                                                        className='my-1 formobject text-white'
-                                                        label="Mobile number"
-                                                        placeholder="Mobile number"
-                                                        value={addwallet}
-                                                        onChange={(e) => walletPoints(e)}
-                                                        error={erroraddwallet !== null}
-                                                        helperText={erroraddwallet}
-                                                        required size="small" /> */}
+
+
                                                 </div>
+                                                <div class="modal-footer">
 
+                                                    <PaymentScreen price2={addwallet} btnDisabledP={btnDisabledPay} />
 
-                                            </div>
-                                            <div class="modal-footer">
-                                                {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
-                                                {/* <button type="button" class="btn btn-primary">Send message</button> */}
-
-                                                <PaymentScreen price2={addwallet} btnDisabledP={btnDisabledPay} />
-
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
+
+
+                                    {/* <PaymentScreen price2={90} /> */}
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div className='card mt-2 p-3'>
+                            {/* transactionsAPI  */}
+                            <Link to="/Transactions"><b> Click Here to view Transactions  </b></Link>
+                        </div>
+
+                    </div>
+                    <div className="col col-md-6 col-sm-12">
+                        <div className='card'>
+                            {/* <div className='float-left'>Edit Profile</div> */}
+                            {/* {editProfile ? <div>edit now here </div> : <div>false</div>} */}
+                            <div className='m-2'>
+
+                                {/* <button type="button" class="btn btn-primary d-flex justify-content-end" onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>close</b>}</button> */}
+
+                                <div className="row ms-1 mt-3">
+                                    <div className="col-3">
+                                        <strong>Full Name</strong>
+                                    </div>
+                                    <div className="col-6">
+                                        {!editProfile ? <diV>{Name}</diV> : <TextField
+                                            id="outlined-Name-input"
+                                            className=''
+                                            // label="Name as per Aadhaar card"
+                                            // placeholder="Name as per Aadhaar card"
+                                            value={UpdatedName}
+                                            error={erroruserName !== null}
+                                            helperText={erroruserName}
+                                            onChange={(e) => handleInputOnlyAlphabets(e)}
+                                            required size="small" />}
+                                    </div>
+                                    <div className='col-3'>
+                                        <button type="button" className={`btn ${editProfile ? 'btn-danger' : 'btn-primary'} d-flex justify-content-end`} onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>X</b>}</button>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="row ms-1">
+                                    <div className="col-3">
+                                        <strong>Email</strong>
+                                    </div>
+                                    <div className="col-9">
+                                        {!editProfile ? <diV>{Email}</diV> : <TextField
+                                            id="outlined-email-input"
+                                            className='my-1 formobject text-white'
+                                            label="Email" placeholder="Email"
+                                            value={UpdatedEmail}
+                                            onChange={(e) => setUpdatedEmail(e.target.value.toLowerCase())}
+                                            error={erroremail !== null}
+                                            helperText={erroremail}
+                                            required size="small" />}
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="row ms-1">
+                                    <div className="col-3">
+                                        <strong>Gender</strong>
+                                    </div>
+                                    <div className="col-9">
+                                        {!editProfile ? <diV>{Gender}</diV> : <TextField size="small"
+                                            id="outlined-select-currency"
+                                            select
+                                            label="Gender"
+                                            defaultValue=""
+                                            // helperText="Please select your Gender"
+                                            className='my-1'
+                                            value={UpdatedGender}
+                                            onChange={(e) => setUpdatedGender(e.target.value)}
+                                            // error={errorgender !== null}
+                                            // helperText={errorgender}
+                                            required
+                                        >
+
+                                            <MenuItem value="Male">
+                                                Male
+                                            </MenuItem>
+                                            <MenuItem value="Female">
+                                                Female
+                                            </MenuItem>
+
+
+                                        </TextField>}
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="row ms-1">
+                                    <div className="col-3">
+                                        <strong>Phone</strong>
+                                    </div>
+                                    <div className="col-9">
+                                        {!editProfile ? <diV>{Phone_Number}</diV> : <TextField
+                                            id="outlined-phone-input"
+                                            className='my-1 formobject text-white'
+                                            label="Mobile number"
+                                            placeholder="Mobile number"
+                                            value={UpdatedPhone_Number}
+                                            onChange={(e) => handleInputOnlyNumbers(e)}
+                                            error={errorPhoneNumber !== null}
+                                            helperText={errorPhoneNumber}
+                                            required size="small" />}
                                     </div>
                                 </div>
 
 
-                                {/* <PaymentScreen price2={90} /> */}
 
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <div className='card mt-2 p-3'>
-                        {/* transactionsAPI  */}
-                        <Link to="/Transactions"><b> Click Here to view Transactions  </b></Link>
-                    </div>
-
-                </div>
-                <div className="col col-md-6 col-sm-12">
-                    <div className='card'>
-                        {/* <div className='float-left'>Edit Profile</div> */}
-                        {/* {editProfile ? <div>edit now here </div> : <div>false</div>} */}
-                        <div className='m-2'>
-
-                            {/* <button type="button" class="btn btn-primary d-flex justify-content-end" onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>close</b>}</button> */}
-
-                            <div className="row ms-1 mt-3">
-                                <div className="col-3">
-                                    <strong>Full Name</strong>
-                                </div>
-                                <div className="col-6">
-                                    {!editProfile ? <diV>{Name}</diV> : <TextField
-                                        id="outlined-Name-input"
-                                        className=''
-                                        // label="Name as per Aadhaar card"
-                                        // placeholder="Name as per Aadhaar card"
-                                        value={UpdatedName}
-                                        error={erroruserName !== null}
-                                        helperText={erroruserName}
-                                        onChange={(e) => handleInputOnlyAlphabets(e)}
-                                        required size="small" />}
-                                </div>
-                                <div className='col-3'>
-                                    <button type="button" className={`btn ${editProfile ? 'btn-danger' : 'btn-primary'} d-flex justify-content-end`} onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>X</b>}</button>
-                                </div>
-                            </div>
-                            <hr />
-                            <div className="row ms-1">
-                                <div className="col-3">
-                                    <strong>Email</strong>
-                                </div>
-                                <div className="col-9">
-                                    {!editProfile ? <diV>{Email}</diV> : <TextField
-                                        id="outlined-email-input"
-                                        className='my-1 formobject text-white'
-                                        label="Email" placeholder="Email"
-                                        value={UpdatedEmail}
-                                        onChange={(e) => setUpdatedEmail(e.target.value.toLowerCase())}
-                                        error={erroremail !== null}
-                                        helperText={erroremail}
-                                        required size="small" />}
-                                </div>
-                            </div>
-                            <hr />
-                            <div className="row ms-1">
-                                <div className="col-3">
-                                    <strong>Gender</strong>
-                                </div>
-                                <div className="col-9">
-                                    {!editProfile ? <diV>{Gender}</diV> : <TextField size="small"
-                                        id="outlined-select-currency"
-                                        select
-                                        label="Gender"
-                                        defaultValue=""
-                                        // helperText="Please select your Gender"
-                                        className='my-1'
-                                        value={UpdatedGender}
-                                        onChange={(e) => setUpdatedGender(e.target.value)}
-                                        // error={errorgender !== null}
-                                        // helperText={errorgender}
-                                        required
-                                    >
-
-                                        <MenuItem value="Male">
-                                            Male
-                                        </MenuItem>
-                                        <MenuItem value="Female">
-                                            Female
-                                        </MenuItem>
-
-
-                                    </TextField>}
-                                </div>
-                            </div>
-                            <hr />
-                            <div className="row ms-1">
-                                <div className="col-3">
-                                    <strong>Phone</strong>
-                                </div>
-                                <div className="col-9">
-                                    {!editProfile ? <diV>{Phone_Number}</diV> : <TextField
-                                        id="outlined-phone-input"
-                                        className='my-1 formobject text-white'
-                                        label="Mobile number"
-                                        placeholder="Mobile number"
-                                        value={UpdatedPhone_Number}
-                                        onChange={(e) => handleInputOnlyNumbers(e)}
-                                        error={errorPhoneNumber !== null}
-                                        helperText={errorPhoneNumber}
-                                        required size="small" />}
-                                </div>
-                            </div>
-
-
-
-                            {/* <div className="row ms-1">
+                                {/* <div className="row ms-1">
               <div className="col-3">
                   <strong>Address</strong>
               </div>
@@ -691,32 +730,32 @@ const ProfileUpdate = () => {
               </div>
             </div>
             <hr/> */} <hr />
-                            <div className="row ms-1">
+                                <div className="row ms-1">
 
-                                <div className="col-3">
-                                    <strong>Address</strong>
+                                    <div className="col-3">
+                                        <strong>Address</strong>
+                                    </div>
+                                    <div className="col-9">
+                                        {!editProfile ? <diV>{Address}</diV> : <TextField
+                                            id="outlined-phone-input"
+                                            className='my-1 w-75 formobject text-white'
+                                            // label=" Address"
+                                            // placeholder="Address"
+                                            value={UpdatedAddress}
+                                            onChange={(e) => setUpdatedAddress(e.target.value)}
+                                            error={errorUpdatedAddress !== null}
+                                            helperText={errorUpdatedAddress}
+                                            required size="small" />}
+
+
+
+                                    </div>
+                                    {editProfile && <button type="button" style={{ marginLeft: "27vw", marginTop: "1vw", display: 'flex', float: 'left', justifyContent: "center" }} onClick={() => UpdateProfile()} class="btn btn-primary w-25">{!editProfile ? "" : <b>Save</b>}</button>}
+
                                 </div>
-                                <div className="col-9">
-                                    {!editProfile ? <diV>{Address}</diV> : <TextField
-                                        id="outlined-phone-input"
-                                        className='my-1 w-75 formobject text-white'
-                                        // label=" Address"
-                                        // placeholder="Address"
-                                        value={UpdatedAddress}
-                                        onChange={(e) => setUpdatedAddress(e.target.value)}
-                                        error={errorUpdatedAddress !== null}
-                                        helperText={errorUpdatedAddress}
-                                        required size="small" />}
-
-
-
-                                </div>
-                                {editProfile && <button type="button" style={{ marginLeft: "27vw", marginTop: "1vw", display: 'flex', float: 'left', justifyContent: "center" }} onClick={() => UpdateProfile()} class="btn btn-primary w-25">{!editProfile ? "" : <b>Save</b>}</button>}
-
-                            </div>
-                            {/* <button type="button" class="btn btn-primary w-25" onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>close</b>}</button> */}
-                            <hr />
-                            {/* <div className="row ms-1">
+                                {/* <button type="button" class="btn btn-primary w-25" onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>close</b>}</button> */}
+                                <hr />
+                                {/* <div className="row ms-1">
                                 <div className="col-3">
                                     <strong>UserID</strong>
                                 </div>
@@ -731,7 +770,7 @@ const ProfileUpdate = () => {
 
 
 
-                            {/* <div className="row ms-1">
+                                {/* <div className="row ms-1">
                                 <div className="col-3">
                                     <strong>Wallet</strong>
                                 </div>
@@ -743,113 +782,113 @@ const ProfileUpdate = () => {
                             <hr /> */}
 
 
-                            <div className="row ms-1">
-                                <div className="col-3">
-                                    <strong>Change Password</strong>
-                                </div>
-                                <div className="col-9">
-                                    <strong>
-                                        {/* <Link to='/PaymentScreen'>Pay 49 rs</Link> */}
-                                        {!PasswordBox && <div className='text-danger' onClick={openPasswordBox}>Click Here</div>}
+                                <div className="row ms-1">
+                                    <div className="col-3">
+                                        <strong>Change Password</strong>
+                                    </div>
+                                    <div className="col-9">
+                                        <strong>
+                                            {/* <Link to='/PaymentScreen'>Pay 49 rs</Link> */}
+                                            {!PasswordBox && <div className='text-danger' onClick={openPasswordBox}>Click Here</div>}
 
 
-                                        {PasswordBox && <div className=' p-3 card rounded-4'>
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-8 p-0">
-                                                        <TextField
-                                                            id="outlined-password-input"
-                                                            className='my-1 formobject'
-                                                       
-                                                            label="New Password"
-                                                            placeholder="New Password"
-                                                            // value={password}
-                                                            onChange={(e) => setpassword(e.target.value)}
-                                                            error={errorpassword !== null}
-                                                            helperText={errorpassword}
-                                                            required size="small" 
-                                                            type={showPassword ? 'text' : 'password'}
-                                                        InputProps={{
-                                                            endAdornment: (
-                                                                <InputAdornment position="end">
-                                                                    <IconButton
-                                                                        aria-label="toggle password visibility"
-                                                                        onClick={handleClickShowPassword}
-                                                                        onMouseDown={handleMouseDownPassword}
-                                                                        edge="end"
-                                                                    >
-                                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                                                    </IconButton>
-                                                                </InputAdornment>
-                                                            ),
-                                                        }}/>
+                                            {PasswordBox && <div className=' p-3 card rounded-4'>
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-8 p-0">
+                                                            <TextField
+                                                                id="outlined-password-input"
+                                                                className='my-1 formobject'
 
-                                                        <TextField
-                                                            id="outlined-password-input"
-                                                            className='my-1 formobject'
-                                                       
-                                                            label="Confirm Password"
-                                                            placeholder="Confirm Password"
-                                                            // value={confirmpassword}
-                                                            onChange={(e) => setConfirmpassword(e.target.value)}
-                                                            error={errorpassword !== null}
-                                                            helperText={errorpassword}
-                                                            required size="small" 
-                                                            type={showConfirmPassword ? 'text' : 'password'}
+                                                                label="New Password"
+                                                                placeholder="New Password"
+                                                                // value={password}
+                                                                onChange={(e) => setpassword(e.target.value)}
+                                                                error={errorpassword !== null}
+                                                                helperText={errorpassword}
+                                                                required size="small"
+                                                                type={showPassword ? 'text' : 'password'}
+                                                                InputProps={{
+                                                                    endAdornment: (
+                                                                        <InputAdornment position="end">
+                                                                            <IconButton
+                                                                                aria-label="toggle password visibility"
+                                                                                onClick={handleClickShowPassword}
+                                                                                onMouseDown={handleMouseDownPassword}
+                                                                                edge="end"
+                                                                            >
+                                                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                                            </IconButton>
+                                                                        </InputAdornment>
+                                                                    ),
+                                                                }} />
 
-                                                        InputProps={{
-                                                            endAdornment: (
-                                                                <InputAdornment position="end">
-                                                                    <IconButton
-                                                                        aria-label="toggle confirm password visibility"
-                                                                        onClick={handleClickShowConfirmPassword}
-                                                                        onMouseDown={handleMouseDownConfirmPassword}
-                                                                        edge="end"
-                                                                    >
-                                                                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                                                    </IconButton>
-                                                                </InputAdornment>
-                                                            ),
-                                                        }} />
-                                                    </div>
+                                                            <TextField
+                                                                id="outlined-password-input"
+                                                                className='my-1 formobject'
 
-                                                    <div class="col-4 p-0">
-                                                    <button onClick={openPasswordBox}  className='w-100 bg-danger mt-3'>close</button>
+                                                                label="Confirm Password"
+                                                                placeholder="Confirm Password"
+                                                                // value={confirmpassword}
+                                                                onChange={(e) => setConfirmpassword(e.target.value)}
+                                                                error={errorpassword !== null}
+                                                                helperText={errorpassword}
+                                                                required size="small"
+                                                                type={showConfirmPassword ? 'text' : 'password'}
 
-                                                        <button onClick={updatedPassword} className='w-100 mt-2'>Submit</button>
+                                                                InputProps={{
+                                                                    endAdornment: (
+                                                                        <InputAdornment position="end">
+                                                                            <IconButton
+                                                                                aria-label="toggle confirm password visibility"
+                                                                                onClick={handleClickShowConfirmPassword}
+                                                                                onMouseDown={handleMouseDownConfirmPassword}
+                                                                                edge="end"
+                                                                            >
+                                                                                {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                                                            </IconButton>
+                                                                        </InputAdornment>
+                                                                    ),
+                                                                }} />
+                                                        </div>
+
+                                                        <div class="col-4 p-0">
+                                                            <button onClick={openPasswordBox} className='w-100 bg-danger mt-3'>close</button>
+
+                                                            <button onClick={updatedPassword} className='w-100 mt-2'>Submit</button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div>
+                                                <div>
 
 
 
 
 
-                                            </div>
-                                            <div>    </div>
+                                                </div>
+                                                <div>    </div>
 
-                                        </div>}
-                                    </strong>
+                                            </div>}
+                                        </strong>
 
 
+                                    </div>
                                 </div>
+                                <hr />
+                                <marquee width="50%" direction="right" height="30%">
+                                    EZEWIN PLAY WIN
+                                </marquee>
+
+                                <marquee width="50%" direction="right" height="30%">
+                                    EZEWIN PLAY WIN
+                                </marquee>
+
+
                             </div>
-                            <hr />
-                            <marquee width="50%" direction="right" height="30%">
-                                EZEWIN PLAY WIN
-                            </marquee>
-
-                            <marquee width="50%" direction="right" height="30%">
-                                EZEWIN PLAY WIN
-                            </marquee>
-
-
                         </div>
                     </div>
-                </div>
 
-                {/* <div className="col col-md-3 col-sm-12">
+                    {/* <div className="col col-md-3 col-sm-12">
                     <div className='card'>
 
                         <h5 className='ps-4 pt-4'><b>Your Contests</b></h5>
@@ -865,9 +904,9 @@ const ProfileUpdate = () => {
                         </div>
                     </div>
                 </div> */}
-            </div> <ToastContainer></ToastContainer>
+                </div> <ToastContainer></ToastContainer>
 
-            {/* <div className="">
+                {/* <div className="">
                     <span className="editicon btn btn-primary btn-file">
                       <AttachmentIcon />
                       <input
@@ -890,11 +929,11 @@ const ProfileUpdate = () => {
                     </span>
                     
                   </div> */}
-            <section>
+                <section>
+
+                </section>
 
             </section>
-
-        </section>
         </div>
 
     )

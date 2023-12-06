@@ -5,7 +5,7 @@ import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown"
 import '@leenguyen/react-flip-clock-countdown/dist/index.css'
 
 
-import { HomeTimerApi } from '../../Services2/ApiCalls'
+import { HomeTimerApi } from '../../Services/ApiCalls'
 import { Fade } from 'react-awesome-reveal';
 
 

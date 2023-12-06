@@ -1,32 +1,12 @@
 
 
-// AWS Sever 
-// export const BASE_URL = "http://13.233.31.67:8001/api/"
-
-// Local Server
-// export const BASE_URL = "http://127.0.0.1:8001/api/"
-
-
-
-
-// hemanth backend code
-
-// export const GUEST_URL= "http://localhost:8001/guest-api"
-
-// export const BASE_URL = "http://localhost:8001/api"
-
-// export const GUEST_URL= "http://localhost:8001/guest-api"
-
-export const BASE_URL = "http://localhost:8001/api"
-
 // sever
 export const GUEST_URL= "https://admin.ezewin.analogueitsolutions.com/guest-api"
 
-export const BASE_URL1 = "https://admin.ezewin.analogueitsolutions.com/api"
+export const BASE_URL = "https://admin.ezewin.analogueitsolutions.com/api"
 
-// export const GUEST_URL= "http://localhost:8001/guest-api"
-// 
-// export const BASE_URL1 = "http://localhost:8001/api"
+
+export const Asset_Path = "https://ezewin-files.s3.ap-south-1.amazonaws.com/"
 
 
 export const RAZORPAY_KEY = "rzp_test_k08nI1XM4ua61t";

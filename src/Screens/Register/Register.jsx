@@ -27,9 +27,9 @@ import { useNavigate } from "react-router-dom";
 //Api calls
 import axios from 'axios';
 import { BASE_URL } from '../../Enviornment'
-import { RegisterAPI } from "../../Services2/userApiCallings";
+import { RegisterAPI } from "../../Services/userApiCallings";
 
-import { UserRegisterApi } from '../../Services2/ApiCalls'
+import { UserRegisterApi } from '../../Services/ApiCalls'
 
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
@@ -412,7 +412,7 @@ function Register() {
                                                                         onMouseDown={handleMouseDownPassword}
                                                                         edge="end"
                                                                     >
-                                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                                        {showPassword ? <Visibility />:<VisibilityOff />}
                                                                     </IconButton>
                                                                 </InputAdornment>
                                                             ),
@@ -441,7 +441,7 @@ function Register() {
                                                                         onMouseDown={handleMouseDownConfirmPassword}
                                                                         edge="end"
                                                                     >
-                                                                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                                                        {showConfirmPassword ? <Visibility />:<VisibilityOff />}
                                                                     </IconButton>
                                                                 </InputAdornment>
                                                             ),

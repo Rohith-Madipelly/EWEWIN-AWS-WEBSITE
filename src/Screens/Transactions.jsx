@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { transactionsAPI } from '../Services2/ApiCalls'
+import { transactionsAPI } from '../Services/ApiCalls'
 import { BsCurrencyRupee } from "react-icons/bs";
 import Loader from '../shared/Loader/Loader';
 
 
 function Transactions() {
     const [transactionData, setTransactionData] = useState([])
-    // const [infobox, setInfobox] = useState(false)
+ 
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -21,7 +21,6 @@ function Transactions() {
             setIsLoading(false)
 
             if (res) {
-                // console.error(">>> in transaction api ",res.data.data)
                 setTransactionData(res.data.data)
 
             }

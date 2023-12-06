@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import { setToken } from '../../redux/actions/loginAction';
 import { useSelector } from "react-redux";
-import { ResetPasswordAPI } from '../../Services2/ApiCalls'
+import { ResetPasswordAPI } from '../../Services/ApiCalls'
 import { ReportGmailerrorred } from '@mui/icons-material';
 import OtpInput from 'react-otp-input';
 import Loader from '../../shared/Loader/Loader';

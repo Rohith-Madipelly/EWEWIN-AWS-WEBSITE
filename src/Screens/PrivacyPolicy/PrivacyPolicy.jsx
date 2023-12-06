@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './PrivacyPolicy.css'
-import { SettingAPI } from '../../Services2/ApiCalls'
-import { onTop } from '../../Services2/commonService'
+import { SettingAPI } from '../../Services/ApiCalls'
+import { onTop } from '../../Services/commonService'
 import parse from "html-react-parser";
 function PrivacyPolicy() {
 

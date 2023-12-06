@@ -20,7 +20,7 @@ const Loader = lazy(() => import('../../shared/Loader/Loader'));
 
 import { useDispatch,useSelector } from "react-redux";
 import { Link,useNavigate,useLocation } from 'react-router-dom';
-import { UserLoginApi } from '../../Services2/ApiCalls'
+import { UserLoginApi } from '../../Services/ApiCalls'
 import { setToken } from '../../redux/actions/loginAction';
 
 
@@ -196,7 +196,7 @@ function Login() {
                                         onMouseDown={handleMouseDownPassword}
                                         edge="end"
                                       >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        {showPassword ? <Visibility />:<VisibilityOff />}
                                       </IconButton>
                                     </InputAdornment>
                                   ),

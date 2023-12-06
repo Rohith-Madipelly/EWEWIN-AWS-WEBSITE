@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import './nav.css';
 import './newButton.css'
-import { upcoming_contestAPI, Mycoming_contestAPI } from '../Services2/ApiCalls'
-import { onTop} from '../Services2/commonService'
+import { upcoming_contestAPI, Mycoming_contestAPI } from '../Services/ApiCalls'
+import { onTop} from '../Services/commonService'
 
 
 import UpComing_ContestsCard from '../shared/Cards/UpComing_ContestsCard';
@@ -60,14 +60,25 @@ const UpComing_ContestPage = () => {
 
             const res2 = await Mycoming_contestAPI(token)
 
+            console.error(">>>>>>>>>")
+            console.error("opened_contests >",res2.data.opened_contests)
+            console.error("ready_contests >",res2.data.ready_contests)
+            console.error("upcoming_contests >",res2.data.upcoming_contests)
+            console.error("completed_contests >",res2.data.completed_contests)
+            console.error("<<<<<<<<<<")
 
-            const userData1 = res2.data.data;
+
+            // const userData1 = res2.data.data;
+            // const userData1 = res2.data.upcoming_contests;
+            const userData0 = res2.data.upcoming_contests.concat(res2.data.completed_contests);
+            const userData1 = res2.data.ready_contests.concat(userData0);
+
             if (userData1.length === 0) {
                 console.error("no data found")
                
             }
             else {
-                console.error("data ??", userData1)
+                // console.error("data ??", userData1)
                 setMycontestData(userData1)
             }
         } catch (error) {
@@ -86,7 +97,7 @@ const UpComing_ContestPage = () => {
 
     return (
 
-        <div className='screenPage mt-0 vh-100'> {isLoading && <Loader />}
+        <div className='screenPage mt-0'> {isLoading && <Loader />}
         <section className='container py-2 marginTopper-80 ' 
         // style={{ background: "linear-gradient(135deg, #F1B94F,#CE7E1C, #8C440A, #592401,#1B0801)" }}
         >

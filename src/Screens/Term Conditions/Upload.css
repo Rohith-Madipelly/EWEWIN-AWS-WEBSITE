@@ -1,0 +1,58 @@
+
+.Pic-Section{
+    max-width: fit-content;
+   
+
+    position: relative;
+    /* top: 250px; */
+    /* left: 60px; */
+   
+}
+
+.profile-pic {
+    width: 200px;
+    max-height: 200px;
+    display: inline-block;
+}
+
+.file-upload {
+    display: none;
+}
+
+.circle {
+    width: 12em;
+    height: 12em;
+    border-radius: 100% !important;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.p-image {
+    color: #666666;
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+
+.p-image:hover {
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+
+/*  button */
+.upload-button{
+    position: relative;
+    top: -28px;
+    /* left: 145px; */
+    left: 70px;
+}
+ .upload-button {
+    font-size: 1.6em;
+}
+
+.upload-button:hover {
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+    color: #999;
+}

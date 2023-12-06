@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-import { GUEST_URL, BASE_URL1, BASE_URL } from '../Enviornment'
+import { GUEST_URL, BASE_URL } from '../Enviornment'
 
 
 const config = {
@@ -33,7 +33,7 @@ export const HomePriceMoneyListApi = async () => {
 
 export const upcoming_contestAPI = async (token) => {
   const formData = new FormData();
-  return await axios.post(`${BASE_URL1}/upcoming-contest`,formData ,{
+  return await axios.post(`${BASE_URL}/upcoming-contest`,formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -41,7 +41,7 @@ export const upcoming_contestAPI = async (token) => {
 
 export const Mycoming_contestAPI = async (token) => {
   const formData = new FormData();
-  return await axios.post(`${BASE_URL1}/my-contests`,formData ,{
+  return await axios.post(`${BASE_URL}/my-contests`,formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -115,7 +115,7 @@ export const getProfileDetails2 = async (token) => {
 export const UserGetProfileDetails = async (token) => {
   const formData = new FormData();
 
-  return await axios.post(`${BASE_URL1}/profile`,formData ,{
+  return await axios.post(`${BASE_URL}/profile`,formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -144,7 +144,7 @@ export const UpdateProfileAPI = async (UpdatedName,UpdatedEmail,UpdatedPhone_Num
   formData.append("profile_pic", UpdatedProfilePic);
 
 
-  return await axios.post(`${BASE_URL1}/update-profile`,formData ,{
+  return await axios.post(`${BASE_URL}/update-profile`,formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -155,7 +155,7 @@ export const UpdatePasswordAPI = async (password, confirmpassword,token) => {
   formData.append("old_password", password);
   formData.append("new_password", confirmpassword);
 
-  return await axios.post(`${BASE_URL1}/change-password`,formData ,{
+  return await axios.post(`${BASE_URL}/change-password`,formData ,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -166,7 +166,7 @@ export const Join_ContestAPI = async (contest_id,token) => {
   const formData = new FormData();
   formData.append('contest_id', contest_id);
 
-  return await axios.post(`${BASE_URL1}/join-contest`,formData,{
+  return await axios.post(`${BASE_URL}/join-contest`,formData,{
     headers: { Authorization:"Bearer " + token}
   });
 };
@@ -181,7 +181,7 @@ export const Join_ContestAPI = async (contest_id,token) => {
 
 export const UserGetProfileDetails23 = async (token) => {
 
-  return await axios.post(`${BASE_URL1}/profile`,"", {
+  return await axios.post(`${BASE_URL}/profile`,"", {
     headers: { Authorization: "Bearer " + token },
   });
 };
@@ -242,7 +242,7 @@ export const verifySignatureApi = async (paymentData,token) => {
     "razorpay_signature" : paymentData.razorpay_signature
   }
 
-  return await axios.post(`${BASE_URL1}/verify-razorpay-signature`, formData,{
+  return await axios.post(`${BASE_URL}/verify-razorpay-signature`, formData,{
     headers: {
       Authorization: "Bearer " + token,
       'Content-Type': 'application/json',

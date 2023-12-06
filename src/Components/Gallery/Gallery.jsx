@@ -47,19 +47,19 @@ function Gallary() {
 
       <div className="card1Section" id='WinnersList'>
 
-      <h2 class="heading mt-5">Winners List</h2>
-       
-    <div className="row1 animate__fadeInBottomRight">
+        <h2 class="heading mt-5">Winners List</h2>
+
+        <div className="row1 animate__fadeInBottomRight">
           {row1col.map((column, i) => {
             return <div className="card1" key={i}>
-             
-                <div className="card1Head">
+
+              <div className="card1Head">
                 <img className="img1" id="flag" onMouseOver={(e) => { onhoverHandle(e, i) }} onMouseOut={(e) => { onNoHover(e, i) }} src={oneimg} alt="card1img" />
                 <img src={crown} alt="card1img" className="img2" />
                 {column.flag ? <label className='dis'>you are the next winner</label> : ""}
 
               </div>
-          
+
               <div className="card1body">
                 <h4>Big Win</h4>
                 {/* <h5>userName</h5>
@@ -77,12 +77,12 @@ function Gallary() {
             return <div className="card1 " key={i}>
 
 
-<div className="card1Head">
+              <div className="card1Head">
                 <img className="img1" id="flag" onMouseOver={(e) => { onhoverHandle2(e, i) }} onMouseOut={(e) => { onNoHover2(e, i) }} src={oneimg} alt="card1img" />
                 <img src={crown} alt="card1img" className="img2" />
                 {column.flag ? <label className='dis '>you are the next winner</label> : ""}
               </div>
-           
+
               <div className="card1body">
                 <h4 className=''>Big Win</h4>
                 <p className=''>Everyone is a Winner.</p>
@@ -92,11 +92,11 @@ function Gallary() {
 
           })}
         </div>
-    </div>
-        
-        
-   
-      
+      </div>
+
+
+
+
 
 
     </>

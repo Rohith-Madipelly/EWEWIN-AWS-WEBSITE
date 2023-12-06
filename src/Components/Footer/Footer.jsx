@@ -5,7 +5,7 @@ import { IoIosArrowForward } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
-import { SubscribeAPI } from '../../Services2/ApiCalls'
+import { SubscribeAPI } from '../../Services/ApiCalls'
 import { HomeClick, NextContest, PriceMoney, WinnersList, FAQS } from '../../shared/Navigations/Navigations'
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 

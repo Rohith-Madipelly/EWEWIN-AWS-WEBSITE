@@ -1,6 +1,6 @@
 import React from 'react'
 import './ShopCard.css'
-import { Join_ContestAPI } from '../../Services2/ApiCalls'
+import { Join_ContestAPI } from '../../Services/ApiCalls'
 import { toast} from 'react-toastify';
 
 

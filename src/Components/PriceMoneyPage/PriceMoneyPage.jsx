@@ -4,7 +4,7 @@ import { Slide } from 'react-awesome-reveal';
 import { Link } from 'react-router-dom'
 import "../StanderdStyles/Style.css"
 
-import { HomePriceMoneyListApi } from '../../Services2/ApiCalls'
+import { HomePriceMoneyListApi } from '../../Services/ApiCalls'
 
 function PriceMoneyPage() {
   const [winnersList, setWinningList] = useState([])
@@ -20,7 +20,7 @@ function PriceMoneyPage() {
         const resTime = res.data.contest.winnings;
         
         if (resTime != "") {
-          setWinningList(resTime)
+          // setWinningList(resTime)
           console.error("HomePriceMoneyListApi >>>>>>", resTime)
 
          
@@ -63,7 +63,7 @@ function PriceMoneyPage() {
 
             <div className='grid1  mb-4'>
               <div className="footer-links text-dark my-3">
-                <h5 className="text-dark">Install EZEWIN App on</h5>
+                <h5 className="text-dark ms-2">Install EZEWIN App on</h5>
                 <div className="downloadApp w-100">
                   <div className="oneApp">
                     <a href="https://play.google.com/" target='_blank' tabIndex="0"><img class="bn45" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="bn45" /></a>
@@ -81,10 +81,10 @@ function PriceMoneyPage() {
                 <span><Link to="/Register"><button className='btn12 btn-rr'>Register</button></Link></span>
               </div>
               <div class="d-grid gap-2 my-2 ">
-                <span><Link to="/Register"><button className='btn12'>Answer</button></Link></span>
+                <span><Link to="/Contests"><button className='btn12'>Answer</button></Link></span>
               </div>
               <div class="d-grid gap-2">
-                <span><Link to="/Register"><button className='btn12'>Win</button></Link></span>
+                <span><Link to="/Contests"><button className='btn12'>Win</button></Link></span>
               </div>
             </div>
 

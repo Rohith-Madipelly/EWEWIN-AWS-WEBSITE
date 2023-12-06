@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 import { setToken } from '../../redux/actions/loginAction';
 import { useSelector } from "react-redux";
-import {ForgetPasswordApi} from '../../Services2/ApiCalls'
+import {ForgetPasswordApi} from '../../Services/ApiCalls'
 import { ReportGmailerrorred } from '@mui/icons-material';
 import Loader from '../../shared/Loader/Loader';
 

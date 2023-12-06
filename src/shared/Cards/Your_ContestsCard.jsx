@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import FlipClockCountdown from "@leenguyen/react-flip-clock-countdown"
 import Loader from '../Loader/Loader'
 
@@ -33,9 +33,7 @@ const Your_ContestsCard = (item) => {
         var seconds = startDate.getSeconds();
     
         var formattedDate =`${month} ${day}, ${year} ${hours}:${minutes}:${seconds}`;
-        // setTimeData(formattedDate)
-        // }
-    
+
         return (        
                 <FlipClockCountdown className='m-1 mb-3 me-2 p-3 pb-0'
     
