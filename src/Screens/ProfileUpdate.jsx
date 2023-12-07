@@ -555,6 +555,7 @@ const ProfileUpdate = () => {
                                     <h4 className='my-1'><b>{Name}</b></h4>
                                     {/* <p className='mb-1'>{id}</p> */}
                                     <h5 className='mb-4 '><b>Wallet Amount : <BsCurrencyRupee size={22} />{wallet}</b></h5>
+                                    
 
                                     <button type="button" class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Money</button>
 
