@@ -12,13 +12,15 @@ import { onTop } from '../Services/commonService'
 import TextField from '@mui/material/TextField';
 import { BsCurrencyRupee } from "react-icons/bs";
 
-import { Asset_Path } from '../Enviornment'
+import { FaCamera } from "react-icons/fa";
+
 
 import { toast, ToastContainer, Zoom } from 'react-toastify';
-import { FaCamera } from "react-icons/fa";
+
 import { setToken } from '../redux/actions/loginAction';
 import { useDispatch } from "react-redux";
-import { Button } from 'bootstrap';
+
+
 import PaymentScreen from './PaymentScreen/NewPaymentMethod';
 import Loader from '../shared/Loader/Loader';
 
@@ -33,8 +35,13 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-
+import { Asset_Path } from '../Enviornment'
 const ProfileUpdate = () => {
+
+
+
+    // const [ProfileimageSrc, setImageSrc] = useState('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');
+
     const [isLoading, setIsLoading] = useState(false);
 
     const [showPassword, setShowPassword] = useState(false);
@@ -52,54 +59,21 @@ const ProfileUpdate = () => {
         event.preventDefault();
     }
 
-    const addwalletMethod = (event) => {
-
-        const inputValue = event.target.value;
-
-        if (inputValue.startsWith('0') || inputValue.startsWith('.') || inputValue.includes('+') || inputValue.includes('-') || inputValue.includes('.')) {
-            return;
-        }
-
-        else {
-            setAddWallet(inputValue)
-
-        }
-
-    }
-
-
-
-
     //Profile api
-    const [id, setId] = useState("**********");
-    const [Name, setName] = useState("**********");
-    const [Email, setEmail] = useState("****************");
-    const [Phone_Number, setPhone_Number] = useState("**********");
-    const [Gender, setGender] = useState("******");
-    const [wallet, setWallet] = useState("**");
-
+    const [id, setId] = useState("");
+    const [Name, setName] = useState("");
+    const [Email, setEmail] = useState("");
+    const [Phone_Number, setPhone_Number] = useState("");
+    const [Gender, setGender] = useState("");
+    const [wallet, setWallet] = useState("");
     const [Address, setAddress] = useState("");
+
     const [Profile, setProfile] = useState(null);
 
     const [btnDisabledPay, setBtnDisabledPay] = useState(false)
-
-
     const [addwallet, setAddWallet] = useState();
     const [erroraddwallet, setErrorAddWallet] = useState(null);
 
-
-    const handleFileChange2 = async (e) => {
-        const file = e.target.files[0];
-        setUpdatedProfilePic(e.target.files[0]);
-        console.error("adsda>Pink>", UpdatedProfilePic)
-
-        // UpdateProfile();
-    };
-
-    const handleUploadButtonClick = () => {
-        document.getElementById('fileInput').click();
-        // This will open the file manager to select the pic for input >>type >file
-    };
 
     function walletPoints(e) {
         const input = e.target.value;
@@ -110,10 +84,12 @@ const ProfileUpdate = () => {
 
             return;
         }
-        if (input.length < 1) {
-            setErrorAddWallet("You must enter at least 1 digit");
+        if (input.startsWith('0')) {
+            setErrorMessage("Amount cannot start with '00'");
+            return;
 
         }
+
         if (input.length > 10) {
             setErrorAddWallet("You can enter only 10 digits");
 
@@ -121,7 +97,7 @@ const ProfileUpdate = () => {
 
         }
         else {
-            setErrorAddWallet("");
+            setErrorAddWallet(null);
 
         }
 
@@ -154,15 +130,13 @@ const ProfileUpdate = () => {
     const [errorgender, setErrorGender] = useState(null);
 
     const [UpdatedAddress, setUpdatedAddress] = useState();
-    const [errorUpdatedAddress, seterrorUpdatedAddress] = useState();
+    const [errorUpdatedAddress, seterrorUpdatedAddress] = useState(null);
 
     const [UpdatedProfilePic, setUpdatedProfilePic] = useState(null);
     // const [selectedFile, setSelectedFile] = useState(null);
 
 
-    const handleFileChange = (e) => {
-        setUpdatedProfilePic(e.target.files[0]);
-    };
+
 
     useEffect(() => {
 
@@ -280,19 +254,6 @@ const ProfileUpdate = () => {
         setUpdatedName(e.target.value)
     }
     //Allow only Numbers
-    function handleInputOnlyNumbers(e) {
-        const input = e.target.value;
-        const regex = /^[0-9]*$/;
-
-        if (!regex.test(input)) {
-            //   toast.error('Only numbers are allowed', { position: toast.POSITION.TOP_CENTER });
-            return;
-        }
-        if (input.length <= 10) {
-            setUpdatedPhone_Number(input);
-        }
-
-    }
 
 
 
@@ -451,7 +412,6 @@ const ProfileUpdate = () => {
 
                     if (userData.address === undefined) {
                         setAddress("Pending ...")
-
                     }
                     else {
                         setAddress(userData.address)
@@ -475,6 +435,30 @@ const ProfileUpdate = () => {
         userData()
 
     }, []);
+    // hello 
+
+
+
+    const handleFileChange = (e) => {
+        setUpdatedProfilePic(e.target.files[0]);
+        console.error("adsda>>222", e.target.files[0])
+        console.error("adsda>>333", UpdatedProfilePic)
+
+    };
+
+    const handleFileChange2 = async (e) => {
+        const file = e.target.files[0];
+        setUpdatedProfilePic(e.target.files[0]);
+        console.error("adsda>Pink>", UpdatedProfilePic)
+
+        // UpdateProfile();
+    };
+
+    const handleUploadButtonClick = () => {
+        document.getElementById('fileInput').click();
+        // This will open the file manager to select the pic for input >>type >file
+    };
+
 
     return (
         <div className='screenPage mt-0 vh-100'>
@@ -488,31 +472,30 @@ const ProfileUpdate = () => {
                     <div className='col-sm-12 col-md-3'>
                         <div className='card pt-4 pb-2'>
                             <div className='profileCard text-center'>
+                                {Gender === "Female" ? <img
+                                    src={Profile}
+                                    alt='profilePic'
+                                    className='rounded-circle img-fluid'
+                                    style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
+                                    onError={(e) => {
+                                        e.target.src = 'src/assets/img/ProfileFemale.png';
+                                    }}
+                                /> : Gender === 'Male' ? <img
+                                    src={Profile}   //MzFfMTY5ODQyODY2NzgxOF8zNjQ=.jpeg
+                                    alt='profilePic'
+                                    className='rounded-pill img-fluid'
+                                    style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
+                                    onError={(e) => {
+                                        e.target.src = 'src/assets/img/ProfileMale.jpg';
+                                    }}
+                                /> : <div><img
+                                    src={Name}
+                                    alt='profilePic'
+                                    className='rounded-circle img-fluid'
+                                    style={{ maxWidth: '180px', width: '200px', maxHeight: '200px' }}
+                                /></div>}
 
 
-
-                                <div className='Pic-Section mx-auto'>
-                                    <div className="circle">
-                                        <img className="profile-pic " src={Asset_Path + Profile} alt="Profile" onClick={handleUploadButtonClick}
-                                            onError={(e) => {
-                                                e.target.src = 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg';
-                                            }} />
-                                    </div>
-
-                                    <div className="p-image">
-
-                                        {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <FaCamera className="upload-button" onClick={handleUploadButtonClick} />}
-
-                                        {/* <FaCamera className="upload-button" onClick={handleUploadButtonClick} /> */}
-                                        <input
-                                            id="fileInput"
-                                            className="file-upload"
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={handleFileChange2}
-                                        />
-                                    </div>
-                                </div>
                                 {/* <div className='' >
                                 <img
                                     src={Profile}
@@ -547,21 +530,11 @@ const ProfileUpdate = () => {
 
                                                     <div> <h4><b>Balance</b></h4>
                                                         <div><h2><BsCurrencyRupee size={45} /><b  >{wallet}</b></h2></div>
-                                                        {/* <div><TextField
-                                                        id="outlined-Name-input"
-                                                        value=""
-                                                        error={erroruserName !== null}
-                                                        helperText={erroruserName}
-                                                        onChange={(e) => handleInputOnlyNumbersPay(e)}
-                                                        required size="small" />
-                                                        </div> */}
-                                                        {/* <span>₹ Enter recharge amount</span> */}
+
                                                         <div>
-                                                            {/* <input type='text' placeholder='₹ Enter recharge amount' value={addwallet} onChange={(e) => {addwalletMethod(e)}} /> */}
                                                             <TextField
                                                                 id="outlined-phone-input"
                                                                 className='my-1 formobject text-white'
-                                                                type='number'
                                                                 label="₹ Enter recharge amount"
                                                                 placeholder="₹ Enter recharge amount"
                                                                 value={addwallet}
@@ -569,25 +542,14 @@ const ProfileUpdate = () => {
                                                                 error={erroraddwallet !== null}
                                                                 helperText={erroraddwallet}
                                                                 required size="small" />
-
                                                         </div>
-                                                        {/* <TextField
-                                                        id="outlined-phone-input"
-                                                        className='my-1 formobject text-white'
-                                                        label="Mobile number"
-                                                        placeholder="Mobile number"
-                                                        value={addwallet}
-                                                        onChange={(e) => walletPoints(e)}
-                                                        error={erroraddwallet !== null}
-                                                        helperText={erroraddwallet}
-                                                        required size="small" /> */}
+
                                                     </div>
 
 
                                                 </div>
                                                 <div class="modal-footer">
-                                                    {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
-                                                    {/* <button type="button" class="btn btn-primary">Send message</button> */}
+
 
                                                     <PaymentScreen price2={addwallet} btnDisabledP={btnDisabledPay} />
 
@@ -704,18 +666,7 @@ const ProfileUpdate = () => {
                                             required size="small" />}
                                     </div>
                                 </div>
-
-
-
-                                {/* <div className="row ms-1">
-              <div className="col-3">
-                  <strong>Address</strong>
-              </div>
-              <div className="col-9">
-                  11-24-140,2nd Bank Colony, Shanthi Nagar,Warangal,Telangana,India. 
-              </div>
-            </div>
-            <hr/> */} <hr />
+                                <hr />
                                 <div className="row ms-1">
 
                                     <div className="col-3">
@@ -725,8 +676,6 @@ const ProfileUpdate = () => {
                                         {!editProfile ? <diV>{Address}</diV> : <TextField
                                             id="outlined-phone-input"
                                             className='my-1 w-75 formobject text-white'
-                                            // label=" Address"
-                                            // placeholder="Address"
                                             value={UpdatedAddress}
                                             onChange={(e) => setUpdatedAddress(e.target.value)}
                                             error={errorUpdatedAddress !== null}
@@ -739,34 +688,7 @@ const ProfileUpdate = () => {
                                     {editProfile && <button type="button" style={{ marginLeft: "27vw", marginTop: "1vw", display: 'flex', float: 'left', justifyContent: "center" }} onClick={() => UpdateProfile()} class="btn btn-primary w-25">{!editProfile ? "" : <b>Save</b>}</button>}
 
                                 </div>
-                                {/* <button type="button" class="btn btn-primary w-25" onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>close</b>}</button> */}
                                 <hr />
-                                {/* <div className="row ms-1">
-                                <div className="col-3">
-                                    <strong>UserID</strong>
-                                </div>
-                                <div className="col-9">
-                                    {id}  
-
-                                </div>
-                            </div>
-
-                            <hr /> */}
-
-
-
-
-                                {/* <div className="row ms-1">
-                                <div className="col-3">
-                                    <strong>Wallet</strong>
-                                </div>
-                                <div className="col-9">
-                                    {wallet} Rs
-                                </div>
-                            </div>
-
-                            <hr /> */}
-
 
                                 <div className="row ms-1">
                                     <div className="col-3">
@@ -774,7 +696,7 @@ const ProfileUpdate = () => {
                                     </div>
                                     <div className="col-9">
                                         <strong>
-                                            {/* <Link to='/PaymentScreen'>Pay 49 rs</Link> */}
+
                                             {!PasswordBox && <div className='text-danger' onClick={openPasswordBox}>Click Here</div>}
 
 
@@ -874,47 +796,8 @@ const ProfileUpdate = () => {
                         </div>
                     </div>
 
-                    {/* <div className="col col-md-3 col-sm-12">
-                    <div className='card'>
-
-                        <h5 className='ps-4 pt-4'><b>Your Contests</b></h5>
-
-                        <div className='card bg-danger mx-3 mt-1 p-2'>
-                            contests IDs
-                        </div>
-                        <div className='card bg-danger mx-3 mt-1 p-2'>
-                            contests IDs
-                        </div>
-                        <div className='card bg-danger mx-3 my-1 p-2'>
-                            contests IDs
-                        </div>
-                    </div>
-                </div> */}
                 </div> <ToastContainer></ToastContainer>
 
-                {/* <div className="">
-                    <span className="editicon btn btn-primary btn-file">
-                      <AttachmentIcon />
-                      <input
-                        type="file"
-                        placeholder="Choose profile pic"
-                        accept="image/*"
-                        onChange={(e) => {
-                          const reader = new FileReader();
-                          reader.readAsDataURL(e.target.files[0]);
-                          reader.onloadend = function (e) {
-                            setPhoto(reader.result);
-                          }.bind(this);
-                          setUserDetails({
-                            ...userDetails,
-                            photo: e.target.files[0],
-                          });
-                        }}
-                      />
-
-                    </span>
-                    
-                  </div> */}
                 <section>
 
                 </section>

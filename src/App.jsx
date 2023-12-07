@@ -29,6 +29,7 @@ const PrivacyPolicy = lazy(() => import('./Screens/PrivacyPolicy/PrivacyPolicy')
 const SupportPage = lazy(() => import('./Screens/SupportPage'));
 const ResetPassword = lazy(() => import('./Screens/ForgetPassword/ResetPassword'));
 const ProfileUpdate = lazy(() => import('./Screens/ProfileUpdate'));
+const ProfileUpdateCopy = lazy(() => import('./Screens/ProfileUpdateCopy'));
 const Transactions = lazy(() => import('./Screens/Transactions')); 
 const UpComing_Contest = lazy(() => import('./Screens/UpComing_Contest'));
 const VerifyOtp = lazy(() => import('./Screens/VerifyOtp'));
@@ -49,6 +50,7 @@ function App() {
           <Route path='/VerifyOtp' element={<VerifyOtp />} />
     
           <Route path='/Profile' element={!loginSelector ? <Login /> : <ProfileUpdate />} />
+          <Route path='/ProfileCopy' element={!loginSelector ? <Login /> : <ProfileUpdateCopy />} />
           <Route path='/Contests' element={!loginSelector ? <Login /> : <UpComing_Contest />} />
 
 
