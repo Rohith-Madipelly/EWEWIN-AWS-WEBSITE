@@ -70,8 +70,11 @@ const UpComing_ContestPage = () => {
 
             // const userData1 = res2.data.data;
             // const userData1 = res2.data.upcoming_contests;
-            const userData0 = res2.data.upcoming_contests.concat(res2.data.completed_contests);
-            const userData1 = res2.data.ready_contests.concat(userData0);
+            const userData01 = res2.data.opened_contests.concat(res2.data.ready_contests);
+            const userData0 = userData01.concat(res2.data.upcoming_contests);
+            const userData03 = userData0.concat(res2.data.completed_contests);
+
+            const userData1 = res2.data.ready_contests.concat(userData03);
 
             if (userData1.length === 0) {
                 console.error("no data found")
