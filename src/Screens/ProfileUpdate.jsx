@@ -54,16 +54,26 @@ const ProfileUpdate = () => {
 
     const addwalletMethod = (event) => {
 
-        const inputValue = event.target.value;
+        // Use a regular expression to check if the input is a number
+        const newValue = event.target.value.replace(/[^0-9]/g, '');
 
-        if (inputValue.startsWith('0') || inputValue.startsWith('.') || inputValue.includes('+') || inputValue.includes('-') || inputValue.includes('.')) {
-            return;
-        }
+        if (newValue.length > 6) {
+            newValue = newValue.slice(0, 6);
+          }
 
-        else {
-            setAddWallet(inputValue)
+        // Update the state only if the new value is a number
+        setAddWallet(newValue);
 
-        }
+        // const inputValue = event.target.value;
+
+        // if (inputValue.startsWith('0') || inputValue.startsWith('.') || inputValue.includes('+') || inputValue.includes('-') || inputValue.includes('.')) {
+        //     return;
+        // }
+
+        // else {
+        //     setAddWallet(inputValue)
+
+        // }
 
     }
 
@@ -547,15 +557,7 @@ const ProfileUpdate = () => {
 
                                                     <div> <h4><b>Balance</b></h4>
                                                         <div><h2><BsCurrencyRupee size={45} /><b  >{wallet}</b></h2></div>
-                                                        {/* <div><TextField
-                                                        id="outlined-Name-input"
-                                                        value=""
-                                                        error={erroruserName !== null}
-                                                        helperText={erroruserName}
-                                                        onChange={(e) => handleInputOnlyNumbersPay(e)}
-                                                        required size="small" />
-                                                        </div> */}
-                                                        {/* <span>₹ Enter recharge amount</span> */}
+
                                                         <div>
                                                             {/* <input type='text' placeholder='₹ Enter recharge amount' value={addwallet} onChange={(e) => {addwalletMethod(e)}} /> */}
                                                             <TextField
@@ -707,15 +709,7 @@ const ProfileUpdate = () => {
 
 
 
-                                {/* <div className="row ms-1">
-              <div className="col-3">
-                  <strong>Address</strong>
-              </div>
-              <div className="col-9">
-                  11-24-140,2nd Bank Colony, Shanthi Nagar,Warangal,Telangana,India. 
-              </div>
-            </div>
-            <hr/> */} <hr />
+                                <hr />
                                 <div className="row ms-1">
 
                                     <div className="col-3">

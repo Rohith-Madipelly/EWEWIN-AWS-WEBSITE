@@ -51,6 +51,7 @@ function App() {
     
           <Route path='/Profile' element={!loginSelector ? <Login /> : <ProfileUpdate />} />
           <Route path='/ProfileCopy' element={!loginSelector ? <Login /> : <ProfileUpdateCopy />} />
+
           <Route path='/Contests' element={!loginSelector ? <Login /> : <UpComing_Contest />} />
 
 
