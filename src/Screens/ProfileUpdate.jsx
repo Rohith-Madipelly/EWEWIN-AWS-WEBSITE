@@ -533,10 +533,10 @@ const ProfileUpdate = () => {
                             </div> */}
                                 <div></div>
 
-                                {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <div className="d-flex flex-column mx-2"><input type="file" accept="image/*" className='mx-5 btn btn-primary' onChange={handleFileChange} />
+                                {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <div className="d-flex flex-column mx-2">
 
-                                    <div className='my-1'></div>
-                                    <button onClick={UpdateProfile} className='w-75 mx-5'>Upload Profile Picture</button></div>}
+                                
+                                    <button onClick={UpdateProfile} className='w-25 mx-auto'>Save</button></div>}
 
 
                                 <div className='data mt-2'>
