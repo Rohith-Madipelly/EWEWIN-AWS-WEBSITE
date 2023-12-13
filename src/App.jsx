@@ -35,6 +35,14 @@ const UpComing_Contest = lazy(() => import('./Screens/UpComing_Contest'));
 const VerifyOtp = lazy(() => import('./Screens/VerifyOtp'));
 
 
+// export const checkDefaultTheme = () => {
+//   const isDarkTheme = localStorage.getItem('darkTheme') === 'true'
+//   document.body.classList.toggle('dark-theme', isDarkTheme)
+//   return isDarkTheme
+// }
+
+// checkDefaultTheme()
+
 function App() {
   const loginSelector = useSelector((state) => state.isLogin);
   return (

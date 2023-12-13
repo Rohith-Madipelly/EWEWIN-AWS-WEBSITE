@@ -59,7 +59,7 @@ const ProfileUpdate = () => {
 
         if (newValue.length > 6) {
             newValue = newValue.slice(0, 6);
-          }
+        }
 
         // Update the state only if the new value is a number
         setAddWallet(newValue);
@@ -478,7 +478,10 @@ const ProfileUpdate = () => {
             } catch (error) {
                 setIsLoading(false)
 
-                console.error("Error in api ", error)
+                toast.error('Token has been expired or revoked ', { position: toast.POSITION.TOP_CENTER })
+
+
+                // console.error("Error in api ", error)
             }
         }
         onTop()
@@ -535,7 +538,7 @@ const ProfileUpdate = () => {
 
                                 {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <div className="d-flex flex-column mx-2">
 
-                                
+
                                     <button onClick={UpdateProfile} className='w-25 mx-auto'>Save</button></div>}
 
 
