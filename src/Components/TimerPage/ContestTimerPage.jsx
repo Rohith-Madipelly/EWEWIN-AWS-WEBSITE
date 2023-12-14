@@ -103,8 +103,8 @@ function LPattern2() {
             to={new Date(timeData).getTime()}
             // to={new Date('OCT 31, 2023 18:30:00').getTime()}
             // to={new Date('OCT 20, 2023 06:30:00').getTime()}
-
-            labels={['DAYS', 'HOURS', 'MINUTES', 'SECONDS']}
+            labels={['DAYS', 'HOURS', 'MINS', 'SECS']}
+            // labels={['DAYS', 'HOURS', 'MINUTES', 'SECONDS']}
 
             duration={0.5} />
 

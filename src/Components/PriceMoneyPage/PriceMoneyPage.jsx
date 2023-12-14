@@ -56,10 +56,10 @@ function PriceMoneyPage() {
       style={{ background: "linear-gradient(135deg, gold, darkgoldenrod, orange)" }}
     >
       <Slide triggerOnce>
-        <div className='container'>
+        <div className='container2 ps-1'>
 
 
-          <div className='Gridparent pt-2' >
+          <div className='Gridparent pt-2 ' >
 
             <div className='grid1  mb-4'>
               <div className="footer-links text-dark my-3">
@@ -107,6 +107,7 @@ function PriceMoneyPage() {
 
 
             </div>
+
           </div>
         </div></Slide>
     </section>

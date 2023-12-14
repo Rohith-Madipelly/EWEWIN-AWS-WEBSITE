@@ -1,5 +1,8 @@
 import React from 'react'
 import './NotFoundPage.css'
+
+
+
 function NotFoundPage() {
   return (
     <section className='NotFoundPage'>
@@ -8,6 +11,8 @@ function NotFoundPage() {
 
             
         </div>
+
+
     </section>
   )
 }

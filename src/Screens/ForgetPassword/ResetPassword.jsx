@@ -216,7 +216,7 @@ console.error("username:>",email, otp, newpassword)
                                       onMouseDown={handleMouseDownPassword}
                                       edge="end"
                                     >
-                                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                                      {showPassword ? <Visibility /> : <VisibilityOff />}
                                     </IconButton>
                                   </InputAdornment>
                                 ),
@@ -243,7 +243,7 @@ console.error("username:>",email, otp, newpassword)
                                       onMouseDown={handleMouseDownConfirmPassword}
                                       edge="end"
                                     >
-                                      {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                      {showConfirmPassword ? <Visibility /> :  <VisibilityOff />}
                                     </IconButton>
                                   </InputAdornment>
                                 ),

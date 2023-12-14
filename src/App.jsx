@@ -32,6 +32,7 @@ const ProfileUpdate = lazy(() => import('./Screens/ProfileUpdate'));
 const ProfileUpdateCopy = lazy(() => import('./Screens/ProfileUpdateCopy'));
 const Transactions = lazy(() => import('./Screens/Transactions')); 
 const UpComing_Contest = lazy(() => import('./Screens/UpComing_Contest'));
+const UpComing_Contest2 = lazy(() => import('./Screens/UpComing_Contest2'));
 const VerifyOtp = lazy(() => import('./Screens/VerifyOtp'));
 
 
@@ -60,7 +61,8 @@ function App() {
           <Route path='/Profile' element={!loginSelector ? <Login /> : <ProfileUpdate />} />
           <Route path='/ProfileCopy' element={!loginSelector ? <Login /> : <ProfileUpdateCopy />} />
 
-          <Route path='/Contests' element={!loginSelector ? <Login /> : <UpComing_Contest />} />
+          {/* <Route path='/Contests' element={!loginSelector ? <Login /> : <UpComing_Contest />} /> */}
+          <Route path='/Contests' element={!loginSelector ? <Login /> : <UpComing_Contest2 />} />
 
 
           <Route path='/Transactions' element={<Transactions />} />

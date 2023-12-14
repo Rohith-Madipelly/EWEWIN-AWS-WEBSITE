@@ -34,16 +34,19 @@ const Your_ContestsCard = (item) => {
     
         var formattedDate =`${month} ${day}, ${year} ${hours}:${minutes}:${seconds}`;
 
-        return (        
-                <FlipClockCountdown className='m-1 mb-3 me-2 p-3 pb-0'
+        return (      
+            <div style={{maxWidth:"300px", minWidth:"300px", margin:"auto"}}>  
+                <FlipClockCountdown className=' mb-3 py-3 pb-0 ps-2'
     
-                style={{ background: "linear-gradient(135deg, #F1B94F,#CE7E1C, #8C440A, #592401,#1B0801)" }}
+                style={{ background: "linear-gradient(135deg, #F1B94F,#CE7E1C, #8C440A, #592401,#1B0801)"}}
     
-                    digitBlockStyle={{ width: 24, height: 40, fontSize: 25 }}
+                    digitBlockStyle={{ width: 24, height: 28, fontSize: 22,marginRight:2,marginLeft:1 }}
                     // to={new Date('OCT 31, 2024 18:30:00').getTime()}
                     to={new Date(formattedDate).getTime()}
-                    labels={['DAYS', 'HOURS', 'MINUTES', 'SECONDS']}
+                    // labels={['DAYS', 'HOURS', 'MINUTES', 'SECONDS']}
+                    labels={['DAYS', 'HOURS', 'MINS', 'SECS']}
                     duration={0.5} />
+                    </div>
     
         )
     }
@@ -51,12 +54,12 @@ const Your_ContestsCard = (item) => {
 
 
     return (
-        <div className="card123 shadow mt-3" 
+        <div className="card123 shadow mt-3 card ps-2" 
         // style={{ background: "linear-gradient(135deg, #F1B94F,#CE7E1C, #8C440A, #592401,#1B0801)" }}
         > 
         {isLoading && <Loader />}
-            <div className='border '>
-                <div className='imgbox pt-3 ps-4' >
+            <div className='border'>
+                <div className='imgbox pt-3 ps-2' >
                     {/* <b>Id: {item._id}</b><br /> */}
                     <b>Contest Name: {item.name}</b><br />
                     <b>Price: {item.entry_fee}</b> <br />

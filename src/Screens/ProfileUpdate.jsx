@@ -23,6 +23,7 @@ import PaymentScreen from './PaymentScreen/NewPaymentMethod';
 import Loader from '../shared/Loader/Loader';
 
 
+
 import FormControl from '@mui/material/FormControl';
 
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -32,7 +33,6 @@ import IconButton from '@mui/material/IconButton';
 
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
 
 const ProfileUpdate = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -55,10 +55,10 @@ const ProfileUpdate = () => {
     const addwalletMethod = (event) => {
 
         // Use a regular expression to check if the input is a number
-        const newValue = event.target.value.replace(/[^0-9]/g, '');
+        var newValue = event.target.value.replace(/[^0-9]/g, '');
 
         if (newValue.length > 6) {
-            newValue = newValue.slice(0, 6);
+            return newValue = newValue.slice(0, 6);
         }
 
         // Update the state only if the new value is a number
@@ -76,6 +76,7 @@ const ProfileUpdate = () => {
         // }
 
     }
+
 
 
 
@@ -435,7 +436,6 @@ const ProfileUpdate = () => {
 
 
 
-
     //Profile API
     useEffect(() => {
         const userData = async () => {
@@ -489,8 +489,11 @@ const ProfileUpdate = () => {
 
     }, []);
 
+
+
+
     return (
-        <div className='screenPage mt-0 vh-100'>
+        <div className='screenPage mt-0 '>
             <section className='container py-2 marginTopper-80 '>
                 {isLoading && <Loader />}
 
@@ -506,10 +509,15 @@ const ProfileUpdate = () => {
 
                                 <div className='Pic-Section mx-auto'>
                                     <div className="circle">
-                                        <img className="profile-pic " src={Asset_Path + Profile} alt="Profile" onClick={handleUploadButtonClick}
-                                            onError={(e) => {
-                                                e.target.src = 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg';
-                                            }} />
+                                        <img className="profile-pic " src={Asset_Path + Profile} alt="Profile"
+                                            // onClick={handleUploadButtonClick}
+                                            // onClick={handleUploadButtonClick}
+
+                                            // onError={(e) => {
+                                            //     e.target.src = 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg';
+                                            // }}
+                                             />
+                                    
                                     </div>
 
                                     <div className="p-image">
@@ -766,96 +774,104 @@ const ProfileUpdate = () => {
 
 
                                 <div className="row ms-1">
-                                    <div className="col-3">
+                                    <div className="col col-md-4 col-lg-3">
                                         <strong>Change Password</strong>
                                     </div>
-                                    <div className="col-9">
+
+                                    <div className="col-4 ">
                                         <strong>
                                             {/* <Link to='/PaymentScreen'>Pay 49 rs</Link> */}
                                             {!PasswordBox && <div className='text-danger' onClick={openPasswordBox}>Click Here</div>}
-
-
-                                            {PasswordBox && <div className=' p-3 card rounded-4'>
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-8 p-0">
-                                                            <TextField
-                                                                id="outlined-password-input"
-                                                                className='my-1 formobject'
-
-                                                                label="New Password"
-                                                                placeholder="New Password"
-                                                                // value={password}
-                                                                onChange={(e) => setpassword(e.target.value)}
-                                                                error={errorpassword !== null}
-                                                                helperText={errorpassword}
-                                                                required size="small"
-                                                                type={showPassword ? 'text' : 'password'}
-                                                                InputProps={{
-                                                                    endAdornment: (
-                                                                        <InputAdornment position="end">
-                                                                            <IconButton
-                                                                                aria-label="toggle password visibility"
-                                                                                onClick={handleClickShowPassword}
-                                                                                onMouseDown={handleMouseDownPassword}
-                                                                                edge="end"
-                                                                            >
-                                                                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                                                            </IconButton>
-                                                                        </InputAdornment>
-                                                                    ),
-                                                                }} />
-
-                                                            <TextField
-                                                                id="outlined-password-input"
-                                                                className='my-1 formobject'
-
-                                                                label="Confirm Password"
-                                                                placeholder="Confirm Password"
-                                                                // value={confirmpassword}
-                                                                onChange={(e) => setConfirmpassword(e.target.value)}
-                                                                error={errorpassword !== null}
-                                                                helperText={errorpassword}
-                                                                required size="small"
-                                                                type={showConfirmPassword ? 'text' : 'password'}
-
-                                                                InputProps={{
-                                                                    endAdornment: (
-                                                                        <InputAdornment position="end">
-                                                                            <IconButton
-                                                                                aria-label="toggle confirm password visibility"
-                                                                                onClick={handleClickShowConfirmPassword}
-                                                                                onMouseDown={handleMouseDownConfirmPassword}
-                                                                                edge="end"
-                                                                            >
-                                                                                {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                                                            </IconButton>
-                                                                        </InputAdornment>
-                                                                    ),
-                                                                }} />
-                                                        </div>
-
-                                                        <div class="col-4 p-0">
-                                                            <button onClick={openPasswordBox} className='w-100 bg-danger mt-3'>close</button>
-
-                                                            <button onClick={updatedPassword} className='w-100 mt-2'>Submit</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-
-
-
-
-
-                                                </div>
-                                                <div>    </div>
-
-                                            </div>}
                                         </strong>
 
 
                                     </div>
+                                </div>
+                                <div className="row px-3 mx-2 mt-2" style={{ maxWidth: "380px" }}>
+
+
+
+                                    <div className='col'>
+                                        {PasswordBox && <div className=' p-3 card rounded-4'>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class=" px-1 paddingleft-auto">
+                                                        <TextField
+                                                            id="outlined-password-input"
+                                                            className='my-1 formobject'
+
+                                                            label="New Password"
+                                                            placeholder="New Password"
+                                                            // value={password}
+                                                            onChange={(e) => setpassword(e.target.value)}
+                                                            error={errorpassword !== null}
+                                                            helperText={errorpassword}
+                                                            required size="small"
+                                                            type={showPassword ? 'text' : 'password'}
+                                                            InputProps={{
+                                                                endAdornment: (
+                                                                    <InputAdornment position="end">
+                                                                        <IconButton
+                                                                            aria-label="toggle password visibility"
+                                                                            onClick={handleClickShowPassword}
+                                                                            onMouseDown={handleMouseDownPassword}
+                                                                            edge="end"
+                                                                        >
+                                                                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                                        </IconButton>
+                                                                    </InputAdornment>
+                                                                ),
+                                                            }} />
+                                                        <br />
+
+                                                        <TextField
+                                                            id="outlined-password-input"
+                                                            className='my-1 formobject'
+
+                                                            label="Confirm Password"
+                                                            placeholder="Confirm Password"
+                                                            // value={confirmpassword}
+                                                            onChange={(e) => setConfirmpassword(e.target.value)}
+                                                            error={errorpassword !== null}
+                                                            helperText={errorpassword}
+                                                            required size="small"
+                                                            type={showConfirmPassword ? 'text' : 'password'}
+
+                                                            InputProps={{
+                                                                endAdornment: (
+                                                                    <InputAdornment position="end">
+                                                                        <IconButton
+                                                                            aria-label="toggle confirm password visibility"
+                                                                            onClick={handleClickShowConfirmPassword}
+                                                                            onMouseDown={handleMouseDownConfirmPassword}
+                                                                            edge="end"
+                                                                        >
+                                                                            {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                                                                        </IconButton>
+                                                                    </InputAdornment>
+                                                                ),
+                                                            }} />
+                                                    </div>
+
+                                                    <div class="px-0">
+                                                        <button onClick={openPasswordBox} className='w-100 bg-danger mt-3'>close</button>
+
+                                                        <button onClick={updatedPassword} className='w-100 mt-2'>Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+
+
+
+
+
+                                            </div>
+                                            <div>    </div>
+
+                                        </div>}
+                                    </div>
+
                                 </div>
                                 <hr />
                                 <marquee width="50%" direction="right" height="30%">
