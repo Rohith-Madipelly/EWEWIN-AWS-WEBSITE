@@ -32,6 +32,7 @@ function ForgetPassword() {
 
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleForgetPassword = async (event) => {
     
@@ -59,7 +60,8 @@ function ForgetPassword() {
         toast.success(res.data.msg, { position: toast.POSITION.TOP_CENTER })
         setIsLoading(false)
         setTimeout(() => {
-          navigate('/ResetPassword');
+          
+          navigate('/ResetPassword', { state: { email: email } });
         }, 1000);
       }
     } catch (error) {

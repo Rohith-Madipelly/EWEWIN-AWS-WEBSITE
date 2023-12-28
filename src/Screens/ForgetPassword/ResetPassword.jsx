@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import './ForgetPassword.css'
 
 import Box from '@mui/material/Box';
@@ -71,6 +71,14 @@ function ResetPassword() {
 
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state && location.state.email) {
+      setEmail(location.state.email);
+    }
+  }, [location.state]);
+
 
   const handleForgetPassword = async (event) => {
 console.error("username:>",email, otp, newpassword)
