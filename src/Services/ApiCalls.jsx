@@ -58,11 +58,14 @@ export const SettingAPI = async () => {
 
 
 // User Login API Call 
-export const UserLoginApi = async (email, password) => {
+export const UserLoginApi = async (email, password,FCMToken) => {
   const loginData = {
     Email: email,
-    Password: password
+    Password: password,
+    fcm_token:FCMToken
   };
+
+  // console.error("Login Data",loginData)
   return await axios.post(`${GUEST_URL}/login`, loginData, config);
 };
 

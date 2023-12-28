@@ -1,21 +1,26 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+
+
+import { getMessaging } from "firebase/messaging";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAtZGXT3z_GBBv-cuGCM5QfJzdmKX9uHJ8",
-  authDomain: "ezewin-d7515.firebaseapp.com",
-  projectId: "ezewin-d7515",
-  storageBucket: "ezewin-d7515.appspot.com",
-  messagingSenderId: "546638602432",
-  appId: "1:546638602432:web:21c03a619b7db6f4650d25",
-  measurementId: "G-GSX15T2T0B"
+  apiKey: "AIzaSyBIdcZQ4wj1MzMUZUoc8DkHqfXdVfrvO1I",
+  authDomain: "testing-notications.firebaseapp.com",
+  projectId: "testing-notications",
+  storageBucket: "testing-notications.appspot.com",
+  messagingSenderId: "95654281130",
+  appId: "1:95654281130:web:93518464b477df93e0b5d3",
+  measurementId: "G-QHS5JFLLK1"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);
+export const messaging = getMessaging(app);

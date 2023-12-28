@@ -1,11 +1,13 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React,{ lazy, Suspense }  from 'react';
+import React,{ lazy, Suspense,useEffect }  from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { toast, ToastContainer, Zoom } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.min.css";
 import ProfilePictureUpload from './Screens/Term Conditions/ProfileUpload';
+
+ 
 
 
 const Loader = lazy(() => import('./shared/Loader/Loader'));
@@ -45,7 +47,53 @@ const VerifyOtp = lazy(() => import('./Screens/VerifyOtp'));
 // checkDefaultTheme()
 
 function App() {
+
   const loginSelector = useSelector((state) => state.isLogin);
+
+  const requestPermission = async () => {
+
+    const permission = await Notification.requestPermission()
+    //permission > default denied granted
+    if (permission === "granted") {
+
+      const newSw = await navigator.serviceWorker.register(
+        'firebase-messaging-sw.jsx'
+      );
+
+      console.error("fewf")
+
+      const FCMtoken =await getToken(messaging, { vapidKey:'BG69UuiKTGIsERQLTFFvAynES2hMU1uzuzAs-Nv3JHOJz1nbIwZYzGZn4bWToibeUf8a-B3HH8alS94OmvK1DPQ',serviceWorkerRegistration:newSw })
+      
+      console.error("Token Gen",FCMtoken)
+      // SaveFCMToken(FCMtoken)
+
+    }
+    else if (permission === "denied") {
+      // requestPermission()
+      alert("You denied for the notification")
+    }
+  }
+
+  const SaveFCMToken=async(FCMtoken)=>{
+    console.error("this is the token going to save in db",FCMtoken)
+    // try {
+    //   const responsed=UserFCMNotificationsToken(FCMtoken)
+    //   if (responsed) {
+    //     console.error("FCM Token is Saved")
+    //   }
+    //   else {
+    //     console.error("No Response from FCM Token API")
+    //   }
+    // } catch (error) {
+    //   console.error("Error in FCM TOKEN API")
+    // }
+  }
+
+
+  useEffect(() => {
+    requestPermission()
+  }, [])
+
   return (
     <div className="App">
 

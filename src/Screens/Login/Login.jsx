@@ -1,4 +1,4 @@
-import React, {useState,lazy, Suspense } from 'react'
+import React, {useState,lazy, Suspense,useEffect } from 'react'
 import './Login.css'
 
 
@@ -29,9 +29,45 @@ import { setToken } from '../../redux/actions/loginAction';
 
 
 
+//firebase
 
+import {messaging} from '../../firebase'
+import { getMessaging, getToken } from "firebase/messaging";
 
 function Login() {
+const [FCMToken,setFCMToken]=useState()
+
+  const requestPermission = async () => {
+
+    // const permission = await Notification.requestPermission()
+    // //permission > default denied granted
+    // if (permission === "granted") {
+
+      const newSw = await navigator.serviceWorker.register(
+        'firebase-messaging-sw.jsx'
+      );
+
+      console.error("fewf")
+
+      const FCMtoken =await getToken(messaging, { vapidKey:'BG69UuiKTGIsERQLTFFvAynES2hMU1uzuzAs-Nv3JHOJz1nbIwZYzGZn4bWToibeUf8a-B3HH8alS94OmvK1DPQ',serviceWorkerRegistration:newSw })
+      
+      console.error("Token Gen",FCMtoken)
+      setFCMToken(FCMtoken)
+
+
+    // }
+    // else if (permission === "denied") {
+    //   // requestPermission()
+    //   alert("You denied for the notification")
+    // }
+  }
+
+
+
+
+  useEffect(() => {
+    requestPermission()
+  }, [])
   // const loginSelector = useSelector((state) => state.isLogin);
   // if (loginSelector.isLogin) {
   //   dispatch(setToken(""));
@@ -89,7 +125,7 @@ function Login() {
     setIsLoading(true);
 
     try {
-      const responsed = await UserLoginApi(email, password);
+      const responsed = await UserLoginApi(email, password,FCMToken);
       if (responsed) {
         setIsLoading(false)
 

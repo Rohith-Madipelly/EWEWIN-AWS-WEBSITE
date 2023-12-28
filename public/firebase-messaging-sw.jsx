@@ -18,7 +18,7 @@ const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
   console.error(
-    "[firebase-messaging-sw.js] Received background message >>>>",
+    "[firebase-messaging-sw.js] Received background message ",
     payload
   );
   const notificationTitle = payload.notification.title;
