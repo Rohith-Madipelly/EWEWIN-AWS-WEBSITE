@@ -1,6 +1,6 @@
 import React, {useState,lazy, Suspense,useEffect } from 'react'
 import './Login.css'
-
+ 
 
 
 //UI Part 
@@ -42,15 +42,14 @@ const [FCMToken,setFCMToken]=useState()
     // const permission = await Notification.requestPermission()
     // //permission > default denied granted
     // if (permission === "granted") {
-
       const newSw = await navigator.serviceWorker.register(
         'firebase-messaging-sw.jsx'
       );
+      // const newSw = await navigator.serviceWorker.register('firebase-messaging-sw.js');
 
-      console.error("fewf")
 
-      const FCMtoken =await getToken(messaging, { vapidKey:'BG69UuiKTGIsERQLTFFvAynES2hMU1uzuzAs-Nv3JHOJz1nbIwZYzGZn4bWToibeUf8a-B3HH8alS94OmvK1DPQ',serviceWorkerRegistration:newSw })
-      
+      const FCMtoken =await getToken(messaging, { vapidKey:'BCJp839KJH31fP8caIosWP__sJzFbHFeVNdQ9ZOcgc7O3On8wROcH8okAkTFYhFVZIYEqSQeX9disOX-3CtmZAk',serviceWorkerRegistration:newSw })
+
       console.error("Token Gen",FCMtoken)
       setFCMToken(FCMtoken)
 
@@ -68,6 +67,7 @@ const [FCMToken,setFCMToken]=useState()
   useEffect(() => {
     requestPermission()
   }, [])
+  
   // const loginSelector = useSelector((state) => state.isLogin);
   // if (loginSelector.isLogin) {
   //   dispatch(setToken(""));

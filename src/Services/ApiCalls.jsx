@@ -65,7 +65,7 @@ export const UserLoginApi = async (email, password,FCMToken) => {
     fcm_token:FCMToken
   };
 
-  // console.error("Login Data",loginData)
+  console.error("Login Data >>>>>>>>>>>>>>>>>>>",loginData)
   return await axios.post(`${GUEST_URL}/login`, loginData, config);
 };
 
