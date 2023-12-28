@@ -2,3 +2,15 @@
     float: left;
   }
 
+
+
+@media (max-width: 575px) {
+
+
+  .btn-1404{
+    margin-right:2rem!important;
+    
+  }
+
+
+}

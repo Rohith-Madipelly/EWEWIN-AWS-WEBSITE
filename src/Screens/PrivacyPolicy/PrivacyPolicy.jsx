@@ -32,7 +32,7 @@ function PrivacyPolicy() {
 
     <div className='screenPage vh-100'>
 
-      <div className='container' style={{ marginTop: "88px" }}>
+      <div className='container' style={{ marginTop: "85px" }}>
         <h1 className='text-dark'><b>Privacy Policy</b></h1>
 
         <div className='m-4'>

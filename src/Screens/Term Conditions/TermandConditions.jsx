@@ -30,9 +30,9 @@ function TermandConditions() {
   return (
 
 
-    <div className=' screenPage vh-100' style={{ marginTop: "-4px" }}>
+    <div className=' mt-0 screenPage vh-100' style={{ marginTop: "-20px" }}>
 
-      <div className='container' style={{ marginTop: "90px" }}>
+      <div className='container' style={{ marginTop: "85px" }}>
         <h1 className='text-dark'><b>Term and Conditions</b></h1>
 
         <div className='m-4'>

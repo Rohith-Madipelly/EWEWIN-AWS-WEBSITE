@@ -110,6 +110,37 @@ console.error("username:>",email, otp, newpassword)
     else {
       setErrorPassword(null)
     }
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,}$/;
+    if (!newpassword) {
+      setErrorPassword("Please enter your password.*")
+        // toast.error('Please enter your full name.', { position: toast.POSITION.TOP_CENTER })
+        return false;
+    }
+    else if (!newpassword.match(passwordRegex)) {
+      setErrorPassword("Please enter a valid password. It must be 5+ characters with at least 1 uppercase, 1 lowercase, and 1 digit.");
+        // Display an error message using a toast or other method here.
+        return false;
+    }
+    else {
+      setErrorPassword(null);
+    }
+    if (!newconfirmPassword) {
+      setErrorPassword("Please enter your confirmpassword.*")
+        // toast.error('Please enter your full name.', { position: toast.POSITION.TOP_CENTER })
+        return false;
+    }
+    else {
+      setErrorPassword(null);
+    }
+    if (newconfirmPassword !== newpassword) {
+      setErrorPassword("Please enter Same Password.")
+        // toast.error('Please enter Same Password.', { position: toast.POSITION.TOP_CENTER })
+
+        return false;
+    }
+    else {
+      setErrorPassword(null);
+    }
 
     setIsLoading(true);
     try {
@@ -128,12 +159,16 @@ console.error("username:>",email, otp, newpassword)
       }
     } catch (error) {
       setIsLoading(false)
+      setErrorOtp("vd")
 
       if (error.response) {
         toast.error(error.response.data.msg, { position: toast.POSITION.TOP_CENTER })
 
         if (error.response.status === 400) {
           toast.error(error.response.data.msg, { position: toast.POSITION.TOP_CENTER })
+        }
+        else if (error.response.status === 401) {
+          setErrorOtp(error.response.data.msg)
         }
       }
       else {

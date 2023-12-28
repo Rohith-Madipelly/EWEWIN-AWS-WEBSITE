@@ -11,6 +11,7 @@ import { onTop } from '../Services/commonService'
 
 import TextField from '@mui/material/TextField';
 import { BsCurrencyRupee } from "react-icons/bs";
+import { FaSquarePen } from "react-icons/fa6";
 
 import { Asset_Path } from '../Enviornment'
 
@@ -481,6 +482,15 @@ const ProfileUpdate = () => {
                 toast.error('Token has been expired or revoked ', { position: toast.POSITION.TOP_CENTER })
 
 
+            setTimeout(() => {
+                dispatch(setToken(""));
+                localStorage.removeItem('token');
+                // setBtnDisabled(false);
+                navigate('/login');
+            }, 1000);
+
+        
+
                 // console.error("Error in api ", error)
             }
         }
@@ -547,7 +557,7 @@ const ProfileUpdate = () => {
                                 {!editProfile ? <diV className="d-flex justify-content-center"></diV> : <div className="d-flex flex-column mx-2">
 
 
-                                    <button onClick={UpdateProfile} className='w-25 mx-auto'>Save</button></div>}
+                                    <button onClick={UpdateProfile} className='w-25 btn btn-primary mx-auto'>Save</button></div>}
 
 
                                 <div className='data mt-2'>
@@ -647,8 +657,8 @@ const ProfileUpdate = () => {
                                             onChange={(e) => handleInputOnlyAlphabets(e)}
                                             required size="small" />}
                                     </div>
-                                    <div className='col-3'>
-                                        <button type="button" className={`btn ${editProfile ? 'btn-danger' : 'btn-primary'} d-flex justify-content-end`} onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b>Edit Profile</b> : <b>X</b>}</button>
+                                    <div className='col-3 grgr'>
+                                        <button type="button" style={{marginLeft: "5rem"}} className={`btn btn-1404 ${editProfile ? 'btn-danger ms-4' : 'btn-primary p-2 ms-4 pt-1'} d-flex justify-content-end`} onClick={() => setEditProfile(!editProfile)}>{!editProfile ? <b> <FaSquarePen size={"20"}/></b> : <b>X</b>}</button>
                                     </div>
                                 </div>
                                 <hr />
@@ -903,7 +913,8 @@ const ProfileUpdate = () => {
                         </div>
                     </div>
                 </div> */}
-                </div> <ToastContainer></ToastContainer>
+                </div> 
+                {/* <ToastContainer></ToastContainer> */}
 
                 {/* <div className="">
                     <span className="editicon btn btn-primary btn-file">

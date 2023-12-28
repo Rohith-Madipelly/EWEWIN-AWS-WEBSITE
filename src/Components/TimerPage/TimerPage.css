@@ -1,6 +1,7 @@
 
 .TimerPage{
     background-color: black;
+
     height: 320px;
     position: relative;
     right: 0px;
@@ -45,7 +46,12 @@
   }
 
 
-  @media (min-width: 768px) and (max-width: 991px) {
+  @media (min-width: 575px) and (max-width: 991px) {
+    .TimerImg{
+ 
+  
+      width: 50px!important;
+    }
 
   }
   .Indexerr
@@ -58,7 +64,7 @@
     .TimerImg{
  
   
-      width: 560px!important;
+      /* width: 560px!important; */
     }
     /* CSS styles for mobile phones in portrait orientation */
     .TimerPage{
@@ -77,13 +83,14 @@
     
       .TimerImg{
         position: absolute;
-        left: 2vw;
+        left: 1vw;
         width: 60vw;
         bottom: 2px;
       }
 
       .TimerPage{
         background-color: black;
+        
        
         height: 500px;
        
